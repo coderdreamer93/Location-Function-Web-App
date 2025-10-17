@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+:root {
+ --themeColor: #0866FF;
+}
+
+
+.bg-themeColor {
+ background-color: var(--themeColor);
+}
+.text-themeColor {
+ color: var(--themeColor);
+}
+.border-themeColor {
+ border-color: var(--themeColor);
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
