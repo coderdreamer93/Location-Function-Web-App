@@ -7,6 +7,9 @@ import SidebarFilter from "../../../Components/Dashboard/sidebarFilter/SidebarFi
 import ListView from "../../../Components/Dashboard/business/ListView";
 import GridView from "../../../Components/Dashboard/business/GridView";
 import { Outlet } from "react-router";
+import { IoIosAddCircle } from "react-icons/io";
+import AddButton from "../../../Components/Dashboard/common/AddButton";
+import { alphabet, businesses, formulaUsage, locations, operations, types } from "../../../data/data";
 
 function Businesses() {
   const [view, setView] = useCardView();
@@ -19,7 +22,15 @@ function Businesses() {
     { label: "My Functions", value: "near" },
   ];
 
+  const handleAdd = () => {
+    alert("Button working!");
+  };
 
+  
+    const handleFilterChange = (filters) => {
+    console.log("Selected Filters:", filters);
+    // You can apply your filtering logic here
+  };
 
   return (
     <div className="relative flex w-full">
@@ -29,7 +40,15 @@ function Businesses() {
           isOpen === "open" ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <SidebarFilter />
+          <SidebarFilter
+          locations={locations}
+          operations={operations}
+          formulaUsage={formulaUsage}
+          businesses={businesses}
+          alphabet={alphabet}
+          types={types}
+          onFilterChange={handleFilterChange}
+        />
       </div>
 
       {/*  ================= Right Side ================== */}
@@ -38,8 +57,6 @@ function Businesses() {
           isOpen === "open" ? " md:ml-64" : "ml-0"
         }`}
       >
-     
-
         <div
           className={`fixed top-14 left-0 right-0 z-20 bg-gray-50 p-4 transition-all duration-300 ease-in-out ${
             isOpen === "open" ? "md:ml-64" : "ml-0"
@@ -58,7 +75,7 @@ function Businesses() {
         </div>
 
         {/* Main Content */}
-        <div className="bg-gray-50 mt-3 relative pt-40 pb-10 rounded-lg min-h-[calc(100vh-8rem)]">
+        <div className="bg-gray-50  relative sm:mt-36 mt-48 pb-10 rounded-lg min-h-[calc(100vh-8rem)]">
           {/* {view === "list" ? (
             <div>
               <div>
@@ -74,6 +91,12 @@ function Businesses() {
              <Outlet />
             </div>
           )} */}
+
+          <div className="flex justify-start items-center">
+            <AddButton onClick={handleAdd} />
+          </div>
+
+          <Outlet />
         </div>
       </div>
     </div>
