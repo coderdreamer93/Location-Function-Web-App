@@ -59,6 +59,7 @@ import Problems from "../Screens/Dashboard/problems/Problems";
 import Functions from "../Screens/Dashboard/functions/Functions";
 import Stats from "../Screens/Dashboard/stats/Stats";
 import BusinessMapView from "../Screens/Dashboard/businesses/BusinessMapView";
+import AddFunction from "../Screens/Dashboard/functions/AddFunction";
 
 export default function AdminRouter() {
   return (
@@ -78,10 +79,23 @@ export default function AdminRouter() {
           path="/dashboard"
           element={<ProtectedRoutes Components={New_Dashboard} />}
         >
+          {/* <Route
+            path="functions"
+            element={<ProtectedRoutes Components={Functions} />}
+          >
+            <Route path="addFunction" element={<AddFunction />} />
+          </Route> */}
+
           <Route
             path="functions"
             element={<ProtectedRoutes Components={Functions} />}
           />
+
+          <Route
+            path="functions/addFunction"
+            element={<ProtectedRoutes Components={AddFunction} />}
+          />
+
           <Route
             path="problems"
             element={<ProtectedRoutes Components={Problems} />}

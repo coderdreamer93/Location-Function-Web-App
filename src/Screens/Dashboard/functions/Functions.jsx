@@ -6,28 +6,33 @@ import NestedHeader from "../../../Components/Dashboard/header/nestedHeader/Nest
 import SidebarFilter from "../../../Components/Dashboard/sidebarFilter/SidebarFilter";
 import ListView from "../../../Components/Dashboard/business/ListView";
 import GridView from "../../../Components/Dashboard/business/GridView";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import { IoIosAddCircle } from "react-icons/io";
 import AddButton from "../../../Components/Dashboard/common/AddButton";
-import { alphabet, businesses, formulaUsage, locations, operations, types } from "../../../data/data";
+import {
+  alphabet,
+  businesses,
+  formulaUsage,
+  locations,
+  operations,
+  types,
+} from "../../../data/data";
 
-function Businesses() {
+function Functions() {
   const [view, setView] = useCardView();
   const [isOpen, setIsOpen] = useFilterView();
   const [search, setSearch] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
+  const navigate = useNavigate();
 
   const filterOptions = [
     { label: "All Functions", value: "all" },
     { label: "My Functions", value: "near" },
   ];
 
-  const handleAdd = () => {
-    alert("Button working!");
-  };
+  const handleAdd = () => navigate("addFunction");
 
-  
-    const handleFilterChange = (filters) => {
+  const handleFilterChange = (filters) => {
     console.log("Selected Filters:", filters);
     // You can apply your filtering logic here
   };
@@ -36,11 +41,12 @@ function Businesses() {
     <div className="relative flex w-full">
       {/* Sidebar */}
       <div
-        className={`fixed top-18 left-0 z-30 h-[calc(100vh-3.5rem)] w-70 border-r border-gray-200 bg-white overflow-y-auto transition-transform duration-300 ease-in-out transform ${
+        // className={`fixed top-18 left-0 z-30 h-[calc(100vh-3.5rem)] w-70 border-r border-gray-200 bg-white overflow-y-auto transition-transform duration-300 ease-in-out transform ${
+        className={`fixed top-18 left-0 z-30  w-70 border-r border-gray-200 bg-white overflow-y-auto transition-transform duration-300 ease-in-out transform ${
           isOpen === "open" ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-          <SidebarFilter
+        <SidebarFilter
           locations={locations}
           operations={operations}
           formulaUsage={formulaUsage}
@@ -75,7 +81,9 @@ function Businesses() {
         </div>
 
         {/* Main Content */}
-        <div className="bg-gray-50  relative sm:mt-36 mt-48 pb-10 rounded-lg min-h-[calc(100vh-8rem)]">
+        <div className="bg-gray-50  relative sm:mt-36 mt-48 pb-10 rounded-lg min-h-[calc(100vh-10rem)]">
+        {/* <div className="bg-gray-400 relative sm:mt-36 mt-48 rounded-lg "> */}
+        {/* <div className="bg-gray-50 relative sm:mt-36 mt-48 pb-10 rounded-lg overflow-hidden min-h-[calc(100vh-12rem)]"> */}
           {/* {view === "list" ? (
             <div>
               <div>
@@ -92,15 +100,15 @@ function Businesses() {
             </div>
           )} */}
 
-          <div className="flex justify-start items-center">
+          {/* <div className="flex justify-start items-center"> */}
             <AddButton onClick={handleAdd} />
-          </div>
+          {/* </div> */}
 
-          <Outlet />
+          {/* <Outlet /> */}
         </div>
       </div>
     </div>
   );
 }
 
-export default Businesses;
+export default Functions;
