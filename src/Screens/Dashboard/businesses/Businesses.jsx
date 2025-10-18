@@ -6,6 +6,7 @@ import NestedHeader from "../../../Components/Dashboard/header/nestedHeader/Nest
 import SidebarFilter from "../../../Components/Dashboard/sidebarFilter/SidebarFilter";
 import ListView from "../../../Components/Dashboard/business/ListView";
 import GridView from "../../../Components/Dashboard/business/GridView";
+import { Outlet } from "react-router";
 
 function Businesses() {
   const [view, setView] = useCardView();
@@ -151,19 +152,7 @@ function Businesses() {
           isOpen === "open" ? " md:ml-64" : "ml-0"
         }`}
       >
-        {/* <div className="fixed top-14 left-0 right-0 z-20 bg-gray-50 p-4">
-          <NestedHeader title="Businesses" view={view} setView={setView} />
-
-          <PageFilter
-            search={search}
-            setSearch={setSearch}
-            filterOptions={filterOptions}
-            selectedFilter={selectedFilter}
-            setSelectedFilter={setSelectedFilter}
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-          />
-        </div> */}
+   
 
         <div
           className={`fixed top-14 left-0 right-0 z-20 bg-gray-50 p-4 transition-all duration-300 ease-in-out ${
@@ -183,18 +172,20 @@ function Businesses() {
         </div>
 
         {/* Main Content */}
-        <div className="bg-gray-50 mt-3 relative pt-32 pb-10 rounded-lg min-h-[calc(100vh-8rem)]">
+        <div className="bg-gray-50 mt-3 relative pt-40 pb-10 rounded-lg min-h-[calc(100vh-8rem)]">
           {view === "list" ? (
             <div>
               <div>
                 <div>
                   <ListView data={businessData} />
+                   <Outlet />
                 </div>
               </div>
             </div>
           ) : (
             <div>
               <GridView data={businessData} />
+             <Outlet />
             </div>
           )}
         </div>

@@ -12,7 +12,7 @@ import { Dashboard } from "../Screens/Dashboard";
 // import { AddLead } from "../Screens/LeadListing/AddLead";
 // import { DetailListing } from "../Screens/LeadListing/DetailListig";
 
-// Book Routes 
+// Book Routes
 
 import { BookManagement } from "../Screens/BookManagement";
 import { AddBook } from "../Screens/BookManagement/AddBook";
@@ -48,7 +48,6 @@ import { UserDetail } from "../Screens/UserManagement/UserDetail";
 import { AddUser } from "../Screens/UserManagement/AddUser";
 import { EditUser } from "../Screens/UserManagement/EditUser";
 
-
 import Profile from "../Screens/Profile";
 import EditProfile from "../Screens/Profile/EditProfile";
 import ChangePassword from "../Screens/Profile/ChangePassword";
@@ -61,7 +60,6 @@ import Functions from "../Screens/Dashboard/functions/Functions";
 import Stats from "../Screens/Dashboard/stats/Stats";
 import BusinessMapView from "../Screens/Dashboard/businesses/BusinessMapView";
 
-
 export default function AdminRouter() {
   return (
     <BrowserRouter basename="/WisdomForLife">
@@ -72,26 +70,35 @@ export default function AdminRouter() {
         <Route path="/forget-password2" element={<ForgetPassword2 />} />
         <Route path="/forget-password3" element={<ForgetPassword3 />} />
 
-
         {/* =========== Old Component ========== */}
         {/* <Route path="/dashboard" element={<ProtectedRoutes Components={Dashboard} />} /> */}
 
-
         {/* =========== New Component ========== */}
-     <Route path="/dashboard" element={<ProtectedRoutes Components={New_Dashboard} />}>
-          <Route path="functions" element={<ProtectedRoutes Components={Functions} />} />
-          <Route path="problems" element={<ProtectedRoutes Components={Problems} />} />
-          <Route path="businesses" element={<ProtectedRoutes Components={Businesses} />}>
-          <Route path="/businesses/:id" element={<BusinessMapView />} />
-          </Route>
-          <Route path="stats" element={<ProtectedRoutes Components={Stats} />} />
-    </Route>
-
-
-
+        <Route
+          path="/dashboard"
+          element={<ProtectedRoutes Components={New_Dashboard} />}
+        >
+          <Route
+            path="functions"
+            element={<ProtectedRoutes Components={Functions} />}
+          />
+          <Route
+            path="problems"
+            element={<ProtectedRoutes Components={Problems} />}
+          />
+          <Route
+            path="businesses"
+            element={<ProtectedRoutes Components={Businesses} />}
+          />
+          {/* 👇 move this outside */}
+          <Route path="businesses/:id" element={<BusinessMapView />} />
+          <Route
+            path="stats"
+            element={<ProtectedRoutes Components={Stats} />}
+          />
+        </Route>
 
         {/* =======================   Start Already Commented   =========================== */}
-
 
         {/* <Route path="/role-management" element={<ProtectedRoutes Components={Roles} />} /> */}
 
@@ -99,43 +106,111 @@ export default function AdminRouter() {
          <Route path="/lead-detail/:id" element={<ProtectedRoutes Components={DetailListing} />} />
         <Route path="/add-lead/" element={<ProtectedRoutes Components={AddLead} />} /> */}
 
-
         {/* =======================   End Already Commented   =========================== */}
 
-
-
-
         {/* book routes  */}
-        <Route path="/book-management" element={<ProtectedRoutes Components={BookManagement} />} />
-        <Route path="/add-book" element={<ProtectedRoutes Components={AddBook} />} />
-        <Route path="/book-management/book-details/:slug" element={<ProtectedRoutes Components={BookDetails} />} />
-        <Route path="/book-management/edit-book/:slug" element={<ProtectedRoutes Components={EditBook} />} />
-        <Route path="/book-share-list" element={<ProtectedRoutes Components={BookShareList} />} />
-        <Route path="/recipent-management" element={<ProtectedRoutes Components={RecipentManagement} />} />
-        <Route path="/add-recipent" element={<ProtectedRoutes Components={AddRecipent} />} />
+        <Route
+          path="/book-management"
+          element={<ProtectedRoutes Components={BookManagement} />}
+        />
+        <Route
+          path="/add-book"
+          element={<ProtectedRoutes Components={AddBook} />}
+        />
+        <Route
+          path="/book-management/book-details/:slug"
+          element={<ProtectedRoutes Components={BookDetails} />}
+        />
+        <Route
+          path="/book-management/edit-book/:slug"
+          element={<ProtectedRoutes Components={EditBook} />}
+        />
+        <Route
+          path="/book-share-list"
+          element={<ProtectedRoutes Components={BookShareList} />}
+        />
+        <Route
+          path="/recipent-management"
+          element={<ProtectedRoutes Components={RecipentManagement} />}
+        />
+        <Route
+          path="/add-recipent"
+          element={<ProtectedRoutes Components={AddRecipent} />}
+        />
 
-        <Route path="/category-management" element={<ProtectedRoutes Components={CategoryManagement} />} />
-        <Route path="/add-category" element={<ProtectedRoutes Components={AddCategory} />} />
-        <Route path="/category-management/category-details/:id" element={<ProtectedRoutes Components={CategoryDetails} />} />
-        <Route path="/category-management/edit-category/:id" element={<ProtectedRoutes Components={EditCategory} />} />
+        <Route
+          path="/category-management"
+          element={<ProtectedRoutes Components={CategoryManagement} />}
+        />
+        <Route
+          path="/add-category"
+          element={<ProtectedRoutes Components={AddCategory} />}
+        />
+        <Route
+          path="/category-management/category-details/:id"
+          element={<ProtectedRoutes Components={CategoryDetails} />}
+        />
+        <Route
+          path="/category-management/edit-category/:id"
+          element={<ProtectedRoutes Components={EditCategory} />}
+        />
 
-        <Route path="/ads-management" element={<ProtectedRoutes Components={AdsManagement} />} />
-        <Route path="/add-ads" element={<ProtectedRoutes Components={AddAds} />} />
-        <Route path="/ads-management/edit-ads/:id" element={<ProtectedRoutes Components={EditAds} />} />
+        <Route
+          path="/ads-management"
+          element={<ProtectedRoutes Components={AdsManagement} />}
+        />
+        <Route
+          path="/add-ads"
+          element={<ProtectedRoutes Components={AddAds} />}
+        />
+        <Route
+          path="/ads-management/edit-ads/:id"
+          element={<ProtectedRoutes Components={EditAds} />}
+        />
 
-        <Route path="/genre-management" element={<ProtectedRoutes Components={GenreManagement} />} />
-        <Route path="/add-genre" element={<ProtectedRoutes Components={AddGenre} />} />
-        <Route path="/genre-management/genre-details/:id" element={<ProtectedRoutes Components={GenreDetail} />} />
-        <Route path="/genre-management/edit-genre/:id" element={<ProtectedRoutes Components={EditGenre} />} />
+        <Route
+          path="/genre-management"
+          element={<ProtectedRoutes Components={GenreManagement} />}
+        />
+        <Route
+          path="/add-genre"
+          element={<ProtectedRoutes Components={AddGenre} />}
+        />
+        <Route
+          path="/genre-management/genre-details/:id"
+          element={<ProtectedRoutes Components={GenreDetail} />}
+        />
+        <Route
+          path="/genre-management/edit-genre/:id"
+          element={<ProtectedRoutes Components={EditGenre} />}
+        />
 
-        <Route path="/customer-support" element={<ProtectedRoutes Components={CustomerSupport} />} />
-        <Route path="/currency-management" element={<ProtectedRoutes Components={CurrencyManagement} />} />
+        <Route
+          path="/customer-support"
+          element={<ProtectedRoutes Components={CustomerSupport} />}
+        />
+        <Route
+          path="/currency-management"
+          element={<ProtectedRoutes Components={CurrencyManagement} />}
+        />
 
         {/* end  */}
-        <Route path="/user-management" element={<ProtectedRoutes Components={UserManagement} />} />
-        <Route path="/user-detail/:id" element={<ProtectedRoutes Components={UserDetail} />} />
-        <Route path="/add-user/" element={<ProtectedRoutes Components={AddUser} />} />
-        <Route path="/edit-user/:id" element={<ProtectedRoutes Components={EditUser} />} />
+        <Route
+          path="/user-management"
+          element={<ProtectedRoutes Components={UserManagement} />}
+        />
+        <Route
+          path="/user-detail/:id"
+          element={<ProtectedRoutes Components={UserDetail} />}
+        />
+        <Route
+          path="/add-user/"
+          element={<ProtectedRoutes Components={AddUser} />}
+        />
+        <Route
+          path="/edit-user/:id"
+          element={<ProtectedRoutes Components={EditUser} />}
+        />
 
         {/* <Route path="/unit-listing" element={<ProtectedRoutes Components={UnitListing} />} /> */}
         {/* <Route path="/brand-listing" element={<ProtectedRoutes Components={BrandListing} />} /> */}
@@ -143,8 +218,14 @@ export default function AdminRouter() {
 
         {/* <Route path="/target-listing" element={<ProtectedRoutes Components={UnitTarget} />} />
         <Route path="/target-listing/target-detail/:id" element={<ProtectedRoutes Components={TargetDetails} />} /> */}
-        <Route path="/profile" element={<ProtectedRoutes Components={Profile} />} />
-        <Route path="/profile/edit-profile" element={<ProtectedRoutes Components={EditProfile} />} />
+        <Route
+          path="/profile"
+          element={<ProtectedRoutes Components={Profile} />}
+        />
+        <Route
+          path="/profile/edit-profile"
+          element={<ProtectedRoutes Components={EditProfile} />}
+        />
         <Route path="/profile/change-password" element={<ChangePassword />} />
 
         <Route path="*" element={<Error />} />

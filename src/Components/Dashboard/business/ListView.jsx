@@ -97,7 +97,6 @@
 
 // export default ListView;
 
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { PiVideoCameraFill } from "react-icons/pi";
@@ -108,7 +107,9 @@ function ListView({ data = [] }) {
   const navigate = useNavigate();
 
   const handleCardClick = (id) => {
-    navigate(`/business/${id}`, { state: { business: data.find(d => d.id === id) } });
+    navigate(`/dashboard/businesses/${id}`, {
+      state: { business: data.find((d) => d.id === id) },
+    });
   };
 
   return (
@@ -132,14 +133,19 @@ function ListView({ data = [] }) {
               </div>
 
               <div className="flex flex-col justify-center items-start">
-                <span className="text-xs font-bold text-gray-900">{item.name}</span>
+                <span className="text-xs font-bold text-gray-900">
+                  {item.name}
+                </span>
                 <span className="text-xs text-gray-700">{item.location}</span>
                 <span className="text-xs text-blue-600">{item.phone}</span>
 
                 <div className="flex items-center">
                   {[...Array(5)].map((_, i) =>
                     i < item.rating ? (
-                      <RxStarFilled key={i} className="text-yellow-500 text-sm" />
+                      <RxStarFilled
+                        key={i}
+                        className="text-yellow-500 text-sm"
+                      />
                     ) : (
                       <RxStar key={i} className="text-gray-400 text-sm" />
                     )
@@ -172,7 +178,9 @@ function ListView({ data = [] }) {
             <div className="flex items-center gap-2 w-1/2">
               <div className="flex flex-col justify-center items-center text-center">
                 <HiOutlineHome className="text-5xl text-gray-800" />
-                <span className="text-xs font-bold text-black">{item.branch}</span>
+                <span className="text-xs font-bold text-black">
+                  {item.branch}
+                </span>
                 <span className="text-[10px] text-blue-600 cursor-pointer hover:underline">
                   Show Formula Flow
                 </span>
