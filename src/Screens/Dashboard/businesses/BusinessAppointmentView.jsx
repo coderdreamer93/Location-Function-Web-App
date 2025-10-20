@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { PiVideoCameraFill } from "react-icons/pi";
@@ -5,7 +6,7 @@ import { HiMiniArrowLeft } from "react-icons/hi2";
 import { BsCalendarDate } from "react-icons/bs";
 import { PiMapPinAreaThin } from "react-icons/pi";
 
-export default function BusinessMapView() {
+export default function BusinessAppointmentView() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -106,7 +107,7 @@ export default function BusinessMapView() {
             <div className="w-full flex justify-center items-center  rounded-2xl rounded-b-2xl bg-blue-50">
               <button
                 onClick={() =>
-                  navigate("/dashboard/businesses/appointment", {
+                  navigate("/dashboard/businesses/appointmentImageView", {
                     state: { business: selectedBusiness },
                   })
                 }

@@ -5,7 +5,7 @@ import { HiMiniArrowLeft } from "react-icons/hi2";
 import { BsCalendarDate } from "react-icons/bs";
 import { PiMapPinAreaThin } from "react-icons/pi";
 
-export default function BusinessMapView() {
+export default function BusinessAppointmentImageView() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -39,30 +39,22 @@ export default function BusinessMapView() {
 
   return (
     <div className="relative flex flex-col md:flex-row w-full h-screen bg-gray-100 overflow-hidden">
-      {/* ============ MAP SIDE ============ */}
+      {/* ============ IMAGE SIDE ============ */}
       <div className="flex-1 relative bg-gray-200">
-        <iframe
-          title="business-map"
-          width="100%"
-          height="100%"
-          style={{ border: 0 }}
-          loading="lazy"
-          allowFullScreen
-          referrerPolicy="no-referrer-when-downgrade"
-          // t=m → map, t=p → terrain
-          src={`https://www.google.com/maps?hl=en&q=${encodeURIComponent(
-            place || "USA"
-          )}&t=m&z=14&output=embed`}
-        ></iframe>
+        <img
+          src="/public/mechanic.jpg"
+          alt="Business portrait"
+          className="w-full h-full object-cover"
+        />
       </div>
 
       {/* ============ INFO CARD ============ */}
-      <div className="w-full flex flex-col  justify-between sm:w-[360px] bg-white shadow-xl rounded-none  p-6 border-l border-gray-200">
+      <div className="w-full flex flex-col justify-between sm:w-[360px] bg-white shadow-xl p-6 border-l border-gray-200">
         {/* Header */}
         <div>
-          <div className="flex justify-between items-center flex-col border rounded-2xl ">
+          <div className="flex justify-between items-center flex-col border rounded-2xl">
             <div className="flex justify-between items-start gap-3 p-3 w-full">
-              <div className="flex items-center gap-3 ">
+              <div className="flex items-center gap-3">
                 <div className="relative">
                   <div className="w-14 h-14 bg-green-700 text-white text-xl font-semibold flex items-center justify-center rounded-full">
                     {name?.charAt(0)}
@@ -73,9 +65,7 @@ export default function BusinessMapView() {
                 </div>
 
                 <div className="flex flex-col">
-                  <span className="text-xs font-bold text-gray-900">
-                    {name}
-                  </span>
+                  <span className="text-xs font-bold text-gray-900">{name}</span>
                   <span className="text-xs text-gray-600 flex items-center gap-1">
                     {designation}
                   </span>
@@ -103,17 +93,16 @@ export default function BusinessMapView() {
                 </span>
               </div>
             </div>
-            <div className="w-full flex justify-center items-center  rounded-2xl rounded-b-2xl bg-blue-50">
+
+            <div className="w-full flex justify-center items-center rounded-2xl bg-blue-50">
               <button
                 onClick={() =>
-                  navigate("/dashboard/businesses/appointment", {
-                    state: { business: selectedBusiness },
-                  })
+                  alert("Appointment successfully confirmed!")
                 }
-                className=" w-full flex justify-center items-center gap-2 shadow-none border-blue-600 font-medium py-2 hover:bg-blue-50 transition-all border-b-2 border-b-blue-600 rounded-2xl border-t rounded-t-none bg-blue-50"
+                className="w-full flex justify-center items-center gap-2 border-blue-600 font-medium py-2 hover:bg-blue-100 transition-all border-b-2 border-b-blue-600 rounded-2xl border-t rounded-t-none bg-blue-50"
               >
                 <BsCalendarDate size={14} className="text-blue-600" />
-                <span className="text-black text-[10px]">Make Appointment</span>
+                <span className="text-black text-[10px]">Confirm Appointment</span>
               </button>
             </div>
           </div>
@@ -142,8 +131,6 @@ export default function BusinessMapView() {
               </div>
             </div>
           </div>
-
-          {/* Buttons */}
         </div>
 
         <div className="mt-6 flex flex-col gap-3">

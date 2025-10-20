@@ -183,7 +183,6 @@
 
 // export default Businesses;
 
-
 import React, { useState, useEffect, useCallback } from "react";
 import useCardView from "../../../hook/useCardView";
 import useFilterView from "../../../hook/useFilterView";
@@ -233,7 +232,10 @@ function Businesses() {
     }
 
     // 📍 Location filter — supports multiple selections
-    if (Array.isArray(activeFilters?.location) && activeFilters.location.length > 0) {
+    if (
+      Array.isArray(activeFilters?.location) &&
+      activeFilters.location.length > 0
+    ) {
       const validLocations = activeFilters.location
         .filter((loc) => typeof loc === "string" && loc.trim() !== "")
         .map((l) => l.toLowerCase());
@@ -254,7 +256,10 @@ function Businesses() {
     }
 
     // 🏢 Business filter
-    if (Array.isArray(activeFilters?.business) && activeFilters.business.length > 0) {
+    if (
+      Array.isArray(activeFilters?.business) &&
+      activeFilters.business.length > 0
+    ) {
       data = data.filter((b) =>
         activeFilters.business.some((biz) =>
           b.name.toLowerCase().includes(biz.toLowerCase())
@@ -263,7 +268,10 @@ function Businesses() {
     }
 
     // ⚙️ Operation filter
-    if (typeof activeFilters?.operation === "string" && activeFilters.operation) {
+    if (
+      typeof activeFilters?.operation === "string" &&
+      activeFilters.operation
+    ) {
       const op = activeFilters.operation.toLowerCase();
       if (op === "and") {
         data = data.filter((b) => b.function && b.problem);
@@ -275,7 +283,10 @@ function Businesses() {
     }
 
     // 🧮 Formula usage filter
-    if (Array.isArray(activeFilters?.formulaUsage) && activeFilters.formulaUsage.length > 0) {
+    if (
+      Array.isArray(activeFilters?.formulaUsage) &&
+      activeFilters.formulaUsage.length > 0
+    ) {
       data = data.filter((b) =>
         activeFilters.formulaUsage.some((f) =>
           b.function.toLowerCase().includes(f.toLowerCase())
@@ -309,17 +320,17 @@ function Businesses() {
     <div className="relative flex w-full">
       {/* Sidebar */}
       <div
-        className={`fixed top-18 left-0 z-30 h-[calc(100vh-3.5rem)] w-70 border-r border-gray-200 bg-white overflow-y-auto transition-transform duration-300 ease-in-out transform ${
-          isOpen === "open" ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-18 left-0 z-30 h-[calc(100vh-3.5rem)] 
+    w-[85%] sm:w-64 md:w-64 
+    border-r border-gray-200 bg-white overflow-y-auto 
+    transition-transform duration-300 ease-in-out transform
+    ${isOpen === "open" ? "translate-x-0" : "-translate-x-full"}`}
       >
         <SidebarFilter
           locations={locations}
           operations={operations}
           formulaUsage={formulaUsage}
           alphabet={alphabet}
-          // businesses={businesses}
-          // types={types}
           onFilterChange={handleFilterChange}
         />
       </div>
@@ -355,7 +366,10 @@ function Businesses() {
           ) : (
             <GridView data={filteredData} />
           )}
+          {/* <div className="w-full h-full">
+
           <Outlet />
+          </div> */}
         </div>
       </div>
     </div>

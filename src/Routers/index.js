@@ -60,6 +60,9 @@ import Functions from "../Screens/Dashboard/functions/Functions";
 import Stats from "../Screens/Dashboard/stats/Stats";
 import BusinessMapView from "../Screens/Dashboard/businesses/BusinessMapView";
 import AddFunction from "../Screens/Dashboard/functions/AddFunction";
+import BusinessAppointmentView from "../Screens/Dashboard/businesses/BusinessAppointmentView";
+import BusinessAppointmentImageView from "../Screens/Dashboard/businesses/BusinessAppointmentImageView";
+import AboutMyFunctionForm from "../Screens/Dashboard/functions/AboutMyFunctionForm";
 
 export default function AdminRouter() {
   return (
@@ -95,6 +98,10 @@ export default function AdminRouter() {
             path="functions/addFunction"
             element={<ProtectedRoutes Components={AddFunction} />}
           />
+          <Route
+            path="functions/MyFunctionAbout"
+            element={<ProtectedRoutes Components={AboutMyFunctionForm} />}
+          />
 
           <Route
             path="problems"
@@ -106,6 +113,14 @@ export default function AdminRouter() {
           />
           {/* 👇 move this outside */}
           <Route path="businesses/:id" element={<BusinessMapView />} />
+          <Route
+            path="/dashboard/businesses/appointment"
+            element={<BusinessAppointmentView />}
+          />
+          <Route
+            path="/dashboard/businesses/appointmentImageView"
+            element={<BusinessAppointmentImageView />}
+          />
           <Route
             path="stats"
             element={<ProtectedRoutes Components={Stats} />}

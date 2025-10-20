@@ -48,7 +48,7 @@ function NestedHeaderWhite({
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 h-16">
       {/* Breadcrumbs */}
       <div className="flex items-center text-sm text-gray-500">
         {breadcrumbs.map((crumb, index) => (
@@ -71,7 +71,7 @@ function NestedHeaderWhite({
       </div>
 
       {/* Title */}
-      <p className="text-3xl font-semibold text-gray-800">{title}</p>
+      <p className="text-3xl font-semibold text-gray-800 ">{title}</p>
     </div>
   );
 }

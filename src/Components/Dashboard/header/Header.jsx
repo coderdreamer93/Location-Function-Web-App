@@ -136,9 +136,9 @@ export default function Header() {
 
   const [tabs] = useState([
     { id: 1, name: "Functions", route: "functions" },
-    { id: 2, name: "Problems", route: "problems" },
+    // { id: 2, name: "Problems", route: "problems" },
     { id: 3, name: "Businesses", route: "businesses" },
-    { id: 4, name: "Stats", route: "stats" },
+    // { id: 4, name: "Stats", route: "stats" },
   ]);
 
   const [notifications] = useState(2);
