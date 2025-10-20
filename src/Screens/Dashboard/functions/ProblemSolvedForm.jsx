@@ -1,19 +1,15 @@
 "use client";
 import React, { useState } from "react";
 import { FiUploadCloud } from "react-icons/fi";
-import { IoLocationOutline, IoLocation } from "react-icons/io5";
 
-export default function AboutMyFunctionForm() {
+export default function ProblemSolvedForm() {
   const [fileName, setFileName] = useState("");
   const [formData, setFormData] = useState({
-    name: "",
-    jobTitle: "",
-    location: "",
-    privacy: "Public",
-    functionName: "",
-    functionLocation: "",
+    problemSolved: "",
+    instantBroadcast: "",
     businessName: "",
-    functionVideo: "",
+    solvedImage: "",
+    solvedVideo: "",
   });
 
   const handleFileChange = (e) => {
@@ -28,44 +24,38 @@ export default function AboutMyFunctionForm() {
 
   return (
     <div className="w-full mx-auto">
-      {/* ============ About Me Section ============ */}
-     
-     
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        {/* Function Name */}
+        {/* Problem Solved by Function */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Function Name
+            Problem Solved by Function
           </label>
           <input
             type="text"
-            name="functionName"
-            value={formData.functionName}
+            name="problemSolved"
+            value={formData.problemSolved}
             onChange={handleChange}
-            placeholder="ex: Fix Car"
+            placeholder="ex: Engine repair completed"
             className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
           />
         </div>
 
-        {/* Function Location */}
+        {/* Instant Problem Broadcast */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Function Location
+            Instant Problem Broadcast
           </label>
-          <div className="relative">
-            <select
-              name="functionLocation"
-              value={formData.functionLocation}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-8 appearance-none text-sm focus:ring-1 focus:ring-blue-500 outline-none"
-            >
-              <option value="">Select Location</option>
-              <option value="Karachi">Karachi</option>
-              <option value="Lahore">Lahore</option>
-              <option value="Islamabad">Islamabad</option>
-            </select>
-            <IoLocationOutline className="absolute right-3 top-2.5 text-gray-500 text-lg" />
-          </div>
+          <select
+            name="instantBroadcast"
+            value={formData.instantBroadcast}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
+          >
+            <option value="">Select Option</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            <option value="Connections Only">Connections Only</option>
+          </select>
         </div>
 
         {/* Business Name */}
@@ -83,10 +73,10 @@ export default function AboutMyFunctionForm() {
           />
         </div>
 
-        {/* Upload Function Image */}
+        {/* Upload Problem Solved Image */}
         <div className="md:col-span-2">
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Upload Function Image
+            Upload Problem Solved Image
           </label>
           <label
             htmlFor="fileUpload"
@@ -110,19 +100,35 @@ export default function AboutMyFunctionForm() {
           </p>
         </div>
 
-        {/* Function Video */}
+        {/* Problem Solved Video */}
         <div className="md:col-span-2">
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Function Video
+            Problem Solved Video
           </label>
           <input
             type="text"
-            name="functionVideo"
-            value={formData.functionVideo}
+            name="solvedVideo"
+            value={formData.solvedVideo}
             onChange={handleChange}
             placeholder="Enter YouTube Link"
             className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
           />
+        </div>
+
+        {/* Buttons Row */}
+        <div className="md:col-span-2 flex gap-4 mt-4">
+          <button
+            type="button"
+            className="w-1/2  border-2 border-blue-600 py-2 rounded-lg  text-blue-600 text-sm font-medium hover:bg-blue-700 transition-all"
+          >
+            + Add Problem
+          </button>
+          <button
+            type="button"
+            className="w-1/2 border-2 border-blue-600  bg-blue-50 text-blue-600 py-2 rounded-lg text-sm font-medium hover:bg-gray-300 transition-all"
+          >
+            Add Descriptions
+          </button>
         </div>
       </div>
     </div>

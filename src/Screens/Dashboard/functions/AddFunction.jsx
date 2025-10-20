@@ -192,8 +192,8 @@
 //             <button
 //               onClick={handlePrev}
 //               disabled={activeStep === 0}
-//               className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 
-//         border-2 shadow-sm hover:shadow-md focus:outline-none 
+//               className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200
+//         border-2 shadow-sm hover:shadow-md focus:outline-none
 //         ${
 //           activeStep === 0
 //             ? "border-blue-600 text-blue-600 cursor-not-allowed bg-white"
@@ -206,9 +206,9 @@
 //             {/* Next / Submit Button */}
 //             <button
 //               onClick={handleNext}
-//               className="px-5 py-2.5 rounded-lg text-sm font-medium 
-//         bg-blue-600 text-white shadow-sm hover:shadow-md 
-//         hover:bg-blue-700 active:bg-blue-800 
+//               className="px-5 py-2.5 rounded-lg text-sm font-medium
+//         bg-blue-600 text-white shadow-sm hover:shadow-md
+//         hover:bg-blue-700 active:bg-blue-800
 //         transition-all duration-200 focus:outline-none"
 //             >
 //               {activeStep === steps.length - 1 ? "Submit" : "Next"}
@@ -222,13 +222,16 @@
 
 // export default AddFunction;
 
-
 "use client";
 import React, { useState } from "react";
 import { IoLocation } from "react-icons/io5";
 import AddFunctionSidebar from "../../../Components/Dashboard/sidebarFilter/AddFunctionSidebar";
 import NestedHeaderWhite from "../../../Components/Dashboard/header/nestedHeader/NestedHeaderWhite";
 import AddFunctionMobileHeader from "../../../Components/Dashboard/sidebarFilter/AddFunctionMobileHeader";
+import AboutMyFunctionForm from "./AboutMyFunctionForm";
+import ProblemSolvedForm from "./ProblemSolvedForm";
+import AboutFormulaUsage from "./AboutFormulaUsage";
+import AboutAbility from "./AboutAbility";
 
 const AddFunction = () => {
   const [formData, setFormData] = useState({
@@ -372,30 +375,30 @@ const AddFunction = () => {
 
           {/* Step 2 */}
           {activeStep === 1 && (
-            <p className="text-gray-700">
-              This is where the form for “About My Function” will go.
-            </p>
+            <div>
+              <AboutMyFunctionForm />
+            </div>
           )}
 
           {/* Step 3 */}
           {activeStep === 2 && (
-            <p className="text-gray-700">
-              This is where the form for “About Problem Solved” will go.
-            </p>
+            <div>
+              <ProblemSolvedForm />
+            </div>
           )}
 
           {/* Step 4 */}
           {activeStep === 3 && (
-            <p className="text-gray-700">
-              This is where the form for “About Formula Usage” will go.
-            </p>
+            <div>
+              <AboutFormulaUsage />
+            </div>
           )}
 
           {/* Step 5 */}
           {activeStep === 4 && (
-            <p className="text-gray-700">
-              This is where the form for “About Ability” will go.
-            </p>
+            <div>
+              <AboutAbility />
+            </div>
           )}
 
           {/* Buttons */}
