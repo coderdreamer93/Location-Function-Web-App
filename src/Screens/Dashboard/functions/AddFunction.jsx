@@ -232,6 +232,7 @@ import AboutMyFunctionForm from "./AboutMyFunctionForm";
 import ProblemSolvedForm from "./ProblemSolvedForm";
 import AboutFormulaUsage from "./AboutFormulaUsage";
 import AboutAbility from "./AboutAbility";
+import AboutAbilityPreview from "./AboutAbilityPreview";
 
 const AddFunction = () => {
   const [formData, setFormData] = useState({
@@ -247,7 +248,13 @@ const AddFunction = () => {
     "About Problem Solved",
     "About Formula Usage",
     "About Ability",
+    "About Ability Preview"
   ];
+
+
+  const handlePreview = () => {
+      alert("handlePreview")
+  }
 
   const [activeStep, setActiveStep] = useState(0);
 
@@ -258,6 +265,8 @@ const AddFunction = () => {
       alert("Form submitted!");
     }
   };
+
+ 
 
   const handlePrev = () => {
     if (activeStep > 0) setActiveStep(activeStep - 1);
@@ -397,7 +406,13 @@ const AddFunction = () => {
           {/* Step 5 */}
           {activeStep === 4 && (
             <div>
-              <AboutAbility />
+              <AboutAbility  handlePreview={handlePreview} />
+            </div>
+          )}
+          {/* About Ability Preview */}
+          {activeStep === "5" && (
+            <div>
+              <AboutAbilityPreview />
             </div>
           )}
 

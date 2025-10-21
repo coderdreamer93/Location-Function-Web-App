@@ -64,6 +64,7 @@ import AddFunction from "../Screens/Dashboard/functions/AddFunction";
 import BusinessAppointmentView from "../Screens/Dashboard/businesses/BusinessAppointmentView";
 import BusinessAppointmentImageView from "../Screens/Dashboard/businesses/BusinessAppointmentImageView";
 import AboutMyFunctionForm from "../Screens/Dashboard/functions/AboutMyFunctionForm";
+import AboutAbilityPreview from "../Screens/Dashboard/functions/AboutAbilityPreview";
 
 export default function AdminRouter() {
   return (
@@ -103,6 +104,12 @@ export default function AdminRouter() {
             path="functions/MyFunctionAbout"
             element={<ProtectedRoutes Components={AboutMyFunctionForm} />}
           />
+          
+          {/* <Route
+            path="functions/AboutAbilityPreview"
+            element={<ProtectedRoutes Components={AboutAbilityPreview} />}
+          /> */}
+
 
           <Route
             path="problems"

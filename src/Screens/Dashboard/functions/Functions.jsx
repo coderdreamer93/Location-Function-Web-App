@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import useCardView from "../../../hook/useCardView";
 import useFilterView from "../../../hook/useFilterView";
 import PageFilter from "../../../Components/Dashboard/header/pageFilter/PageFilter";
@@ -11,18 +11,23 @@ import { IoIosAddCircle } from "react-icons/io";
 import AddButton from "../../../Components/Dashboard/common/AddButton";
 import {
   alphabet,
+  businessData,
   businesses,
   formulaUsage,
   locations,
   operations,
   types,
 } from "../../../data/data";
+import FunctionListView from "../../../Components/Dashboard/business/FunctionListView";
+import FunctionGridView from "../../../Components/Dashboard/business/FunctionGridView";
 
 function Functions() {
   const [view, setView] = useCardView();
   const [isOpen, setIsOpen] = useFilterView();
   const [search, setSearch] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
+  const [activeFilters, setActiveFilters] = useState({});
+
   const navigate = useNavigate();
 
   const filterOptions = [
@@ -32,12 +37,12 @@ function Functions() {
 
   const handleAdd = () => navigate("addFunction");
 
-  const handleFilterChange = (filters) => {
-    console.log("Selected Filters:", filters);
-    // You can apply your filtering logic here
-  };
+  // 🔁 Receive filters from SidebarFilter
+  const handleFilterChange = useCallback((filters) => {
+    setActiveFilters({ ...filters });
+  }, []);
 
-    useEffect(() => {
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, []);
 
@@ -57,7 +62,6 @@ function Functions() {
           formulaUsage={formulaUsage}
           businesses={businesses}
           alphabet={alphabet}
-          types={types}
           onFilterChange={handleFilterChange}
         />
       </div>
@@ -87,27 +91,23 @@ function Functions() {
 
         {/* Main Content */}
         <div className="bg-gray-50  relative sm:mt-36 mt-48 pb-10 rounded-lg min-h-[calc(100vh-10rem)]">
-          {/* <div className="bg-gray-400 relative sm:mt-36 mt-48 rounded-lg "> */}
-          {/* <div className="bg-gray-50 relative sm:mt-36 mt-48 pb-10 rounded-lg overflow-hidden min-h-[calc(100vh-12rem)]"> */}
-          {/* {view === "list" ? (
-            <div>
-              <div>
-                <div>
-                  <ListView data={businessData} />
-                   <Outlet />
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div>
-              <GridView data={businessData} />
-             <Outlet />
-            </div>
-          )} */}
-
           {/* <div className="flex justify-start items-center"> */}
-          <AddButton onClick={handleAdd} />
-          {/* </div> */}
+          <div className="bg-gray-50 relative sm:mt-36 mt-48 pb-10 rounded-lg min-h-[calc(100vh-10rem)]">
+            <AddButton onClick={handleAdd} label="Add Function" />
+
+            {view === "list" ? (
+              <FunctionListView
+                data={businessData}
+                selectedFilter={selectedFilter}
+              />
+            ) : (
+              <FunctionGridView
+                data={businessData}
+                selectedFilter={selectedFilter}
+              />
+            )}
+            <Outlet />
+          </div>
 
           {/* <Outlet /> */}
         </div>

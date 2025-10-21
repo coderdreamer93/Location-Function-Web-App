@@ -269,7 +269,7 @@ export default function AddProblem() {
             value={formData.problemName}
             onChange={handleChange}
             placeholder="e.g., Car engine not starting"
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            className="w-full border border-gray-300 text-black rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
           />
         </div>
 
@@ -284,7 +284,7 @@ export default function AddProblem() {
               name="problemDate"
               value={formData.problemDate}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-full border border-gray-300 text-black rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
             />
           </div>
 
@@ -296,12 +296,12 @@ export default function AddProblem() {
               name="problemStatus"
               value={formData.problemStatus}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-full border border-gray-300 text-black rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
             >
               <option value="">Select Status</option>
-              <option value="Pending">✔ Pending</option>
-              <option value="In Progress">✔ In Progress</option>
-              <option value="Resolved">✔ Resolved</option>
+              <option value="Pending">Pending</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Resolved">Resolved</option>
             </select>
           </div>
         </div>
@@ -316,11 +316,11 @@ export default function AddProblem() {
               name="problemVisibility"
               value={formData.problemVisibility}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
+              className="w-full border border-gray-300 rounded-lg text-black px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
             >
               <option value="">Select Visibility</option>
-              <option value="Public">✔ Public</option>
-              <option value="Private">✔ Private</option>
+              <option value="Public">Public</option>
+              <option value="Private">Private</option>
             </select>
           </div>
 
@@ -333,12 +333,13 @@ export default function AddProblem() {
                 name="problemLocation"
                 value={formData.problemLocation}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-8 text-sm focus:ring-1 focus:ring-blue-500 outline-none appearance-none"
+                className="w-full border border-gray-300 text-black rounded-lg px-3 py-2 pr-8 text-sm focus:ring-1 focus:ring-blue-500 outline-none appearance-none"
               >
                 <option value="">Select Location</option>
-                <option value="Karachi">✔ Karachi</option>
-                <option value="Lahore">✔ Lahore</option>
-                <option value="Islamabad">✔ Islamabad</option>
+                <option value="losAngles">Los Angles</option>
+                <option value="lasVegas">Las Vegas</option>
+                <option value="dallas">Dallas</option>
+                <option value="miami">Miami</option>
               </select>
               <IoLocationOutline className="absolute right-3 top-2.5 text-gray-500 text-lg" />
             </div>
@@ -362,7 +363,7 @@ export default function AddProblem() {
             <input
               type="file"
               id="fileUpload"
-              className="hidden"
+              className="hidden text-black"
               onChange={handleFileChange}
               accept=".jpg,.jpeg,.png,.pdf"
             />
@@ -383,13 +384,13 @@ export default function AddProblem() {
             value={formData.problemVideo}
             onChange={handleChange}
             placeholder="Enter YouTube link"
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            className="w-full border border-gray-300 text-black rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
           />
         </div>
 
         {/* Problem Description */}
         <div className="w-full mb-8">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-black mb-1">
             Add Problem Description
           </label>
           <textarea
@@ -398,7 +399,7 @@ export default function AddProblem() {
             onChange={handleChange}
             placeholder="Describe the problem in detail..."
             rows={4}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none resize-none"
+            className="w-full border border-gray-300 text-black rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none resize-none"
           ></textarea>
         </div>
 
