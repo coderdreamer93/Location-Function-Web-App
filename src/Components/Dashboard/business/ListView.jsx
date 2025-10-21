@@ -113,7 +113,7 @@ function ListView({ data = [] }) {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 mt-6">
       {data.map((item) => (
         <div
           key={item.id}

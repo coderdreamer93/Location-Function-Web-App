@@ -16,7 +16,7 @@ function PageFilter({
   return (
     <div className="w-full flex flex-col sm:flex-row pb-2 items-center justify-between gap-3">
       {/* ===== Left Section ===== */}
-      <div className="flex flex-row items-center gap-3 sm:w-1/2 overflow-x-auto w-full">
+      <div className="flex flex-row items-center gap-3 sm:w-1/2 overflow-x-scroll scrollbar-hidden w-full">
         {filterOptions.length > 0 && (
           <div className="flex gap-2">
             {filterOptions.map((item) => (

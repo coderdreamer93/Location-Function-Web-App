@@ -55,6 +55,7 @@ import { ProtectedRoutes } from "./ProtectedRoutes";
 import Error from "../Screens/Error";
 import New_Dashboard from "../Screens/Dashboard/main/New_Dashboard";
 import Businesses from "../Screens/Dashboard/businesses/Businesses";
+import AddProblem from "../Screens/Dashboard/problems/AddProblem";
 import Problems from "../Screens/Dashboard/problems/Problems";
 import Functions from "../Screens/Dashboard/functions/Functions";
 import Stats from "../Screens/Dashboard/stats/Stats";
@@ -107,6 +108,11 @@ export default function AdminRouter() {
             path="problems"
             element={<ProtectedRoutes Components={Problems} />}
           />
+          <Route
+            path="problems/addProblem"
+            element={<ProtectedRoutes Components={AddProblem} />}
+          />
+
           <Route
             path="businesses"
             element={<ProtectedRoutes Components={Businesses} />}

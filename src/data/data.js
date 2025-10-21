@@ -29,6 +29,8 @@ export const businessData = [
     online: true,
     distance: 200,
     isProblem: true,
+    date: "2025-10-10",
+    problemStatus: "Pending",
   },
   {
     id: 2,
@@ -44,6 +46,8 @@ export const businessData = [
     online: false,
     distance: 150,
     isProblem: false,
+    date: "2025-09-28",
+    problemStatus: "Resolved",
   },
   {
     id: 3,
@@ -59,6 +63,8 @@ export const businessData = [
     online: true,
     distance: 95,
     isProblem: true,
+    date: "2025-10-15",
+    problemStatus: "In Progress",
   },
   {
     id: 4,
@@ -74,6 +80,8 @@ export const businessData = [
     online: true,
     distance: 180,
     isProblem: true,
+    date: "2025-10-12",
+    problemStatus: "Pending",
   },
   {
     id: 5,
@@ -89,6 +97,8 @@ export const businessData = [
     online: false,
     distance: 120,
     isProblem: false,
+    date: "2025-09-30",
+    problemStatus: "Resolved",
   },
   {
     id: 6,
@@ -104,6 +114,8 @@ export const businessData = [
     online: true,
     distance: 80,
     isProblem: true,
+    date: "2025-10-20",
+    problemStatus: "In Progress",
   },
   {
     id: 7,
@@ -119,6 +131,8 @@ export const businessData = [
     online: false,
     distance: 240,
     isProblem: false,
+    date: "2025-09-25",
+    problemStatus: "Resolved",
   },
   {
     id: 8,
@@ -134,5 +148,7 @@ export const businessData = [
     online: true,
     distance: 60,
     isProblem: true,
+    date: "2025-10-18",
+    problemStatus: "Pending",
   },
 ];

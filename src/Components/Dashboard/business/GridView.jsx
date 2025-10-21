@@ -2,13 +2,28 @@ import React from "react";
 import { PiVideoCameraFill } from "react-icons/pi";
 import { RxStar, RxStarFilled } from "react-icons/rx";
 import { HiOutlineHome } from "react-icons/hi2";
+import { useNavigate } from "react-router";
+
+
+
+
+
 
 function GridView({ data = [] }) {
+  const navigate = useNavigate();
+
+  const handleCardClick = (id) => {
+    navigate(`/dashboard/businesses/${id}`, {
+      state: { business: data.find((d) => d.id === id) },
+    });
+  };
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
       {data.map((item) => (
         <div
           key={item.id}
+           onClick={() => handleCardClick(item.id)}
           className="bg-blue-50 rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col"
         >
           {/* Top Section */}

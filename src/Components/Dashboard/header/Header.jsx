@@ -131,12 +131,12 @@ import { HiUserCircle } from "react-icons/hi";
 
 export default function Header() {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("Problems");
+  const [activeTab, setActiveTab] = useState("Functions");
   const [menuOpen, setMenuOpen] = useState(false);
 
   const [tabs] = useState([
     { id: 1, name: "Functions", route: "functions" },
-    // { id: 2, name: "Problems", route: "problems" },
+    { id: 2, name: "Problems", route: "problems" },
     { id: 3, name: "Businesses", route: "businesses" },
     // { id: 4, name: "Stats", route: "stats" },
   ]);
