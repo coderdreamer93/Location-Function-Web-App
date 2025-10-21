@@ -9,12 +9,14 @@ const SidebarFilter = ({
   types = [],
   formulaUsage = [],
   alphabet = [],
+  sort = [],
   onFilterChange,
 }) => {
   const [selectedLocation, setSelectedLocation] = useState([]);
   const [selectedOperation, setSelectedOperation] = useState("");
   const [selectedBusiness, setSelectedBusiness] = useState([]);
   const [selectedType, setSelectedType] = useState([]);
+  const [selectedSort, setSelectedSort] = useState([]);
   const [selectedFormulaUsage, setSelectedFormulaUsage] = useState([]);
   const [activeLetter, setActiveLetter] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -29,6 +31,7 @@ const SidebarFilter = ({
       operation: selectedOperation,
       business: selectedBusiness,
       type: selectedType,
+      sort: selectedSort,
       formulaUsage: selectedFormulaUsage,
       alphabet: activeLetter,
       logic: selectedOperation || "OR", // default OR
@@ -59,8 +62,9 @@ const SidebarFilter = ({
       businesses: businesses.filter(match),
       types: types.filter(match),
       formulaUsage: formulaUsage.filter(match),
+      sort: sort.filter(match), // ✅ added this line
     };
-  }, [searchTerm, locations, operations, businesses, types, formulaUsage]);
+  }, [searchTerm, locations, operations, businesses, types, formulaUsage, sort]);
 
   return (
     <aside className="relative  w-full border-r border-gray-200 h-[calc(100vh-3.5rem)] overflow-y-auto p-3">
@@ -111,6 +115,13 @@ const SidebarFilter = ({
             options={filteredData.formulaUsage}
             selected={selectedFormulaUsage}
             onSelect={setSelectedFormulaUsage}
+            multiSelect={isMultiSelect}
+          />
+          <FilterSection
+            title="Sort"
+            options={filteredData.sort}
+            selected={selectedSort}
+            onSelect={setSelectedSort}
             multiSelect={isMultiSelect}
           />
           <FilterSection

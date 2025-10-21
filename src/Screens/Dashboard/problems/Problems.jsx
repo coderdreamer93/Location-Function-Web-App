@@ -106,8 +106,6 @@
 //             </div>
 //           )}
 
-         
-
 //           {/* <Outlet /> */}
 //         </div>
 //       </div>
@@ -134,6 +132,8 @@ import {
   formulaUsage,
   locations,
   operations,
+  sort,
+  sorts,
   types,
 } from "../../../data/data";
 
@@ -216,15 +216,23 @@ function Problems() {
     setFilteredData(data);
   }, [activeFilters, search, selectedFilter]);
 
+     useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }, []);
+
+    
   return (
     <div className="relative flex w-full">
       {/* Sidebar */}
       <div
-        className={`fixed top-18 left-0 z-30 w-70 border-r border-gray-200 bg-white overflow-y-auto transition-transform duration-300 ease-in-out transform ${
-          isOpen === "open" ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-18 left-0 z-30 h-[calc(100vh-3.5rem)] 
+    w-[85%] sm:w-64 md:w-64 
+    border-r border-gray-200 bg-white overflow-y-auto 
+    transition-transform duration-300 ease-in-out transform
+    ${isOpen === "open" ? "translate-x-0" : "-translate-x-full"}`}
       >
         <SidebarFilter
+          sort={sorts}
           locations={locations}
           operations={operations}
           formulaUsage={formulaUsage}
@@ -262,9 +270,15 @@ function Problems() {
           <AddButton onClick={handleAdd} label="Add Problem" />
 
           {view === "list" ? (
-            <ProblemListView data={filteredData} />
+            <ProblemListView
+              data={businessData}
+              selectedFilter={selectedFilter}
+            />
           ) : (
-            <ProblemGridView data={filteredData} />
+            <ProblemGridView
+              data={businessData}
+              selectedFilter={selectedFilter}
+            />
           )}
           <Outlet />
         </div>

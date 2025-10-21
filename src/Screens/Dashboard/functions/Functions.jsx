@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useCardView from "../../../hook/useCardView";
 import useFilterView from "../../../hook/useFilterView";
 import PageFilter from "../../../Components/Dashboard/header/pageFilter/PageFilter";
@@ -37,14 +37,19 @@ function Functions() {
     // You can apply your filtering logic here
   };
 
+    useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, []);
+
   return (
     <div className="relative flex w-full">
       {/* Sidebar */}
       <div
-        // className={`fixed top-18 left-0 z-30 h-[calc(100vh-3.5rem)] w-70 border-r border-gray-200 bg-white overflow-y-auto transition-transform duration-300 ease-in-out transform ${
-        className={`fixed top-18 left-0 z-30  w-70 border-r border-gray-200 bg-white overflow-y-auto transition-transform duration-300 ease-in-out transform ${
-          isOpen === "open" ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-18 left-0 z-30 h-[calc(100vh-3.5rem)] 
+    w-[85%] sm:w-64 md:w-64 
+    border-r border-gray-200 bg-white overflow-y-auto 
+    transition-transform duration-300 ease-in-out transform
+    ${isOpen === "open" ? "translate-x-0" : "-translate-x-full"}`}
       >
         <SidebarFilter
           locations={locations}
@@ -82,8 +87,8 @@ function Functions() {
 
         {/* Main Content */}
         <div className="bg-gray-50  relative sm:mt-36 mt-48 pb-10 rounded-lg min-h-[calc(100vh-10rem)]">
-        {/* <div className="bg-gray-400 relative sm:mt-36 mt-48 rounded-lg "> */}
-        {/* <div className="bg-gray-50 relative sm:mt-36 mt-48 pb-10 rounded-lg overflow-hidden min-h-[calc(100vh-12rem)]"> */}
+          {/* <div className="bg-gray-400 relative sm:mt-36 mt-48 rounded-lg "> */}
+          {/* <div className="bg-gray-50 relative sm:mt-36 mt-48 pb-10 rounded-lg overflow-hidden min-h-[calc(100vh-12rem)]"> */}
           {/* {view === "list" ? (
             <div>
               <div>
@@ -101,7 +106,7 @@ function Functions() {
           )} */}
 
           {/* <div className="flex justify-start items-center"> */}
-            <AddButton onClick={handleAdd} />
+          <AddButton onClick={handleAdd} />
           {/* </div> */}
 
           {/* <Outlet /> */}

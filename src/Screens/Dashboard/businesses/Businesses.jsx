@@ -133,6 +133,11 @@ if (activeFilters?.alphabet) {
     setFilteredData(data);
   }, [activeFilters, search, selectedFilter]);
 
+   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, []);
+
+
   return (
     <div className="relative flex w-full">
       {/* Sidebar */}

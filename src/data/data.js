@@ -10,6 +10,9 @@ export const businesses = ["All (20)", "SLP Garage", "Car Repair Shop"];
 export const formulaUsage = ["The Given Set"];
 export const operations = ["Exact Phrase", "AND", "OR"];
 export const types = ["Type A", "Type B", "Type C"];
+export const sorts = ["Date", "Alphabetical Order", "Business"];
+
+
 export const alphabet = Array.from({ length: 26 }, (_, i) =>
   String.fromCharCode(65 + i)
 );
@@ -31,6 +34,7 @@ export const businessData = [
     isProblem: true,
     date: "2025-10-10",
     problemStatus: "Pending",
+    assignProblem: true
   },
   {
     id: 2,
@@ -48,6 +52,7 @@ export const businessData = [
     isProblem: false,
     date: "2025-09-28",
     problemStatus: "Resolved",
+    assignProblem: false
   },
   {
     id: 3,
@@ -65,6 +70,7 @@ export const businessData = [
     isProblem: true,
     date: "2025-10-15",
     problemStatus: "In Progress",
+    assignProblem: false
   },
   {
     id: 4,
@@ -82,6 +88,7 @@ export const businessData = [
     isProblem: true,
     date: "2025-10-12",
     problemStatus: "Pending",
+    assignProblem: true
   },
   {
     id: 5,
@@ -99,6 +106,7 @@ export const businessData = [
     isProblem: false,
     date: "2025-09-30",
     problemStatus: "Resolved",
+    assignProblem: false
   },
   {
     id: 6,
@@ -116,6 +124,7 @@ export const businessData = [
     isProblem: true,
     date: "2025-10-20",
     problemStatus: "In Progress",
+    assignProblem: true
   },
   {
     id: 7,
@@ -133,6 +142,7 @@ export const businessData = [
     isProblem: false,
     date: "2025-09-25",
     problemStatus: "Resolved",
+    assignProblem: false
   },
   {
     id: 8,
@@ -150,5 +160,6 @@ export const businessData = [
     isProblem: true,
     date: "2025-10-18",
     problemStatus: "Pending",
+    assignProblem: true
   },
 ];
