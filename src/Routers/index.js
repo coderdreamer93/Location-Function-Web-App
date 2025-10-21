@@ -66,7 +66,7 @@ import AboutMyFunctionForm from "../Screens/Dashboard/functions/AboutMyFunctionF
 
 export default function AdminRouter() {
   return (
-    <BrowserRouter basename="/WisdomForLife">
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<AdminLogin />} />
         <Route path="/login" element={<AdminLogin />} />
