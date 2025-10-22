@@ -4,6 +4,15 @@
 /*----- General Css Start -----*/
 
 :root {
+    --newPrimaryColor: #0866FF;
+    --newFontColor: #27323C;
+    --newGrayColor: #838189;
+    --newBgColor: #F9f9f9;
+    --newBgWhiteColor: #FFFFFF;
+    --newActiveColor: #EBF5FF;
+    --newPlaceHolderColor: #65676B;
+
+    --primaryColor: #9E6318;
     --primaryColor: #9E6318;
     --grayColor: #969696;
     --redColor: #ff0000;
@@ -11,7 +20,7 @@
     --yellowColor: #E5BB45;
     --whiteColor: #fff;
     --secondaryColor: #B0B0B0;
-}
+} */
 
 .text-theme-secondary {
     color: var(--secondaryColor);
@@ -19,21 +28,37 @@
 
 
 body {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    color: var(--secondaryColor);
+    font-family: 'Inter', sans-serif;
+    /* font-weight: 400; */
+    color: var(--fontColor);
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Oswald', sans-serif !important;
+    font-family: 'Inter', sans-serif !important;
 }
 
+.newPrimaryColor {
+    color: var(--newPrimaryColor) !important;
+}
 .primaryColor {
     color: var(--primaryColor) !important;
 }
 
-.grayColor {
-    color: var(--grayColor) !important;
+.newGrayColor {
+    color: var(--newGrayColor) !important;
+}
+.newFontColor {
+    color: var(--newFontColor) !important;
+}
+.newBgWhiteColor {
+    background-color: var(--newBgWhiteColor) !important;
+}
+.newActiveColor {
+    background-color: var(--newActiveColor) !important;
+    color: var(--newPrimaryColor) !important;
+}
+.newPlaceHolderColor {
+    color: var(--newPlaceHolderColor) !important;
 }
 
 .greenColor {
