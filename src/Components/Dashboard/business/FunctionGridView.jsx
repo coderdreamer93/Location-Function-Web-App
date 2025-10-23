@@ -73,8 +73,8 @@ function FunctionGridView({ data = [], selectedFilter, currentUser }) {
                     </span>
                   </div>
                 </div>
-                {item.mechanicName === currentUser && 
-                 && 
+                {/* {item.mechanicName === currentUser && 
+                 &&  */}
                   <ThreeDotIcon className="w-[24px] h-[24px]" />
                 }
                 {/* <div className="flex items-center gap-1">
