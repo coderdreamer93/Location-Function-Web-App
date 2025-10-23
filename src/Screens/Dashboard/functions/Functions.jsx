@@ -14,6 +14,7 @@ import {
   businessData,
   businesses,
   formulaUsage,
+  functionsCategory,
   locations,
   operations,
   types,
@@ -32,7 +33,7 @@ function Functions() {
 
   const filterOptions = [
     { label: "All Functions", value: "all" },
-    { label: "My Functions", value: "near" },
+    { label: "My Functions", value: "myFunction" },
   ];
 
   const handleAdd = () => navigate("addFunction");
@@ -106,6 +107,8 @@ function Functions() {
               <FunctionGridView
                 data={businessData}
                 selectedFilter={selectedFilter}
+                functionsCategory={functionsCategory}
+                filterOptions="myFunction"
               />
             )}
             <Outlet />

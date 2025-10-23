@@ -69,14 +69,14 @@ function FunctionListView({ data = [], selectedFilter }) {
                     />
 
                     <div className="flex flex-col flex-1 newFontColor w-full  text-[14px]">
-                      <span className="font-bold">John Thompson</span>
+                      <span className="font-bold">{item.mechanicName}</span>
 
                       <span
                         className={`transition-all duration-300 ${
                           expanded === item.id ? "opacity-100" : "opacity-0 h-0"
                         }`}
                       >
-                        Designation
+                       {item.designation}
                       </span>
 
                       <span
@@ -84,7 +84,7 @@ function FunctionListView({ data = [], selectedFilter }) {
                           expanded === item.id ? "opacity-100" : "opacity-0 h-0"
                         }`}
                       >
-                        Location
+                                               {item.location}
                       </span>
                     </div>
                   </div>
@@ -139,7 +139,7 @@ function FunctionListView({ data = [], selectedFilter }) {
                         : "flex-row items-center justify-between"
                     } gap-2 border-b py-1 px-2`}
                   >
-                    <div className="flex gap-1 md:w-1/4 w-1/2">
+                  <div className="flex gap-1 w-full flex-1">
                       <span className="text-gray-700 text-[14px]">
                         {row.label}:
                       </span>

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as ChatIcon } from "../../../Assets/icons/chatIcon.svg";
-import { ReactComponent as ContactIcon } from "../../../Assets/icons/contactIcon.svg";
-import { ReactComponent as DownIcon } from "../../../Assets/icons/downIcon.svg";
+// import { ReactComponent as ChatIcon } from "../../../Assets/icons/chatIcon.svg";
+// import { ReactComponent as ContactIcon } from "../../../Assets/icons/contactIcon.svg";
+// import { ReactComponent as DownIcon } from "../../../Assets/icons/downIcon.svg";
+import { ReactComponent as ThreeDotIcon } from "../../../Assets/icons/threeDotIcon.svg";
 
-function FunctionGridView({ data = [], selectedFilter }) {
+function FunctionGridView({ data = [], selectedFilter, currentUser }) {
   const navigate = useNavigate();
   const [expanded, setExpanded] = useState(null);
   const [modalImage, setModalImage] = useState(null);
@@ -61,19 +62,22 @@ function FunctionGridView({ data = [], selectedFilter }) {
                     }`}
                   />
                   <div className="flex flex-col text-black text-[14px]">
-                    <span className="font-semibold text-nowrap truncate">John Thompson</span>
+                    <span className="font-semibold text-nowrap truncate">{item.mechanicName}</span>
 
                     <span className={`${expanded === item.id ? "opacity-100" : "opacity-0 h-0"} transition-all duration-300`}>
-                      Designation
+                      {item.designation}
                     </span>
 
                     <span className={`${expanded === item.id ? "opacity-100" : "opacity-0 h-0"} transition-all duration-300`}>
-                      Location
+                      {item.location}
                     </span>
                   </div>
                 </div>
-
-                <div className="flex items-center gap-1">
+                {item.mechanicName === currentUser && 
+                 && 
+                  <ThreeDotIcon className="w-[24px] h-[24px]" />
+                }
+                {/* <div className="flex items-center gap-1">
                   <ChatIcon />
                   <ContactIcon />
                   <DownIcon
@@ -82,7 +86,7 @@ function FunctionGridView({ data = [], selectedFilter }) {
                     }`}
                     onClick={(e) => toggleExpand(item.id, e)}
                   />
-                </div>
+                </div> */}
               </div>
 
               {/* Rows — Same Layout as ListView ✅ */}
