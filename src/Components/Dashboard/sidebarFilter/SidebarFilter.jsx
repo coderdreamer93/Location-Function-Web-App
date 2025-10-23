@@ -73,7 +73,7 @@ const SidebarFilter = ({
         <span className="text-md font-semibold text-gray-900">Filters</span>
         <button
           onClick={resetFilters}
-          className="text-sm text-blue-600 font-semibold hover:underline"
+          className="text-sm newPrimaryColor font-semibold hover:underline"
         >
           Reset
         </button>
@@ -83,7 +83,7 @@ const SidebarFilter = ({
       <div className="relative mb-4">
         <MdOutlineSearch
           size={20}
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-600"
+          className="absolute left-3 top-1/2 -translate-y-1/2 newPrimaryColor"
         />
         <input
           type="text"
@@ -166,8 +166,8 @@ const SidebarFilter = ({
                   }}
                   className={`flex justify-center items-center w-6 h-6 rounded-md cursor-pointer transition-all duration-150 ${
                     activeLetter === letter
-                      ? "bg-blue-50 text-blue-600 border border-blue-600 font-semibold"
-                      : "hover:bg-blue-50 hover:text-blue-600 hover:border hover:border-blue-600"
+                      ? "bg-blue-50 newPrimaryColor border border-blue-600 font-semibold"
+                      : "hover:bg-blue-50 hover:newPrimaryColor hover:border hover:border-blue-600"
                   }`}
                 >
                   {letter}
@@ -218,12 +218,12 @@ const FilterSection = ({ title, options, selected, onSelect, multiSelect }) => {
             key={item}
             onClick={() => handleSelect(item)}
             className={`flex justify-between text-gray-800 text-sm items-center py-2 border-b px-2 rounded-md cursor-pointer transition-colors ${
-              isSelected(item) ? "text-blue-600" : "hover:text-blue-600"
+              isSelected(item) ? "newPrimaryColor" : "hover:newPrimaryColor"
             }`}
           >
             {item}
             {isSelected(item) && (
-              <FiCheck size={18} className="font-bold text-blue-600" />
+              <FiCheck size={18} className="font-bold newPrimaryColor" />
             )}
           </li>
         ))}

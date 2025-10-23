@@ -1,8 +1,8 @@
 import React from "react";
-import { FaSearch } from "react-icons/fa";
 import FilterButton from "./FilterButton";
-import { CgSortAz } from "react-icons/cg";
-import { TbArrowsUpDown } from "react-icons/tb";
+import { ReactComponent as SearchIcon } from "../../../../Assets/icons/searchIcon.svg"
+import { ReactComponent as FilterIcon } from "../../../../Assets/icons/filterIcon.svg"
+import { ReactComponent as SortIcon } from "../../../../Assets/icons/sortIcon.svg"
 
 function PageFilter({
   search,
@@ -16,7 +16,13 @@ function PageFilter({
   return (
     <div className="w-full flex flex-col sm:flex-row pb-2 items-center justify-between gap-3">
       {/* ===== Left Section ===== */}
-      <div className="flex flex-row items-center gap-3 sm:w-1/2 overflow-x-scroll scrollbar-hidden w-full">
+      <div
+        className={`flex flex-row items-center gap-3 sm:w-1/2 w-full ${
+          filterOptions.length > 3
+            ? "overflow-x-scroll scrollbar-hidden"
+            : "overflow-hidden scrollbar-hidden"
+        }`}
+      >
         {filterOptions.length > 0 && (
           <div className="flex gap-2">
             {filterOptions.map((item) => (
@@ -40,10 +46,10 @@ function PageFilter({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search"
-            className="border rounded-full w-full border-gray-100 text-gray-600 pl-9 pr-3 py-1.5 text-sm focus:ring-1 focus:ring-blue-200 focus:border-blue-200"
+            className="border rounded-full w-full border-gray-100 newFontColor pl-12 pr-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-200 focus:border-blue-200"
           />
-          <FaSearch
-            className="absolute left-3 text-blue-600 top-2.5"
+          <SearchIcon
+            className=" absolute left-3 newPrimaryColor top-1.5"
             size={14}
           />
         </div>
@@ -51,7 +57,7 @@ function PageFilter({
         <div className="flex justify-between items-center gap-3">
           {/* Up/Down Arrow */}
           <button className="flex items-center justify-center w-8 h-8 bg-white rounded-full border border-gray-300 hover:bg-gray-100 transition-colors">
-            <TbArrowsUpDown size={16} className="text-blue-600" />
+            <SortIcon size={16} className="newPrimaryColor" />
           </button>
 
           {/* Sidebar Toggle */}
@@ -62,7 +68,7 @@ function PageFilter({
             }
             className="flex items-center justify-center w-8 h-8 bg-white rounded-full border border-gray-300 hover:bg-gray-100 transition-colors"
           >
-            <CgSortAz size={26} className="text-blue-600" />
+            <FilterIcon size={26} className="newPrimaryColor" />
           </button>
         </div>
       </div>

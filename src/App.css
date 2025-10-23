@@ -42,3 +42,14 @@ body {
 .animate-slide-up {
   animation: slide-up 0.3s ease-out;
 }
+
+
+/* Hide horizontal scrollbar completely — including arrow buttons */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, Edge */
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* for Internet Explorer and Edge */
+  scrollbar-width: none; /* for Firefox */
+}

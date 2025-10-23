@@ -11,7 +11,7 @@
 //             <span
 //               className={`uppercase${
 //                 index === breadcrumbs.length - 1
-//                   ? "text-blue-600 cursor-pointer "
+//                   ? "newPrimaryColor cursor-pointer "
 //                   : "hover:text-gray-700 cursor-pointer"
 //               }`}
 //             >
@@ -57,8 +57,8 @@ function NestedHeaderWhite({
               onClick={() => crumb.path && navigate(crumb.path)}
               className={`uppercase transition-all duration-200 ${
                 index === breadcrumbs.length - 1
-                  ? "text-blue-600 font-medium cursor-default"
-                  : "text-gray-500 hover:text-blue-600 cursor-pointer"
+                  ? "newPrimaryColor font-medium cursor-default"
+                  : "text-gray-500 hover:newPrimaryColor cursor-pointer"
               }`}
             >
               {crumb.label}

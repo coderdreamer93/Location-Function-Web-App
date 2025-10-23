@@ -141,7 +141,7 @@
 //               className="flex flex-col items-center bg-white justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-all"
 //             >
 //               <FiUploadCloud className="text-2xl text-blue-500 mb-1" />
-//               <p className="text-sm text-blue-600">Upload the file here</p>
+//               <p className="text-sm newPrimaryColor">Upload the file here</p>
 //               <p className="text-xs text-gray-500 mt-1">
 //                 (Only .jpg, .png, & .pdf files will be accepted)
 //               </p>
@@ -194,7 +194,7 @@
 //           <div className="w-full flex justify-between items-center mt-8">
 //             <button
 //               onClick={() => {" "}}
-//               className={"px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 border-2 shadow-sm hover:shadow-md focus:outline-none border-blue-600 text-blue-600 bg-white hover:bg-blue-50 active:bg-blue-100"}
+//               className={"px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 border-2 shadow-sm hover:shadow-md focus:outline-none border-blue-600 newPrimaryColor bg-white hover:bg-blue-50 active:bg-blue-100"}
 //             >
 //               Cancel
 //             </button>
@@ -356,7 +356,7 @@ export default function AddProblem() {
             className="flex flex-col items-center justify-center w-full h-32 bg-white border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-all"
           >
             <FiUploadCloud className="text-2xl text-blue-500 mb-1" />
-            <p className="text-sm text-blue-600">Upload the file here</p>
+            <p className="text-sm newPrimaryColor">Upload the file here</p>
             <p className="text-xs text-gray-500 mt-1">
               (Only .jpg, .png, & .pdf files will be accepted)
             </p>
@@ -407,7 +407,7 @@ export default function AddProblem() {
         <div className="flex justify-between items-center mt-4">
           <button
             type="button"
-            className="w-1/2 md:w-1/6 border-2 border-blue-600  text-blue-600 font-medium py-2 px-4 rounded-lg hover:bg-gray-300 transition-all"
+            className="w-1/2 md:w-1/6 border-2 border-blue-600  newPrimaryColor font-medium py-2 px-4 rounded-lg hover:bg-gray-300 transition-all"
           >
             Cancel
           </button>

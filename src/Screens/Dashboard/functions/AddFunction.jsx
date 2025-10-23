@@ -133,7 +133,7 @@
 //                     placeholder="Select location"
 //                     className="w-full mt-1 border text-black  rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
 //                   />
-//                   <IoLocation className="absolute right-3 top-3 text-blue-600" />
+//                   <IoLocation className="absolute right-3 top-3 newPrimaryColor" />
 //                 </div>
 //               </div>
 
@@ -196,8 +196,8 @@
 //         border-2 shadow-sm hover:shadow-md focus:outline-none
 //         ${
 //           activeStep === 0
-//             ? "border-blue-600 text-blue-600 cursor-not-allowed bg-white"
-//             : "border-blue-600 text-blue-600 bg-white hover:bg-blue-50 active:bg-blue-100"
+//             ? "border-blue-600 newPrimaryColor cursor-not-allowed bg-white"
+//             : "border-blue-600 newPrimaryColor bg-white hover:bg-blue-50 active:bg-blue-100"
 //         }`}
 //             >
 //               Cancel
@@ -361,7 +361,7 @@ const AddFunction = () => {
                     placeholder="Select location"
                     className="w-full mt-1 border text-black rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                   />
-                  <IoLocation className="absolute right-3 top-3 text-blue-600" />
+                  <IoLocation className="absolute right-3 top-3 newPrimaryColor" />
                 </div>
               </div>
 
@@ -423,8 +423,8 @@ const AddFunction = () => {
               disabled={activeStep === 0}
               className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 border-2 shadow-sm hover:shadow-md focus:outline-none ${
                 activeStep === 0
-                  ? "border-blue-600 text-blue-600 cursor-not-allowed bg-white"
-                  : "border-blue-600 text-blue-600 bg-white hover:bg-blue-50 active:bg-blue-100"
+                  ? "border-blue-600 newPrimaryColor cursor-not-allowed bg-white"
+                  : "border-blue-600 newPrimaryColor bg-white hover:bg-blue-50 active:bg-blue-100"
               }`}
             >
               Cancel

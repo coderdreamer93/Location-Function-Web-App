@@ -17,7 +17,7 @@ export default function BusinessAppointmentImageView() {
         <p className="text-gray-500">No business data found.</p>
         <button
           onClick={() => navigate("/dashboard/businesses")}
-          className="mt-3 text-blue-600 hover:underline flex items-center gap-1"
+          className="mt-3 newPrimaryColor hover:underline flex items-center gap-1"
         >
           <HiMiniArrowLeft className="text-lg" />
           Go Back
@@ -72,7 +72,7 @@ export default function BusinessAppointmentImageView() {
                   <span className="text-xs text-gray-600 flex items-center gap-1">
                     {place}
                   </span>
-                  <span className="text-xs text-blue-600 mt-1 flex items-center gap-1">
+                  <span className="text-xs newPrimaryColor mt-1 flex items-center gap-1">
                     {phone}
                   </span>
                 </div>
@@ -101,7 +101,7 @@ export default function BusinessAppointmentImageView() {
                 }
                 className="w-full flex justify-center items-center gap-2 border-blue-600 font-medium py-2 hover:bg-blue-100 transition-all border-b-2 border-b-blue-600 rounded-2xl border-t rounded-t-none bg-blue-50"
               >
-                <BsCalendarDate size={14} className="text-blue-600" />
+                <BsCalendarDate size={14} className="newPrimaryColor" />
                 <span className="text-black text-[10px]">Confirm Appointment</span>
               </button>
             </div>
@@ -112,7 +112,7 @@ export default function BusinessAppointmentImageView() {
             <div className="flex flex-col w-1/2 justify-between items-center p-2">
               <PiMapPinAreaThin size={48} className="text-gray-400" />
               <span className="text-xs text-black font-bold">{place}</span>
-              <span className="text-[8px] text-blue-600">
+              <span className="text-[8px] newPrimaryColor">
                 Show Formula Flow
               </span>
             </div>
@@ -136,7 +136,7 @@ export default function BusinessAppointmentImageView() {
         <div className="mt-6 flex flex-col gap-3">
           <button
             onClick={() => navigate("/dashboard/businesses")}
-            className="text-[10px] text-blue-600 flex justify-center items-center gap-1"
+            className="text-[10px] newPrimaryColor flex justify-center items-center gap-1"
           >
             The Function is located {distance} Miles from me
           </button>

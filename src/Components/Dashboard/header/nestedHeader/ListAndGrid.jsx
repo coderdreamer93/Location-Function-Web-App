@@ -14,8 +14,8 @@ function ListAndGrid({ title, view, setView }) {
               onClick={() => setView("list")}
               className={`flex items-center justify-center w-6 h-8 transition-colors ${
                 view === "list"
-                  ? "bg-blue-100 text-blue-600"
-                  : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+                  ? "bg-blue-100 newPrimaryColor"
+                  : "text-gray-600 hover:bg-blue-50 hover:newPrimaryColor"
               }`}
             >
               <FaRegRectangleList size={18} />
@@ -25,8 +25,8 @@ function ListAndGrid({ title, view, setView }) {
               onClick={() => setView("grid")}
               className={`flex items-center justify-center w-6 h-8 transition-colors ${
                 view === "grid"
-                  ? "bg-blue-100 text-blue-600"
-                  : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+                  ? "bg-blue-100 newPrimaryColor"
+                  : "text-gray-600 hover:bg-blue-50 hover:newPrimaryColor"
               }`}
             >
               <LuLayoutGrid size={18} />

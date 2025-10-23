@@ -35,13 +35,13 @@ export default function AboutFormulaUsage() {
         </select>
 
         {/* Dropdown arrow */}
-        <span className="absolute right-3 top-2.5 text-blue-600 text-sm pointer-events-none">
+        <span className="absolute right-3 top-2.5 newPrimaryColor text-sm pointer-events-none">
           ▼
         </span>
 
         {/* Checkmark icon if selected */}
         {selected && (
-          <IoCheckmark className="absolute right-8 top-2.5 text-blue-600 text-lg" />
+          <IoCheckmark className="absolute right-8 top-2.5 newPrimaryColor text-lg" />
         )}
       </div>
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { IoIosAddCircle } from "react-icons/io";
+import { ReactComponent as AddIcon } from "../../../Assets/icons/AddButton.svg";
 
 /**
  * Reusable AddFunctionButton component
@@ -12,9 +12,19 @@ export default function AddButton({ onClick, label = "Add Function" }) {
   return (
     <button
       onClick={onClick}
-      className="flex w-full bg-white justify-center items-center px-4 py-3 border transition-all duration-150 rounded-lg shadow-sm hover:shadow-md border-gray-200 gap-2 text-blue-600 text-center"
+      className="flex text-[18px] w-full justify-center items-center gap-2 px-4 py-3
+                 rounded-lg bg-white newPrimaryColor transition-all duration-200
+                 hover:border-blue-600 hover:bg-blue-50 hover:newPrimaryColor
+                 active:scale-[0.98]"
+      style={{
+        borderWidth: "1px",
+        borderStyle: "dashed",
+        borderColor: "#D1D5DB", // Tailwind's gray-300
+        borderSpacing: "20px",
+        borderImage: "repeating-linear-gradient(90deg, #D1D5DB 0, #D1D5DB 8px, transparent 8px, transparent 14px) 1",
+      }}
     >
-      <IoIosAddCircle size={22} className="text-blue-600" />
+      <AddIcon className="w-5 h-5" />
       <span>{label}</span>
     </button>
   );

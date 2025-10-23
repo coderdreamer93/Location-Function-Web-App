@@ -54,7 +54,7 @@
 //                     ? "text-yellow-600"
 //                     : item.problemStatus === "Resolved"
 //                     ? "text-green-600"
-//                     : "text-blue-600"
+//                     : "newPrimaryColor"
 //                 }`}
 //               >
 //                 {item.problemStatus}
@@ -65,7 +65,7 @@
 //               <span
 //                 className={`flex justify-center items-center w-7 h-7 rounded-full ${
 //                   item.isProblem
-//                     ? "bg-white text-blue-600 border border-blue-600"
+//                     ? "bg-white newPrimaryColor border border-blue-600"
 //                     : "bg-gray-200 text-gray-600"
 //                 }`}
 //               >
@@ -138,7 +138,7 @@ function ProblemGridView({ data = [], selectedFilter }) {
               <span
                 className={`flex justify-center bg-white items-center w-7 h-7 ${
                   item.isProblem
-                    ? "bg-white text-blue-600 border border-blue-600"
+                    ? "bg-white newPrimaryColor border border-blue-600"
                     : "bg-gray-200 text-gray-600"
                 } rounded-full`}
               >
@@ -174,7 +174,7 @@ function ProblemGridView({ data = [], selectedFilter }) {
                 </div>
                 <div className="grid grid-cols-2">
                   <span className="text-gray-700 text-xs">Problem Status</span>
-                  <span className="text-blue-600 text-xs font-bold">
+                  <span className="newPrimaryColor text-xs font-bold">
                     {item.problemStatus}
                   </span>
                 </div>
@@ -231,7 +231,7 @@ function ProblemGridView({ data = [], selectedFilter }) {
                     {
                       label: "Formula Usage",
                       value: item.location,
-                      color: "text-blue-600",
+                      color: "newPrimaryColor",
                       showImage: false,
                     },
                   ].map((row, index) => (
@@ -272,7 +272,7 @@ function ProblemGridView({ data = [], selectedFilter }) {
                     </span>
                   </div>
                   <div className="mt-2">
-                    <button className="w-full border-2 border-blue-600 text-blue-600 bg-gray-50 p-1 rounded-lg">
+                    <button className="w-full border-2 border-blue-600 newPrimaryColor bg-gray-50 p-1 rounded-lg">
                       Rate Function
                     </button>
                   </div>

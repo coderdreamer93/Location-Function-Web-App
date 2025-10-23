@@ -29,7 +29,7 @@ function AddFunctionSidebar({ steps = [], activeStep = 0 }) {
               {steps.length - 1 !== index && (
                 <span
                   className={`py-2 text-3xl font-extralight ${
-                    isCompleted ? "text-blue-600" : "text-gray-300"
+                    isCompleted ? "newPrimaryColor" : "text-gray-300"
                   }`}
                 >
                   |
@@ -42,9 +42,9 @@ function AddFunctionSidebar({ steps = [], activeStep = 0 }) {
               <p
                 className={`${
                   isCompleted
-                    ? "text-blue-600 font-medium"
+                    ? "newPrimaryColor font-medium"
                     : isActive
-                    ? "text-blue-600 font-medium"
+                    ? "newPrimaryColor font-medium"
                     : "text-gray-600"
                 }`}
               >

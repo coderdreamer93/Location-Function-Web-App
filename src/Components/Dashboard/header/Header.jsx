@@ -57,7 +57,7 @@ export default function Header() {
               }}
               className="text-gray-700 pr-4 hover:text-black"
             >
-              <HomeIcon className="w-[40px] text-blue-600" />
+              <HomeIcon className="w-[40px] newPrimaryColor" />
             </button>
 
             {/* Tabs (Desktop Only) */}
@@ -68,7 +68,7 @@ export default function Header() {
                   onClick={() => handleTabClick(tab)}
                   className={`text-[14px] font-bold transition-colors ${
                     activeTab === tab.name
-                      ? "text-blue-600"
+                      ? "newPrimaryColor"
                       : "text-gray-700 hover:text-black"
                   }`}
                 >
@@ -84,7 +84,7 @@ export default function Header() {
             <div className="relative hidden md:block">
               <BellIcon className="w-[40px] text-black" />
               {notifications > 0 && (
-                <span className="absolute flex justify-center items-center -top-1.5 -right-1 w-[18px] h-[18px] bg-blue-600 text-white text-[11px] rounded-full">
+                <span className="absolute flex justify-center items-center -top-2 right-0.5 w-[18px] h-[18px] bg-blue-600 text-white text-[11px] rounded-full">
                   {notifications}
                 </span>
               )}
@@ -120,7 +120,7 @@ export default function Header() {
               onClick={() => handleTabClick(tab)}
               className={`text-[14px] font-bold px-4 py-2 text-left transition-all ${
                 activeTab === tab.name
-                  ? "text-blue-600 bg-gray-50"
+                  ? "newPrimaryColor bg-gray-50"
                   : "text-gray-700 hover:bg-gray-100"
               }`}
             >

@@ -42,7 +42,7 @@ function GridView({ data = [] }) {
               <div className="flex flex-col">
                 <span className="text-xs font-bold text-gray-900">{item.name}</span>
                 <span className="text-xs text-gray-700">{item.location}</span>
-                <span className="text-xs text-blue-600">{item.phone}</span>
+                <span className="text-xs newPrimaryColor">{item.phone}</span>
 
                 <div className="flex items-center">
                   {[...Array(5)].map((_, i) =>
@@ -80,7 +80,7 @@ function GridView({ data = [] }) {
           <div className="flex flex-col items-center justify-center text-center border-t p-3 bg-white">
             <HiOutlineHome className="text-4xl text-gray-800" />
             <span className="text-xs font-bold text-black">{item.branch}</span>
-            <span className="text-[10px] text-blue-600 cursor-pointer hover:underline">
+            <span className="text-[10px] newPrimaryColor cursor-pointer hover:underline">
               Show Formula Flow
             </span>
           </div>
@@ -98,7 +98,7 @@ function GridView({ data = [] }) {
           </div>
 
           {/* Distance Info */}
-          <div className="bg-blue-50 border-t p-2 text-[11px] text-blue-600 font-semibold text-center">
+          <div className="bg-blue-50 border-t p-2 text-[11px] newPrimaryColor font-semibold text-center">
             This function is located {item.distance} Miles from me
           </div>
         </div>

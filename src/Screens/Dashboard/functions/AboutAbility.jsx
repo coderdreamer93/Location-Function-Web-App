@@ -29,20 +29,20 @@ export default function AboutAbility({handlePreview}) {
         </select>
 
         {/* Dropdown arrow */}
-        <span className="absolute right-3 top-2.5 text-blue-600 text-sm pointer-events-none">
+        <span className="absolute right-3 top-2.5 newPrimaryColor text-sm pointer-events-none">
           ▼
         </span>
 
         {/* Checkmark icon if selected */}
         {selected && (
-          <IoCheckmark className="absolute right-8 top-2.5 text-blue-600 text-lg" />
+          <IoCheckmark className="absolute right-8 top-2.5 newPrimaryColor text-lg" />
         )}
       </div>
       <div className="md:col-span-2 flex gap-4 mt-4">
         <button
           type="button"
           onClick={handlePreview}
-          className="w-full  border-2 border-blue-600 py-2 rounded-lg  text-blue-600 hover:text-white focus:text-white text-sm font-medium hover:bg-blue-700 transition-all"
+          className="w-full  border-2 border-blue-600 py-2 rounded-lg  newPrimaryColor hover:text-white focus:text-white text-sm font-medium hover:bg-blue-700 transition-all"
         >
           Preview
         </button>

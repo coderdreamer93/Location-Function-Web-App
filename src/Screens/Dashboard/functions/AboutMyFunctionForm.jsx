@@ -93,7 +93,7 @@ export default function AboutMyFunctionForm() {
             className="flex flex-col items-center bg-white justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-all"
           >
             <FiUploadCloud className="text-2xl text-blue-500 mb-1" />
-            <p className="text-sm text-blue-600">Upload the file here</p>
+            <p className="text-sm newPrimaryColor">Upload the file here</p>
             <p className="text-xs text-gray-500 mt-1">
               (Only .jpg, .png, & .pdf files will be accepted)
             </p>

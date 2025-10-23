@@ -83,7 +83,7 @@ export default function ProblemSolvedForm() {
             className="flex flex-col items-center bg-white justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-all"
           >
             <FiUploadCloud className="text-2xl text-blue-500 mb-1" />
-            <p className="text-sm text-blue-600">Upload the file here</p>
+            <p className="text-sm newPrimaryColor">Upload the file here</p>
             <p className="text-xs text-gray-500 mt-1">
               (Only .jpg, .png, & .pdf files will be accepted)
             </p>
@@ -119,13 +119,13 @@ export default function ProblemSolvedForm() {
         <div className="md:col-span-2 flex gap-4 mt-4">
           <button
             type="button"
-            className="w-1/2  border-2 border-blue-600 py-2 rounded-lg  text-blue-600 text-sm font-medium hover:bg-blue-700 transition-all"
+            className="w-1/2  border-2 border-blue-600 py-2 rounded-lg  newPrimaryColor text-sm font-medium hover:bg-blue-700 transition-all"
           >
             + Add Problem
           </button>
           <button
             type="button"
-            className="w-1/2 border-2 border-blue-600  bg-blue-50 text-blue-600 py-2 rounded-lg text-sm font-medium hover:bg-gray-300 transition-all"
+            className="w-1/2 border-2 border-blue-600  bg-blue-50 newPrimaryColor py-2 rounded-lg text-sm font-medium hover:bg-gray-300 transition-all"
           >
             Add Descriptions
           </button>
