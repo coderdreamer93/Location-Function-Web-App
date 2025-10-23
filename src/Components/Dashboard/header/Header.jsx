@@ -13,8 +13,8 @@ export default function Header() {
 
   const tabs = [
     { id: 1, name: "Functions", route: "functions" },
-    // { id: 2, name: "Problems", route: "problems" },
-    // { id: 3, name: "Businesses", route: "businesses" },
+    { id: 2, name: "Problems", route: "problems" },
+    { id: 3, name: "Businesses", route: "businesses" },
   ];
 
   const notifications = 2;

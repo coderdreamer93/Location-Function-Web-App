@@ -23,6 +23,7 @@ import FunctionListView from "../../../Components/Dashboard/business/FunctionLis
 import FunctionGridView from "../../../Components/Dashboard/business/FunctionGridView";
 
 function Functions() {
+  const [currentUser, setCurrentUser] = useState("John Thompson");
   const [view, setView] = useCardView();
   const [isOpen, setIsOpen] = useFilterView();
   const [search, setSearch] = useState("");
@@ -109,6 +110,7 @@ function Functions() {
                 selectedFilter={selectedFilter}
                 functionsCategory={functionsCategory}
                 filterOptions="myFunction"
+                currentUser={currentUser}
               />
             )}
             <Outlet />

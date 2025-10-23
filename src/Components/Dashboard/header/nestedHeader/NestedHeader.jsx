@@ -84,7 +84,7 @@ function NestedHeader({ title, view, setView }) {
           {view === "grid" ? (
             <GridBlueIcon className="w-[14px] h-[14px]" />
           ) : (
-            <GridBlueIcon className="w-[14px] h-[14px]" />
+            <GridGrayIcon className="w-[14px] h-[14px]" />
           )}
         </button>
       </div>
