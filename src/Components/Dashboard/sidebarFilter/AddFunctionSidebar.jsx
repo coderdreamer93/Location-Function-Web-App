@@ -2,7 +2,7 @@ import React from "react";
 
 function AddFunctionSidebar({ steps = [], activeStep = 0 }) {
   return (
-    <div className="w-64 bg-white border rounded-xl p-4">
+    <div className="w-64 bg-white border rounded-xl p-4 h-full">
       {steps.map((label, index) => {
         // step state check
         const isCompleted = index < activeStep;
@@ -13,7 +13,7 @@ function AddFunctionSidebar({ steps = [], activeStep = 0 }) {
             <div className="flex flex-col justify-center items-center">
               {/* Step Circle */}
               <div
-                className={`flex items-center justify-center w-6 h-6 rounded-full text-sm font-semibold border
+                className={`flex items-center justify-center w-7 h-7 rounded-full text-sm font-semibold border
                   ${
                     isCompleted
                       ? "bg-blue-600 text-white border-blue-600"

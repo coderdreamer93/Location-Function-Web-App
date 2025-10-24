@@ -81,7 +81,7 @@ export default function FunctionPopupMenu({ onClose, onAction }) {
   return (
     <div
       ref={menuRef}
-      className="absolute right-3 top-3 mt-2 z-[9999] w-56 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden"
+      className="absolute right-3 top-3 mt-2 z-[9999] sm:w-56 w-48 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden"
       onClick={(e) => e.stopPropagation()}
     >
       {menuItems.map((item, i) => (

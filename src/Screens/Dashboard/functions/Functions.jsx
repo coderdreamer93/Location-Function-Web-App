@@ -48,6 +48,10 @@ function Functions() {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, []);
 
+  useEffect(() => {
+    console.log("🧩 Active Filters Updated:", activeFilters);
+  }, [activeFilters]);
+
   return (
     <div className="relative flex w-full">
       {/* Sidebar */}
@@ -103,16 +107,19 @@ function Functions() {
               <FunctionListView
                 data={businessData}
                 selectedFilter={selectedFilter}
+                activeFilters={activeFilters} // ✅ added
               />
             ) : (
               <FunctionGridView
                 data={businessData}
                 selectedFilter={selectedFilter}
+                activeFilters={activeFilters} // ✅ added
                 functionsCategory={functionsCategory}
                 filterOptions="myFunction"
                 currentUser={currentUser}
               />
             )}
+
             <Outlet />
           </div>
 

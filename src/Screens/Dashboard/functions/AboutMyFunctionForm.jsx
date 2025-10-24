@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { FiUploadCloud } from "react-icons/fi";
-import { IoLocationOutline, IoLocation } from "react-icons/io5";
+import { ReactComponent as LocationIcon } from "../../../Assets/icons/Pin.svg";
+import { ReactComponent as UploadIcon } from "../../../Assets/icons/uploadIcon.svg";
 
 export default function AboutMyFunctionForm() {
   const [fileName, setFileName] = useState("");
@@ -29,12 +29,11 @@ export default function AboutMyFunctionForm() {
   return (
     <div className="w-full mx-auto">
       {/* ============ About Me Section ============ */}
-     
-     
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         {/* Function Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-[14px]  newFontColor mb-1">
             Function Name
           </label>
           <input
@@ -43,34 +42,31 @@ export default function AboutMyFunctionForm() {
             value={formData.functionName}
             onChange={handleChange}
             placeholder="ex: Fix Car"
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none"
           />
         </div>
 
         {/* Function Location */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-[14px]  newFontColor">
             Function Location
           </label>
-          <div className="relative">
-            <select
-              name="functionLocation"
-              value={formData.functionLocation}
+          <div className="relative items-center">
+            <input
+              type="text"
+              name="location"
+              value={formData.location}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-8 appearance-none text-sm focus:ring-1 focus:ring-blue-500 outline-none"
-            >
-              <option value="">Select Location</option>
-              <option value="Karachi">Karachi</option>
-              <option value="Lahore">Lahore</option>
-              <option value="Islamabad">Islamabad</option>
-            </select>
-            <IoLocationOutline className="absolute right-3 top-2.5 text-gray-500 text-lg" />
+              placeholder="Select location"
+              className="w-full mt-1 border text-black rounded-lg px-3 py-2 text-[14px] focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-gray-400"
+            />
+            <LocationIcon className="absolute top-4 right-4 newPrimaryColor" />
           </div>
         </div>
 
         {/* Business Name */}
         <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-[14px]  newFontColor mb-1">
             Business Name
           </label>
           <input
@@ -79,24 +75,28 @@ export default function AboutMyFunctionForm() {
             value={formData.businessName}
             onChange={handleChange}
             placeholder="ex: IBM"
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none"
           />
         </div>
 
         {/* Upload Function Image */}
         <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-[14px]  newFontColor mb-2">
             Upload Function Image
           </label>
           <label
             htmlFor="fileUpload"
-            className="flex flex-col items-center bg-white justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-all"
+            className="flex flex-col items-center bg-white justify-center w-full h-28 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition-all"
           >
-            <FiUploadCloud className="text-2xl text-blue-500 mb-1" />
-            <p className="text-sm newPrimaryColor">Upload the file here</p>
-            <p className="text-xs text-gray-500 mt-1">
-              (Only .jpg, .png, & .pdf files will be accepted)
-            </p>
+            <div className="flex flex-col gap-2 justify-center items-center">
+              <UploadIcon className="text-[18px] newPrimaryColor" />
+              <span className="text-[14px] newPrimaryColor">
+                Upload the file here
+              </span>
+              <span className="text-[14px] text-gray-500">
+                (Only .jpg, .png, & .pdf files will be accepted)
+              </span>
+            </div>
             <input
               type="file"
               id="fileUpload"
@@ -105,14 +105,14 @@ export default function AboutMyFunctionForm() {
               accept=".jpg,.jpeg,.png,.pdf"
             />
           </label>
-          <p className="text-xs text-gray-400 mt-1 text-center">
+          <p className="text-[14px] text-gray-400 mt-1 p-0 m-0 w-full text-center">
             {fileName ? fileName : "no files uploaded yet"}
           </p>
         </div>
 
         {/* Function Video */}
         <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-[14px]  newFontColor mb-1">
             Function Video
           </label>
           <input
@@ -121,7 +121,7 @@ export default function AboutMyFunctionForm() {
             value={formData.functionVideo}
             onChange={handleChange}
             placeholder="Enter YouTube Link"
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 outline-none"
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none"
           />
         </div>
       </div>

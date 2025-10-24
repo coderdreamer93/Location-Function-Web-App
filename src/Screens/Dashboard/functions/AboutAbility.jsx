@@ -1,52 +1,52 @@
 "use client";
 import React, { useState } from "react";
-import { IoCheckmark } from "react-icons/io5";
+import { ReactComponent as CheckIcon } from "../../../Assets/icons/check.svg";
 
-export default function AboutAbility({handlePreview}) {
+
+export default function AboutAbility({ handlePreview }) {
   const [selected, setSelected] = useState("");
-
   const options = ["Yes", "No"];
 
   return (
     <div className="w-full mx-auto">
       <label className="block text-sm font-medium text-black mb-1">
-        Show With Function
+       About Ability
       </label>
 
-      <div className="relative">
-        <select
-          name="formula"
-          value={selected}
-          onChange={(e) => setSelected(e.target.value)}
-          className="w-full border border-blue-600 rounded-lg px-3 py-2 pr-10 text-sm text-black focus:ring-1 focus:ring-blue-600 focus:text-white outline-none appearance-none"
-        >
-          <option value="">The Given Set</option>
-          {options.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-
-        {/* Dropdown arrow */}
-        <span className="absolute right-3 top-2.5 newPrimaryColor text-sm pointer-events-none">
-          ▼
-        </span>
-
-        {/* Checkmark icon if selected */}
-        {selected && (
-          <IoCheckmark className="absolute right-8 top-2.5 newPrimaryColor text-lg" />
-        )}
+      <div className="flex flex-col mt-1">
+        {options.map((option, idx) => (
+          <div
+            key={option}
+            onClick={() => setSelected(option)}
+            className={`relative w-full border newFontColor px-3 bg-white py-2 text-[14px] cursor-pointer transition-all
+              ${
+                selected === option
+                  ? "border-blue-500 bg-white"
+                  : "border-gray-300 bg-white hover:bg-blue-50"
+              }
+              ${
+                idx === 0
+                  ? "rounded-t-lg rounded-b-none" // top button (Yes)
+                  : "rounded-t-none rounded-b-lg" // bottom button (No)
+              }`}
+          >
+            <span>{option}</span>
+            {selected === option && (
+              <CheckIcon className="absolute top-2 right-2 text-blue-600 text-lg" />
+            )}
+          </div>
+        ))}
       </div>
+
+      {/* Preview Button */}
       <div className="md:col-span-2 flex gap-4 mt-4">
         <button
           type="button"
           onClick={handlePreview}
-          className="w-full  border-2 border-blue-600 py-2 rounded-lg  newPrimaryColor hover:text-white focus:text-white text-sm font-medium hover:bg-blue-700 transition-all"
+          className="w-full border-2 border-blue-600 py-2 rounded-lg newPrimaryColor text-[14px] hover:bg-blue-50 transition-all"
         >
           Preview
         </button>
-       
       </div>
     </div>
   );
