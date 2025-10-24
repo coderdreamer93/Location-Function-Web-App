@@ -3,12 +3,15 @@ import React, { useState, useRef, useEffect } from "react";
 import { ReactComponent as CheckIcon } from "../../../Assets/icons/check.svg";
 import { ReactComponent as UploadIcon } from "../../../Assets/icons/uploadIcon.svg";
 import AddDescriptionModal from "../../../Components/Dashboard/modals/AddDescriptionModal";
+import { useNavigate } from "react-router-dom";
 
 export default function ProblemSolvedForm() {
   const [fileName, setFileName] = useState("");
   const [open, setOpen] = useState(false);
   const [openDesc, setOpenDesc] = useState(false);
   const [desc, setDesc] = useState("");
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     problemSolved: "",
     instantBroadcast: "",
@@ -31,9 +34,18 @@ export default function ProblemSolvedForm() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const [filePreview, setFilePreview] = useState(null);
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file) setFileName(file.name);
+    if (file) {
+      setFileName(file.name);
+      if (file.type.startsWith("image/")) {
+        setFilePreview(URL.createObjectURL(file));
+      } else {
+        setFilePreview(null); // No preview for non-images
+      }
+    }
   };
 
   const handleChange = (e) => {
@@ -133,24 +145,35 @@ export default function ProblemSolvedForm() {
           />
         </div>
 
-        {/* Upload Problem Solved Image */}
+        {/* Upload Function Image */}
         <div className="md:col-span-2">
           <label className="block text-[14px] newFontColor mb-2">
-            Upload Problem Solved Image
+            Upload Function Image
           </label>
+
           <label
             htmlFor="fileUpload"
-            className="flex flex-col items-center justify-center w-full h-28 bg-white border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-all"
+            className="relative flex flex-col items-center justify-center bg-white w-full h-28 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition-all overflow-hidden"
           >
-            <div className="flex flex-col gap-2 items-center">
-              <UploadIcon className="text-[18px] newPrimaryColor" />
-              <span className="text-[14px] newPrimaryColor">
-                Upload the file here
-              </span>
-              <span className="text-[14px] text-gray-500">
-                (Only .jpg, .png, & .pdf files will be accepted)
-              </span>
-            </div>
+            {/* Image Preview */}
+            {fileName && filePreview ? (
+              <img
+                src={filePreview}
+                alt="Uploaded preview"
+                className="absolute inset-0 object-cover w-full h-full rounded-lg"
+              />
+            ) : (
+              <div className="flex flex-col gap-2 justify-center items-center z-10">
+                <UploadIcon className="text-[18px] newPrimaryColor" />
+                <span className="text-[14px] newPrimaryColor">
+                  Upload the file here
+                </span>
+                <span className="text-[14px] text-gray-500">
+                  (Only .jpg, .png, & .pdf files will be accepted)
+                </span>
+              </div>
+            )}
+
             <input
               type="file"
               id="fileUpload"
@@ -159,8 +182,9 @@ export default function ProblemSolvedForm() {
               accept=".jpg,.jpeg,.png,.pdf"
             />
           </label>
-          <p className="text-[13px] text-gray-500 mt-1 text-center">
-            {fileName ? fileName : "No files uploaded yet"}
+
+          <p className="text-[14px] text-gray-400 mt-1 p-0 m-0 w-full text-center">
+            {fileName ? fileName : "no files uploaded yet"}
           </p>
         </div>
 
@@ -183,6 +207,7 @@ export default function ProblemSolvedForm() {
         <div className="md:col-span-2 flex gap-4 mt-4">
           <button
             type="button"
+            onClick={() => navigate("/dashboard/problems/addProblem")}
             className="w-1/2 border-2 border-blue-600 py-2 rounded-lg newPrimaryColor text-[14px] hover:bg-blue-50  hover:text-white transition-all"
           >
             + Add Problem
@@ -196,7 +221,7 @@ export default function ProblemSolvedForm() {
           </button>
         </div>
       </div>
-       {openDesc && (
+      {openDesc && (
         <AddDescriptionModal
           onClose={() => setOpenDesc(false)}
           onSave={(text) => setDesc(text)}

@@ -16,10 +16,20 @@ export default function AboutMyFunctionForm() {
     functionVideo: "",
   });
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) setFileName(file.name);
-  };
+const [filePreview, setFilePreview] = useState(null);
+
+const handleFileChange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    setFileName(file.name);
+    if (file.type.startsWith("image/")) {
+      setFilePreview(URL.createObjectURL(file));
+    } else {
+      setFilePreview(null); // No preview for non-images
+    }
+  }
+};
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -81,22 +91,33 @@ export default function AboutMyFunctionForm() {
 
         {/* Upload Function Image */}
         <div className="md:col-span-2">
-          <label className="block text-[14px]  newFontColor mb-2">
+          <label className="block text-[14px] newFontColor mb-2">
             Upload Function Image
           </label>
+
           <label
             htmlFor="fileUpload"
-            className="flex flex-col items-center bg-white justify-center w-full h-28 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition-all"
+            className="relative flex flex-col items-center justify-center bg-white w-full h-28 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition-all overflow-hidden"
           >
-            <div className="flex flex-col gap-2 justify-center items-center">
-              <UploadIcon className="text-[18px] newPrimaryColor" />
-              <span className="text-[14px] newPrimaryColor">
-                Upload the file here
-              </span>
-              <span className="text-[14px] text-gray-500">
-                (Only .jpg, .png, & .pdf files will be accepted)
-              </span>
-            </div>
+            {/* Image Preview */}
+            {fileName && filePreview ? (
+              <img
+                src={filePreview}
+                alt="Uploaded preview"
+                className="absolute inset-0 object-cover w-full h-full rounded-lg"
+              />
+            ) : (
+              <div className="flex flex-col gap-2 justify-center items-center z-10">
+                <UploadIcon className="text-[18px] newPrimaryColor" />
+                <span className="text-[14px] newPrimaryColor">
+                  Upload the file here
+                </span>
+                <span className="text-[14px] text-gray-500">
+                  (Only .jpg, .png, & .pdf files will be accepted)
+                </span>
+              </div>
+            )}
+
             <input
               type="file"
               id="fileUpload"
@@ -105,6 +126,7 @@ export default function AboutMyFunctionForm() {
               accept=".jpg,.jpeg,.png,.pdf"
             />
           </label>
+
           <p className="text-[14px] text-gray-400 mt-1 p-0 m-0 w-full text-center">
             {fileName ? fileName : "no files uploaded yet"}
           </p>
