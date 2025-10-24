@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ReactComponent as CloseIcon } from "../../../Assets/icons/xIcon.svg";
 
 export default function ShareFunctionModal({ onClose, users = [] }) {
   const [selectedUser, setSelectedUser] = useState(null);
@@ -15,37 +16,37 @@ export default function ShareFunctionModal({ onClose, users = [] }) {
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 text-xl leading-none"
           >
-            ×
+            <CloseIcon />
           </button>
         </div>
 
         {/* User List */}
-        <div className="p-6 flex flex-col gap-3 max-h-[60vh] overflow-y-auto">
+        <div className="p-4 flex flex-col gap-3 max-h-[60vh] overflow-y-auto">
           {users.map((user, idx) => (
             <div
               key={idx}
-              className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3 hover:bg-gray-50 transition"
+              className="flex items-center justify-between rounded-xl border border-gray-200 p-3 hover:bg-gray-50 transition"
             >
               <div className="flex items-center gap-3">
                 <img
                   src={user.image || "/image/UserImage.png"}
                   alt={user.mechanicName}
-                  className="w-12 h-12 rounded-full object-cover"
+                  className="w-16 h-16 rounded-full object-cover"
                 />
-                <div>
-                  <p className="font-semibold text-gray-900 text-[15px] leading-tight">
+                <div className="flex flex-col gap-1 justify-center">
+                  <span className="font-semibold newFontColor text-[15px] leading-[1.1]">
                     {user.mechanicName}
-                  </p>
-                  <p className="text-gray-500 text-[13px] leading-tight">
+                  </span>
+                  <span className="text-gray-500 text-[14px] newFontColor leading-[1.1] mt-[1px]">
                     {user.location || "Los Angeles, CA, USA"}
-                  </p>
+                  </span>
                 </div>
               </div>
 
               <button
                 onClick={() => setSelectedUser(idx)}
                 className={`text-[14px] font-medium ${
-                  selectedUser === idx ? "text-blue-600" : "text-blue-600"
+                  selectedUser === idx ? "newPrimaryColor" : "newPrimaryColor"
                 } hover:underline`}
               >
                 Select
@@ -55,14 +56,14 @@ export default function ShareFunctionModal({ onClose, users = [] }) {
         </div>
 
         {/* Footer */}
-        <div className="flex justify-between items-center border-t px-6 py-4 bg-white">
+        <div className="flex justify-between items-center  px-6 pb-4 bg-white">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-[14px] font-medium text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50"
+            className="px-4 py-2 text-[14px] font-medium newPrimaryColor border newPrimaryBorder rounded-lg hover:bg-blue-50"
           >
             Cancel
           </button>
-          <button className="px-5 py-2 text-[14px] font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700">
+          <button className="px-5 py-2 text-[14px] font-medium text-white newPrimaryBg shadow-lg rounded-lg hover:shadow-sm">
             Save
           </button>
         </div>
