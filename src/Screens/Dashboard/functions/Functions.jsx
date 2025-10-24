@@ -52,6 +52,11 @@ function Functions() {
     console.log("🧩 Active Filters Updated:", activeFilters);
   }, [activeFilters]);
 
+
+
+
+
+
   return (
     <div className="relative flex w-full">
       {/* Sidebar */}
