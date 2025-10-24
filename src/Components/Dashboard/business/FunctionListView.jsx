@@ -125,7 +125,7 @@ function FunctionListView({ data = [], selectedFilter, currentUser }) {
                     {selectedFilter === "myFunction" ? (
                       <div className="relative">
                         <ThreeDotIcon
-                          className="w-[24px] h-[24px] cursor-pointer hover:opacity-70"
+                           className="w-[24px] h-[24px] cursor-pointer hover:opacity-70"
                           onClick={(e) => {
                             e.stopPropagation();
                             setOpenMenuId(

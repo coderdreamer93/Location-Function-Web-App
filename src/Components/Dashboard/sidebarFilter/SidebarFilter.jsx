@@ -507,6 +507,7 @@ const SidebarFilter = ({
   const [selectedSort, setSelectedSort] = useState([]);
   const [selectedFormulaUsage, setSelectedFormulaUsage] = useState([]);
   const [activeLetter, setActiveLetter] = useState("");
+  
   const [searchTerm, setSearchTerm] = useState("");
 
   // ✅ Apply Filters manually (on button click)

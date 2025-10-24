@@ -74,14 +74,17 @@ const AddFunction = () => {
       </div>
 
       {/* Main Layout */}
-      <div className="flex bg-gray-50 mt-24 p-4">
+      <div className="flex flex-col md:flex-row gap-4 bg-gray-50 mt-24 p-0 sm:p-4">
         {/* Sidebar (Desktop only) */}
         <div className="hidden md:block">
           <AddFunctionSidebar steps={steps} activeStep={activeStep} />
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 bg-gray-50 ml-0 md:ml-6 p-6 md:p-8 rounded-xl shadow-sm border backdrop-blur-sm">
+        <div
+          className="w-full md:flex-1  mx-auto md:mx-0 p-6 rounded-xl shadow-sm border backdrop-blur-sm
+ max-w-full sm:max-w-lg md:max-w-none"
+        >
           {/* Mobile Header (Circle Progress) */}
           <AddFunctionMobileHeader steps={steps} activeStep={activeStep} />
 
@@ -229,7 +232,7 @@ const AddFunction = () => {
             <button
               onClick={handlePrev}
               disabled={activeStep === 0}
-              className={`px-5 py-2.5 rounded-lg text-[14px] font-medium transition-all duration-200 border-2 shadow-sm hover:shadow-md focus:outline-none ${
+              className={`md:px-5 px-4 py-2.5 rounded-lg text-[14px] font-medium transition-all duration-200 border-2 shadow-sm hover:shadow-md focus:outline-none ${
                 activeStep === 0
                   ? "border-blue-600 newPrimaryColor cursor-not-allowed bg-white"
                   : "border-blue-600 newPrimaryColor bg-white hover:bg-blue-100 active:bg-blue-100"
@@ -240,7 +243,7 @@ const AddFunction = () => {
 
             <button
               onClick={handleNext}
-              className="px-5 py-2.5 rounded-lg text-[14px] border-2 newPrimaryBorder  newPrimaryBg text-white shadow-sm hover:shadow-md  transition-all duration-200 focus:outline-none"
+              className="md:px-5 px-4 py-2.5 rounded-lg text-[14px] border-2 newPrimaryBorder  newPrimaryBg text-white shadow-sm hover:shadow-md  transition-all duration-200 focus:outline-none"
             >
               {activeStep === steps.length - 1 ? "Finish" : "Next"}
             </button>

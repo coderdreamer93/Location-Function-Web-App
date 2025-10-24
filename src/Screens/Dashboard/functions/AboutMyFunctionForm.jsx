@@ -108,11 +108,11 @@ const handleFileChange = (e) => {
               />
             ) : (
               <div className="flex flex-col gap-2 justify-center items-center z-10">
-                <UploadIcon className="text-[18px] newPrimaryColor" />
-                <span className="text-[14px] newPrimaryColor">
+                <UploadIcon className="sm:text-[18px] text-[12px] newPrimaryColor" />
+                <span className="md:text-[14px] sm:text-[12px] text-[10px] newPrimaryColor">
                   Upload the file here
                 </span>
-                <span className="text-[14px] text-gray-500">
+                <span className="md:text-[14px] sm:text-[12px] text-[10px] text-gray-500">
                   (Only .jpg, .png, & .pdf files will be accepted)
                 </span>
               </div>

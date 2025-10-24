@@ -6,38 +6,38 @@ export default function ShareFunctionModal({ onClose, users = [] }) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-[999]">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-xl mx-4 overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-xl w-full max-w-xl mx-4 md:mx-4 overflow-hidden">
         {/* Header */}
-        <div className="flex justify-between items-center px-6 pt-4">
-          <h2 className="text-[17px] font-semibold text-gray-900">
+        <div className="flex justify-between items-center px-4 md:px-6 pt-3 md:pt-4">
+          <h2 className="text-[14px] md:text-[17px] font-semibold text-gray-900 text-nowrap">
             Share Function with...
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-xl leading-none"
+            className="text-gray-400 hover:text-gray-600 text-lg md:text-xl leading-none"
           >
-            <CloseIcon />
+            <CloseIcon className="w-4 h-4 md:w-5 md:h-5" />
           </button>
         </div>
 
         {/* User List */}
-        <div className="p-4 flex flex-col gap-3 max-h-[60vh] overflow-y-auto">
+        <div className="p-3 md:p-4 flex flex-col gap-2 md:gap-3 max-h-[60vh] overflow-y-auto">
           {users.map((user, idx) => (
             <div
               key={idx}
-              className="flex items-center justify-between rounded-xl border border-gray-200 p-3 hover:bg-gray-50 transition"
+              className="flex items-center justify-between rounded-xl border border-gray-200 p-2 md:p-3 hover:bg-gray-50 transition"
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 md:gap-3 overflow-hidden">
                 <img
                   src={user.image || "/image/UserImage.png"}
                   alt={user.mechanicName}
-                  className="w-16 h-16 rounded-full object-cover"
+                  className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover flex-shrink-0"
                 />
-                <div className="flex flex-col gap-1 justify-center">
-                  <span className="font-semibold newFontColor text-[15px] leading-[1.1]">
+                <div className="flex flex-col gap-[3px] justify-center truncate">
+                  <span className="font-semibold newFontColor text-[11px] md:text-[15px] leading-tight text-nowrap">
                     {user.mechanicName}
                   </span>
-                  <span className="text-gray-500 text-[14px] newFontColor leading-[1.1] mt-[1px]">
+                  <span className="text-[10px] md:text-[13px] newFontColor leading-tight text-nowrap">
                     {user.location || "Los Angeles, CA, USA"}
                   </span>
                 </div>
@@ -45,9 +45,9 @@ export default function ShareFunctionModal({ onClose, users = [] }) {
 
               <button
                 onClick={() => setSelectedUser(idx)}
-                className={`text-[14px] font-medium ${
-                  selectedUser === idx ? "newPrimaryColor" : "newPrimaryColor"
-                } hover:underline`}
+                className={`text-[10px] md:text-[14px] font-medium newPrimaryColor hover:underline text-nowrap ${
+                  selectedUser === idx ? "opacity-80" : ""
+                }`}
               >
                 Select
               </button>
@@ -56,14 +56,14 @@ export default function ShareFunctionModal({ onClose, users = [] }) {
         </div>
 
         {/* Footer */}
-        <div className="flex justify-between items-center  px-6 pb-4 bg-white">
+        <div className="flex justify-between items-center px-4 md:px-6 pb-3 md:pb-4 bg-white">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-[14px] font-medium newPrimaryColor border newPrimaryBorder rounded-lg hover:bg-blue-50"
+            className="px-3 md:px-4 py-1.5 md:py-2 text-[11px] md:text-[14px] font-medium newPrimaryColor border newPrimaryBorder rounded-lg hover:bg-blue-50 text-nowrap"
           >
             Cancel
           </button>
-          <button className="px-5 py-2 text-[14px] font-medium text-white newPrimaryBg shadow-lg rounded-lg hover:shadow-sm">
+          <button className="px-4 md:px-5 py-1.5 md:py-2 text-[11px] md:text-[14px] font-medium text-white newPrimaryBg shadow-lg rounded-lg hover:shadow-sm text-nowrap">
             Save
           </button>
         </div>

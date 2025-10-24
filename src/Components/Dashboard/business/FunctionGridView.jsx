@@ -17,7 +17,6 @@ function FunctionGridView({ data = [], selectedFilter, currentUser }) {
 
   const portalTarget = usePortal();
 
-  // ✅ Filtering logic
   const filteredData = useMemo(() => {
     if (selectedFilter === "myFunction") {
       return data.filter((item) => item.mechanicName === currentUser);
@@ -41,13 +40,12 @@ function FunctionGridView({ data = [], selectedFilter, currentUser }) {
   const closeModal = () => setModalType(null);
 
   const handleAction = (type) => {
-    closeMenu(); // close menu first
-    setModalType(type); // open modal next
+    closeMenu();
+    setModalType(type);
   };
 
   return (
     <>
-      {/* ✅ Image Preview Modal */}
       {modalImage && (
         <div
           onClick={closeImageModal}
@@ -90,8 +88,8 @@ function FunctionGridView({ data = [], selectedFilter, currentUser }) {
                           : "w-[30px] h-[30px]"
                       }`}
                     />
-                    <div className="flex flex-col flex-1 text-black text-[14px]">
-                      <span className="font-semibold text-nowrap truncate">
+                    <div className="flex flex-col flex-1 newFontColor text-[14px]">
+                      <span className="sm:text-[14px] text-[10px] font-semibold text-nowrap truncate">
                         {item.mechanicName}
                       </span>
                       <span
@@ -135,69 +133,63 @@ function FunctionGridView({ data = [], selectedFilter, currentUser }) {
                 </div>
 
                 {/* Details */}
-                {[
-                  {
-                    label: "Function",
-                    value: "Fix Car",
-                    color: "text-green-600",
-                    image: "/fixIcon.png",
-                  },
-                  {
-                    label: "Problem Solved",
-                    value: "Dirty Oil",
-                    color: "text-red-600",
-                    image: "/OilIcon.png",
-                  },
-                  {
-                    label: "Location",
-                    value: item.location,
-                    color: "text-black",
-                    image: null,
-                  },
-                  {
-                    label: "Formula Usage",
-                    value: "The Given Set",
-                    color: "newPrimaryColor",
-                    image: null,
-                  },
-                ].map((row, idx) => (
-                  <div
-                    key={idx}
-                    className={`flex ${
-                      expanded === item.id
-                        ? "flex-col"
-                        : "flex-row items-center justify-between"
-                    } gap-2 border-b py-1 px-2`}
-                  >
-                    <div className="flex gap-1 w-full flex-1">
-                      <span className="text-gray-700 text-[14px] text-nowrap">
-                        {row.label}:
-                      </span>
-                      <span
-                        className={`${row.color} text-[14px] font-bold text-nowrap truncate`}
-                      >
-                        {row.value}
-                      </span>
-                    </div>
+              {[
+  {
+    label: "Function",
+    value: item.function,
+    color: "text-green-600",
+    image: item.functionImage,
+  },
+  {
+    label: "Problem Solved",
+    value: item.problem,
+    color: "text-red-600",
+    image: item.problemImage,
+  },
+  {
+    label: "Location",
+    value: item.location,
+    color: "newFontColor",
+    image: null,
+  },
+  {
+    label: "Formula Usage",
+    value: item.formulaValue,
+    color: "newPrimaryColor",
+    image: null,
+  },
+].map((row, idx) => (
+  <div
+    key={idx}
+    className={`flex flex-row items-center justify-between gap-2 border-b py-1 px-2 min-h-[30px] sm:min-h-[52px]`}
+  >
+    {/* ✅ Text area (truncate before image) */}
+    <div className="flex gap-1 w-full flex-1 min-w-0">
+      <span className="newFontColor text-[10px] sm:text-[14px] text-nowrap">
+        {row.label}:
+      </span>
+      <span
+        className={`${row.color} text-[10px] sm:text-[14px] font-bold text-nowrap truncate`}
+        title={row.value}
+      >
+        {row.value || "—"}
+      </span>
+    </div>
 
-                    {row.image && (
-                      <div
-                        className={`${
-                          expanded === item.id
-                            ? "w-full h-[120px] flex items-center justify-center"
-                            : "w-7 h-7"
-                        }`}
-                      >
-                        <img
-                          src={row.image}
-                          alt={row.label}
-                          onClick={(e) => openModal(row.image, e)}
-                          className="cursor-pointer object-cover rounded-lg w-full h-full"
-                        />
-                      </div>
-                    )}
-                  </div>
-                ))}
+    {/* ✅ Image always visible, square & rounded-md */}
+    {row.image && (
+      <div className="flex-shrink-0 w-6 h-6 sm:w-9 sm:h-9">
+        <img
+          src={row.image}
+          alt={row.label}
+          onClick={(e) => openModal(row.image, e)}
+          className="cursor-pointer object-cover rounded-md w-full h-full"
+        />
+      </div>
+    )}
+  </div>
+))}
+
               </div>
             </div>
           ))

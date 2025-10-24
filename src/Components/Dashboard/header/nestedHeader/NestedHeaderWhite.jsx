@@ -1,37 +1,3 @@
-// import React from "react";
-// import { IoChevronForwardOutline } from "react-icons/io5";
-
-// function NestedHeaderWhite({ title, breadcrumbs = ["Dashboard", "Create Functions"] }) {
-//   return (
-//     <div className="flex flex-col gap-2">
-//       {/* Breadcrumbs */}
-//       <div className="flex items-center text-sm text-gray-500">
-//         {breadcrumbs.map((crumb, index) => (
-//           <div key={index} className="flex items-center">
-//             <span
-//               className={`uppercase${
-//                 index === breadcrumbs.length - 1
-//                   ? "newPrimaryColor cursor-pointer "
-//                   : "hover:text-gray-700 cursor-pointer"
-//               }`}
-//             >
-//               {crumb}
-//             </span>
-//             {index < breadcrumbs.length - 1 && (
-//               <IoChevronForwardOutline className="mx-2 text-gray-400" size={14} />
-//             )}
-//           </div>
-//         ))}
-//       </div>
-
-//       {/* Title */}
-//       <p className="text-3xl font-semibold text-gray-800">{title}</p>
-//     </div>
-//   );
-// }
-
-// export default NestedHeaderWhite;
-
 
 import React from "react";
 import { IoChevronForwardOutline } from "react-icons/io5";
@@ -55,9 +21,9 @@ function NestedHeaderWhite({
           <div key={index} className="flex items-center">
             <span
               onClick={() => crumb.path && navigate(crumb.path)}
-              className={`uppercase transition-all duration-200 ${
+              className={`uppercase sm:text-sm text-[12px] text-nowrap transition-all duration-200 ${
                 index === breadcrumbs.length - 1
-                  ? "newPrimaryColor font-medium cursor-default"
+                  ? "newPrimaryColor cursor-default"
                   : "text-gray-500 hover:newPrimaryColor cursor-pointer"
               }`}
             >
