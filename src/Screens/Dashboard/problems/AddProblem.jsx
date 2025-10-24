@@ -1,6 +1,5 @@
-
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ReactComponent as UploadIcon } from "../../../Assets/icons/uploadIcon.svg";
 import { ReactComponent as LocationIcon } from "../../../Assets/icons/Pin.svg";
 import { ReactComponent as CheckIcon } from "../../../Assets/icons/check.svg";
@@ -12,6 +11,7 @@ export default function AddProblem() {
   const [fileName, setFileName] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [description, setDescription] = useState("");
+  const [filePreview, setFilePreview] = useState(null);
 
   const [formData, setFormData] = useState({
     problemName: "",
@@ -20,12 +20,61 @@ export default function AddProblem() {
     problemVisibility: "",
     problemLocation: "",
     problemVideo: "",
+    privacy: "",
   });
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) setFileName(file.name);
-  };
+  // ✅ Load saved data on mount
+  useEffect(() => {
+    const savedData = localStorage.getItem("addProblemFormData");
+    const savedDescription = localStorage.getItem("addProblemDescription");
+    const savedFile = localStorage.getItem("addProblemFileName");
+
+    if (savedData) setFormData(JSON.parse(savedData));
+    if (savedDescription) setDescription(savedDescription);
+    if (savedFile) setFileName(savedFile);
+  }, []);
+
+  // ✅ Save to localStorage whenever formData, description, or file changes
+  useEffect(() => {
+    localStorage.setItem("addProblemFormData", JSON.stringify(formData));
+  }, [formData]);
+
+  useEffect(() => {
+    localStorage.setItem("addProblemDescription", description);
+  }, [description]);
+
+  useEffect(() => {
+    if (fileName) localStorage.setItem("addProblemFileName", fileName);
+  }, [fileName]);
+
+ const handleFileChange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    setFileName(file.name);
+
+    // ✅ Create image preview
+    if (file.type.startsWith("image/")) {
+      const previewURL = URL.createObjectURL(file);
+      setFilePreview(previewURL);
+
+      // 🧠 Store preview (optional, only base64)
+      const reader = new FileReader();
+      reader.onload = () => {
+        localStorage.setItem("addProblemFilePreview", reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setFilePreview(null);
+      localStorage.removeItem("addProblemFilePreview");
+    }
+  }
+};
+
+
+useEffect(() => {
+  const savedPreview = localStorage.getItem("addProblemFilePreview");
+  if (savedPreview) setFilePreview(savedPreview);
+}, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,6 +83,42 @@ export default function AddProblem() {
 
   const handleSaveDescription = (content) => {
     setDescription(content);
+  };
+
+  const handleSaveProblem = () => {
+    // 🧠 Create new problem object
+    const newProblem = {
+      ...formData,
+      description,
+      fileName,
+      dateSaved: new Date().toISOString(),
+    };
+
+    // 🗂️ Fetch existing problems from localStorage
+    const existing = JSON.parse(localStorage.getItem("problemsList")) || [];
+
+    // ➕ Add the new one
+    const updated = [...existing, newProblem];
+
+    // 💾 Save updated list
+    localStorage.setItem("problemsList", JSON.stringify(updated));
+
+    // ✅ Reset form fields
+    setFormData({
+      problemName: "",
+      problemDate: "",
+      problemStatus: "",
+      problemVisibility: "",
+      problemLocation: "",
+      problemVideo: "",
+      privacy: "",
+    });
+    setDescription("");
+    setFileName("");
+    setFilePreview(null);
+
+    // ✅ Optional success alert
+    alert("✅ Problem saved successfully!");
   };
 
   return (
@@ -107,26 +192,26 @@ export default function AddProblem() {
               </label>
 
               <div className="flex flex-col mt-1">
-                {["Public", "Private"].map((option, idx) => (
+                {["Solved", "Not Solved"].map((option, idx) => (
                   <div
                     key={option}
                     onClick={() =>
-                      setFormData({ ...formData, privacy: option })
+                      setFormData({ ...formData, problemStatus: option })
                     }
                     className={`relative w-full border newFontColor px-3 bg-white py-2 text-[14px] cursor-pointer transition-all
                      ${
-                       formData.privacy === option
+                       formData.problemStatus === option
                          ? "border-blue-500 bg-white"
                          : "border-gray-300 bg-white hover:bg-blue-50"
                      }
                      ${
                        idx === 0
-                         ? "rounded-t-lg rounded-b-none" // top button (Public)
-                         : "rounded-t-none rounded-b-lg" // bottom button (Private)
+                         ? "rounded-t-lg rounded-b-none"
+                         : "rounded-t-none rounded-b-lg"
                      }`}
                   >
                     <span>{option}</span>
-                    {formData.privacy === option && (
+                    {formData.problemStatus === option && (
                       <CheckIcon className="absolute top-2 right-2 text-blue-600 text-lg" />
                     )}
                   </div>
@@ -145,22 +230,22 @@ export default function AddProblem() {
                   <div
                     key={option}
                     onClick={() =>
-                      setFormData({ ...formData, privacy: option })
+                      setFormData({ ...formData, problemVisibility: option })
                     }
                     className={`relative w-full border newFontColor px-3 bg-white py-2 text-[14px] cursor-pointer transition-all
                      ${
-                       formData.privacy === option
+                       formData.problemVisibility === option
                          ? "border-blue-500 bg-white"
                          : "border-gray-300 bg-white hover:bg-blue-50"
                      }
                      ${
                        idx === 0
-                         ? "rounded-t-lg rounded-b-none" // top button (Public)
-                         : "rounded-t-none rounded-b-lg" // bottom button (Private)
+                         ? "rounded-t-lg rounded-b-none"
+                         : "rounded-t-none rounded-b-lg"
                      }`}
                   >
                     <span>{option}</span>
-                    {formData.privacy === option && (
+                    {formData.problemVisibility === option && (
                       <CheckIcon className="absolute top-2 right-2 text-blue-600 text-lg" />
                     )}
                   </div>
@@ -173,27 +258,39 @@ export default function AddProblem() {
               <label className="text-[14px] newFontColor mb-1">
                 Upload Problem Image
               </label>
+
               <label
                 htmlFor="fileUpload"
-                className="flex flex-col items-center bg-white justify-center w-full h-28 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition-all"
+                className="relative flex flex-col items-center justify-center bg-white w-full h-28 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition-all overflow-hidden"
               >
-                <div className="flex flex-col gap-2 justify-center items-center">
-                  <UploadIcon className="text-[18px] newPrimaryColor" />
-                  <span className="text-[14px] newPrimaryColor">
-                    Upload the file here
-                  </span>
-                  <span className="text-[14px] text-gray-500">
-                    (Only .jpg, .png, & .pdf files will be accepted)
-                  </span>
-                </div>
+                {/* Image Preview */}
+                {fileName && filePreview ? (
+                  <img
+                    src={filePreview}
+                    alt="Uploaded preview"
+                    className="absolute inset-0 object-cover w-full h-full"
+                  />
+                ) : (
+                  <div className="flex flex-col gap-2 justify-center items-center z-10">
+                    <UploadIcon className="text-[18px] newPrimaryColor" />
+                    <span className="text-[14px] newPrimaryColor">
+                      Upload the file here
+                    </span>
+                    <span className="text-[14px] text-gray-500">
+                      (Only .jpg, .png, & .pdf files will be accepted)
+                    </span>
+                  </div>
+                )}
+
                 <input
                   type="file"
                   id="fileUpload"
                   className="hidden"
                   onChange={handleFileChange}
-                  accept=".jpg,.jpeg,.png,.pdf"
+                  accept=".jpg,.jpeg,.png"
                 />
               </label>
+
               <p className="text-[14px] text-gray-400 mt-1 p-0 m-0 w-full text-center">
                 {fileName ? fileName : "no files uploaded yet"}
               </p>
@@ -235,11 +332,29 @@ export default function AddProblem() {
             <button
               type="button"
               className="w-1/3 md:w-1/6 border-2 border-blue-600 text-blue-600 py-2 px-4 rounded-lg hover:bg-gray-200 transition-all"
+              onClick={() => {
+                localStorage.removeItem("addProblemFormData");
+                localStorage.removeItem("addProblemDescription");
+                localStorage.removeItem("addProblemFileName");
+                setFormData({
+                  problemName: "",
+                  problemDate: "",
+                  problemStatus: "",
+                  problemVisibility: "",
+                  problemLocation: "",
+                  problemVideo: "",
+                  privacy: "",
+                });
+                setDescription("");
+                setFileName("");
+              }}
             >
               Cancel
             </button>
+
             <button
-              type="submit"
+              type="button"
+              onClick={handleSaveProblem}
               className="newPrimaryBg text-white text-nowrap text-center py-2 px-4 rounded-lg hover:bg-blue-700 transition-all"
             >
               Save Problem
