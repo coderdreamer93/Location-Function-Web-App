@@ -222,11 +222,6 @@ import ShareFunctionModal from "../modals/ShareFunctionModal";
 import AssignFunctionModal from "../modals/AssignFunctionModal";
 import ShowAbilityModal from "../modals/ShowAbilityModal";
 
-// ✅ Import your modals
-// import ShareFunctionModal from "./ShareFunctionModal";
-// import AssignFunctionModal from "./AssignFunctionModal";
-// import ShowAbilityModal from "./ShowAbilityModal";
-
 function FunctionGridView({ data = [], selectedFilter, currentUser }) {
   const navigate = useNavigate();
   const [expanded, setExpanded] = useState(null);

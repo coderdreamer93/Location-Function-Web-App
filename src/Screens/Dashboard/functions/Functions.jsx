@@ -105,15 +105,18 @@ function Functions() {
 
             {view === "list" ? (
               <FunctionListView
-                data={businessData}
+                 data={businessData}
                 selectedFilter={selectedFilter}
-                activeFilters={activeFilters} // ✅ added
+                activeFilters={activeFilters}
+                functionsCategory={functionsCategory}
+                filterOptions="myFunction"
+                currentUser={currentUser}
               />
             ) : (
               <FunctionGridView
                 data={businessData}
                 selectedFilter={selectedFilter}
-                activeFilters={activeFilters} // ✅ added
+                activeFilters={activeFilters} 
                 functionsCategory={functionsCategory}
                 filterOptions="myFunction"
                 currentUser={currentUser}
