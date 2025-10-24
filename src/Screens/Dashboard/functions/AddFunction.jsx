@@ -86,7 +86,7 @@ const AddFunction = () => {
           <AddFunctionMobileHeader steps={steps} activeStep={activeStep} />
 
           {/* Step Title */}
-          <p className="text-2xl font-semibold mb-6 text-black">
+          <p className="text-2xl sm:flex hidden mb-6 newFontColor">
             {steps[activeStep]}
           </p>
 
@@ -225,14 +225,14 @@ const AddFunction = () => {
           )}
 
           {/* Buttons */}
-          <div className="flex justify-between items-center mt-8">
+          <div className="flex justify-between items-center gap-2 mt-8">
             <button
               onClick={handlePrev}
               disabled={activeStep === 0}
               className={`px-5 py-2.5 rounded-lg text-[14px] font-medium transition-all duration-200 border-2 shadow-sm hover:shadow-md focus:outline-none ${
                 activeStep === 0
                   ? "border-blue-600 newPrimaryColor cursor-not-allowed bg-white"
-                  : "border-blue-600 newPrimaryColor bg-white hover:bg-blue-50 active:bg-blue-100"
+                  : "border-blue-600 newPrimaryColor bg-white hover:bg-blue-100 active:bg-blue-100"
               }`}
             >
               {activeStep === 0 ? "Cancle" : "Previous"}
@@ -240,7 +240,7 @@ const AddFunction = () => {
 
             <button
               onClick={handleNext}
-              className="px-5 py-2.5 rounded-lg text-[14px] font-medium bg-blue-600 text-white shadow-sm hover:shadow-md hover:bg-blue-700 active:bg-blue-800 transition-all duration-200 focus:outline-none"
+              className="px-5 py-2.5 rounded-lg text-[14px] border-2 newPrimaryBorder  newPrimaryBg text-white shadow-sm hover:shadow-md  transition-all duration-200 focus:outline-none"
             >
               {activeStep === steps.length - 1 ? "Finish" : "Next"}
             </button>

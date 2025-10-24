@@ -38,16 +38,6 @@ export default function AddDescriptionModal({ onClose, onSave }) {
     setActiveButtons(newActive);
   };
 
-  // ✅ toggle individual buttons (multiple active allowed)
-//   const toggleButton = (button) => {
-//     if (button === "bold") document.execCommand("bold");
-//     if (button === "italic") document.execCommand("italic");
-//     if (button === "underline") document.execCommand("underline");
-//     if (button === "bullet") document.execCommand("insertUnorderedList");
-//     if (button === "list") document.execCommand("insertOrderedList");
-//     updateActiveButtons();
-//   };
-
 const toggleButton = (button) => {
   // Ensure editor is focused before executing commands
   editorRef.current?.focus();
@@ -72,7 +62,7 @@ const toggleButton = (button) => {
     <div className="fixed inset-0 bg-transparent bg-opacity-30 flex items-center justify-center z-50">
       <div
         ref={modalRef}
-        className="bg-white rounded-2xl shadow-lg min-w-lg p-4"
+        className="bg-white rounded-2xl shadow-lg sm:min-w-lg sm:max-w-lg md:w-lg w-[90%] p-4 mx-auto"
       >
         {/* Header */}
         <h2 className="text-lg font-semibold text-black mb-3">

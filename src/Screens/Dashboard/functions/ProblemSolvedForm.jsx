@@ -204,18 +204,19 @@ export default function ProblemSolvedForm() {
         </div>
 
         {/* Buttons Row */}
-        <div className="md:col-span-2 flex gap-4 mt-4">
+        <div className="md:col-span-2 col-span-1 flex flex-col md:flex-row gap-4 mt-4">
           <button
             type="button"
             onClick={() => navigate("/dashboard/problems/addProblem")}
-            className="w-1/2 border-2 border-blue-600 py-2 rounded-lg newPrimaryColor text-[14px] hover:bg-blue-50  hover:text-white transition-all"
+            className="w-full md:w-1/2 border-2 newPrimaryBorder py-2 rounded-lg newPrimaryColor text-[14px] hover:bg-blue-50 hover:text-white transition-all"
           >
             + Add Problem
           </button>
+
           <button
             type="button"
             onClick={() => setOpenDesc(true)}
-            className="w-1/2 border-2 border-blue-600  newPrimaryColor py-2 rounded-lg text-[14px] hover:bg-blue-50 transition-all"
+            className="w-full md:w-1/2 border-2 newPrimaryBorder newPrimaryColor py-2 rounded-lg text-[14px] hover:bg-blue-50 transition-all"
           >
             Add Descriptions
           </button>
