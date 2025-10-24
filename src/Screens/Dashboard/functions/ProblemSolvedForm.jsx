@@ -2,10 +2,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ReactComponent as CheckIcon } from "../../../Assets/icons/check.svg";
 import { ReactComponent as UploadIcon } from "../../../Assets/icons/uploadIcon.svg";
+import AddDescriptionModal from "../../../Components/Dashboard/modals/AddDescriptionModal";
 
 export default function ProblemSolvedForm() {
   const [fileName, setFileName] = useState("");
   const [open, setOpen] = useState(false);
+  const [openDesc, setOpenDesc] = useState(false);
+  const [desc, setDesc] = useState("");
   const [formData, setFormData] = useState({
     problemSolved: "",
     instantBroadcast: "",
@@ -186,12 +189,19 @@ export default function ProblemSolvedForm() {
           </button>
           <button
             type="button"
+            onClick={() => setOpenDesc(true)}
             className="w-1/2 border-2 border-blue-600  newPrimaryColor py-2 rounded-lg text-[14px] hover:bg-blue-50 transition-all"
           >
             Add Descriptions
           </button>
         </div>
       </div>
+       {openDesc && (
+        <AddDescriptionModal
+          onClose={() => setOpenDesc(false)}
+          onSave={(text) => setDesc(text)}
+        />
+      )}
     </div>
   );
 }
