@@ -1,8 +1,3 @@
-@import url('./../fonts/stylesheet.css');
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;800&display=swap');
-/* Import Inter font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-
 /* Apply Inter globally */
 body {
   font-family: 'Inter', sans-serif;
@@ -17,7 +12,6 @@ body {
     --newBgWhiteColor: #FFFFFF;
     --newActiveColor: #EBF5FF;
     --newPlaceHolderColor: #65676B;
-
     --primaryColor: #9E6318;
     --primaryColor: #9E6318;
     --grayColor: #969696;
@@ -26,7 +20,7 @@ body {
     --yellowColor: #E5BB45;
     --whiteColor: #fff;
     --secondaryColor: #B0B0B0;
-} */
+} 
 
 .text-theme-secondary {
     color: var(--secondaryColor);

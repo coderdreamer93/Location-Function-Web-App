@@ -57,7 +57,7 @@ export default function BusinessMapView() {
         {/* Info Card */}
         <div
           className="w-full sm:w-[360px] absolute md:static top-[90px] right-0 
-          bg-white z-40 h-[calc(100%-10%)] rounded-2xl shadow-xl border-l border-gray-200 p-6 flex flex-col justify-between"
+          bg-white z-40 h-[calc(100\%-10\%)] rounded-2xl shadow-xl border-l border-gray-200 p-6 flex flex-col justify-between"
         >
           {/* Header */}
           <div>

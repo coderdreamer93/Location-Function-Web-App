@@ -142,7 +142,7 @@ if (activeFilters?.alphabet) {
     <div className="relative flex w-full">
       {/* Sidebar */}
       <div
-        className={`fixed top-18 left-0 z-30 h-[calc(100vh-3.5rem)] 
+        className={`fixed top-18 left-0 z-30 h-[calc(100vh_-_3.5rem)] 
     w-[85%] sm:w-64 md:w-64 
     border-r border-gray-200 bg-white overflow-y-auto 
     transition-transform duration-300 ease-in-out transform
@@ -183,7 +183,7 @@ if (activeFilters?.alphabet) {
         </div>
 
         {/* Data */}
-        <div className="bg-gray-50 relative sm:mt-36 mt-48 pb-10 rounded-lg min-h-[calc(100vh-8rem)]">
+        <div className="bg-gray-50 relative sm:mt-36 mt-48 pb-10 rounded-lg min-h-[calc(100vh_-_8rem)]">
           {view === "list" ? (
             <ListView data={filteredData} />
           ) : (

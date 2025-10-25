@@ -558,7 +558,7 @@ const SidebarFilter = ({
   };
 
   return (
-    <aside className="relative w-full border-r border-gray-200 h-[calc(100vh-3.5rem)] overflow-y-auto p-3">
+    <aside className="relative w-full border-r border-gray-200 h-[calc(100vh_-_3.5rem)] overflow-y-auto p-3">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <span className="text-md font-semibold text-gray-900">Filters</span>
