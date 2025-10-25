@@ -26,7 +26,7 @@ body {
     --yellowColor: #E5BB45;
     --whiteColor: #fff;
     --secondaryColor: #B0B0B0;
-} */
+}
 
 .text-theme-secondary {
     color: var(--secondaryColor);
