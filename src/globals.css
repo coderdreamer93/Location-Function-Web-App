@@ -2,19 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import Inter font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-
 /* Apply Inter globally */
 body {
   font-family: 'Inter', sans-serif;
 }
 
-
 :root {
  --themeColor: #0866FF;
 }
-
 
 .bg-themeColor {
  background-color: var(--themeColor);
@@ -40,7 +35,6 @@ body {
 .animate-slide-up {
   animation: slide-up 0.3s ease-out;
 }
-
 
 /* Hide horizontal scrollbar completely — including arrow buttons */
 .scrollbar-hidden::-webkit-scrollbar {
