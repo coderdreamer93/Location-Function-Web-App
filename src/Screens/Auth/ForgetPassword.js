@@ -34,7 +34,6 @@ const ForgetPassword = () => {
                         <CustomButton type='button' variant='primaryButton' text='Continue' onClick={handleClick} />
                     </div>
                 </form>
-
             </AuthLayout>
         </>
     )
