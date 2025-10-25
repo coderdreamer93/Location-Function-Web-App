@@ -61,7 +61,7 @@ function Functions() {
     <div className="relative flex w-full">
       {/* Sidebar */}
       <div
-        className={`fixed top-18 left-0 z-30 h-[calc(100vh_-_3.5rem)] 
+        className={`fixed top-18 left-0 z-30 h-[calc(100vh-3.5rem)] 
     w-[85%] sm:w-64 md:w-64 
     border-r border-gray-200 bg-white overflow-y-auto 
     transition-transform duration-300 ease-in-out transform
@@ -103,9 +103,9 @@ function Functions() {
         </div>
 
         {/* Main Content */}
-        <div className="bg-gray-50 relative pb-10 rounded-lg min-h-[calc(100vh_-_10rem)]">
+        <div className="bg-gray-50 relative pb-10 rounded-lg min-h-[calc(100vh-10rem)]">
           {/* <div className="flex justify-start items-center"> */}
-          <div className="bg-gray-50 relative sm:mt-[8rem] mt-[11rem] pb-10 rounded-lg min-h-[calc(100vh_-_10rem)]">
+          <div className="bg-gray-50 relative sm:mt-[8rem] mt-[11rem] pb-10 rounded-lg min-h-[calc(100vh-10rem)]">
             <AddButton onClick={handleAdd} label="Add Function" />
 
             {view === "list" ? (
