@@ -173,16 +173,13 @@ import React, { useMemo, useState } from "react";
 import ReactDOM from "react-dom";
 import usePortal from "../../../hook/usePortal";
 import { useNavigate } from "react-router-dom";
-// import { FaPhone, FaRegMessage } from "react-icons/fa6";
 import { ReactComponent as ChatProblemIcon } from "../../../Assets/icons/chatProblem.svg";
 import { ReactComponent as PhoneIcon } from "../../../Assets/icons/phone.svg";
 import { ReactComponent as ThreeDotIcon } from "../../../Assets/icons/threeDotIcon.svg";
 import ProblemPopupMenu from "./ProblemPopupMenu";
 import AssignProblemModal from "../modals/AssignProblemModal";
-import ShowAbilityModal from "../modals/ShowAbilityModal";
 import StopProblemModal from "../modals/StopProblemModal";
 
-// import { TbDotsVertical } from "react-icons/tb";
 
 function ProblemListView({ data = [], selectedFilter, currentUser }) {
   const navigate = useNavigate();
@@ -240,7 +237,7 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
             <div
               key={item.id}
               onClick={() => handleCardClick(item.id)}
-              className="bg-blue-50 rounded-lg shadow-sm overflow-hidden border border-gray-200 hover:border-blue-400 transition-all cursor-pointer"
+              className="bg-blue-50 rounded-lg shadow-sm overflow-visible border border-gray-200 hover:border-blue-400 transition-all cursor-pointer"
             >
               {/* === Top Section === */}
               <div className="flex justify-between items-center p-3 gap-3 flex-wrap md:flex-nowrap">
@@ -383,13 +380,13 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
                       {[
                         {
                           label: "Function",
-                          value: "Fix Car",
+                          value: item.function,
                           color: "text-green-600",
                           image: "/fixIcon.png",
                         },
                         {
                           label: "Problem Solved",
-                          value: "Dirty Oil",
+                          value: item.problem,
                           color: "text-red-600",
                           image: "/OilIcon.png",
                         },
@@ -401,7 +398,7 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
                         },
                         {
                           label: "Formula Usage",
-                          value: "The Given Set",
+                          value: item.formulaUsage,
                           color: "newPrimaryColor",
                           image: null,
                         },

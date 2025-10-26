@@ -103,9 +103,7 @@ function Functions() {
         </div>
 
         {/* Main Content */}
-        <div className="bg-gray-50 relative pb-10 rounded-lg min-h-[calc(100vh-10rem)]">
-          {/* <div className="flex justify-start items-center"> */}
-          <div className="bg-gray-50 relative sm:mt-[8rem] mt-[11rem] pb-10 rounded-lg min-h-[calc(100vh-10rem)]">
+<div className="bg-gray-50 relative mt-[11rem] sm:mt-[8rem] pb-10 rounded-lg min-h-[calc(100vh-10rem)]">
             <AddButton onClick={handleAdd} label="Add Function" />
 
             {view === "list" ? (
@@ -134,7 +132,6 @@ function Functions() {
           {/* <Outlet /> */}
         </div>
       </div>
-    </div>
   );
 }
 

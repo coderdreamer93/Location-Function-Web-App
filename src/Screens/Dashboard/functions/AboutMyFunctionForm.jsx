@@ -361,9 +361,9 @@ export default function AboutMyFunctionForm({ onStepDataChange }) {
 
   return (
     <div className="w-full mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 ">
         {/* Function Name */}
-        <div>
+        <div className="">
           <label className="block text-[14px] newFontColor mb-1">
             Function Name *
           </label>
@@ -389,7 +389,7 @@ export default function AboutMyFunctionForm({ onStepDataChange }) {
               value={formData.location}
               onChange={handleChange}
               placeholder="Select location"
-              className="w-full mt-1 border text-black rounded-lg px-3 py-2 text-[14px] focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-gray-400"
+              className="w-full border text-black rounded-lg px-3 py-2 text-[14px] focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-gray-400"
             />
             <LocationIcon className="absolute top-4 right-4 newPrimaryColor" />
           </div>

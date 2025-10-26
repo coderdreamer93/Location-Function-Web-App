@@ -356,7 +356,7 @@ const AddFunction = () => {
   return (
     <div className="relative flex flex-col w-full sm:p-4">
       {/* Fixed Header */}
-      <div className="fixed top-14 left-0 right-0 z-20 bg-white p-4  transition-all duration-300 ease-in-out">
+      <div className="fixed top-14 left-0 right-0 z-20 bg-white p-4 transition-all duration-300 ease-in-out">
         <NestedHeaderWhite
           title="Add Function"
           breadcrumbs={[
@@ -374,89 +374,90 @@ const AddFunction = () => {
           <AddFunctionSidebar steps={steps} activeStep={activeStep} />
         </div>
 
-        {/* Main Content */}
-        <div
-          className="w-full md:flex-1 mx-auto md:mx-0 p-6 rounded-xl shadow-sm border backdrop-blur-sm
+        <div className="flex flex-col w-full border sm:rounded-xl rounded-none">
+          {/* Main Content */}
+          <div
+            className="w-full md:flex-1 mx-auto md:mx-0 p-6 rounded-t-xl backdrop-blur-sm
  max-w-full sm:max-w-lg md:max-w-none"
-        >
-          {/* Mobile Header (Circle Progress) */}
-          <AddFunctionMobileHeader steps={steps} activeStep={activeStep} />
+          >
+            {/* Mobile Header (Circle Progress) */}
+            <AddFunctionMobileHeader steps={steps} activeStep={activeStep} />
 
-          {/* Step Title */}
-          <p className="text-2xl sm:flex hidden mb-6 newFontColor">
-            {steps[activeStep]}
-          </p>
+            {/* Step Title */}
+            <p className="text-2xl sm:flex hidden mb-6 newFontColor">
+              {steps[activeStep]}
+            </p>
 
-          {/* Step 1: About Me */}
-          {activeStep === 0 && (
-            <div>
-              <div className="flex flex-col items-center mb-6">
-                <img
-                  src="/aboutImage.png"
-                  alt="avatar"
-                  className="w-16 h-16 rounded-full"
-                />
-              </div>
+            {/* Step 1: About Me */}
+            {activeStep === 0 && (
+              <div>
+                <div className="flex flex-col items-center mb-6">
+                  <img
+                    src="/aboutImage.png"
+                    alt="avatar"
+                    className="w-16 h-16 rounded-full"
+                  />
+                </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-[14px] font-medium newFontColor">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Enter name"
+                      className="w-full mt-1 border text-black rounded-lg px-3 py-2 text-[14px] focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[14px] font-medium newFontColor">
+                      Job Title
+                    </label>
+                    <input
+                      type="text"
+                      name="jobTitle"
+                      value={formData.jobTitle}
+                      onChange={handleChange}
+                      placeholder="Enter job title"
+                      className="w-full mt-1 border text-black rounded-lg px-3 py-2 text-[14px] focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-4 ">
                   <label className="text-[14px] font-medium newFontColor">
-                    Name
+                    Location
                   </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Enter name"
-                    className="w-full mt-1 border text-black rounded-lg px-3 py-2 text-[14px] focus:outline-none focus:ring-1 focus:ring-blue-500"
-                  />
+                  <div className="relative items-center">
+                    <input
+                      type="text"
+                      name="location"
+                      value={formData.location}
+                      onChange={handleChange}
+                      placeholder="Select location"
+                      className="w-full mt-1 border text-black rounded-lg px-3 py-2 text-[14px] focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-gray-400"
+                    />
+                    <LocationIcon className="absolute top-4 right-4 newPrimaryColor" />
+                  </div>
                 </div>
-                <div>
+
+                <div className="mt-4">
                   <label className="text-[14px] font-medium newFontColor">
-                    Job Title
+                    Select Privacy
                   </label>
-                  <input
-                    type="text"
-                    name="jobTitle"
-                    value={formData.jobTitle}
-                    onChange={handleChange}
-                    placeholder="Enter job title"
-                    className="w-full mt-1 border text-black rounded-lg px-3 py-2 text-[14px] focus:outline-none focus:ring-1 focus:ring-blue-500"
-                  />
-                </div>
-              </div>
 
-              <div className="mt-4 ">
-                <label className="text-[14px] font-medium newFontColor">
-                  Location
-                </label>
-                <div className="relative items-center">
-                  <input
-                    type="text"
-                    name="location"
-                    value={formData.location}
-                    onChange={handleChange}
-                    placeholder="Select location"
-                    className="w-full mt-1 border text-black rounded-lg px-3 py-2 text-[14px] focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-gray-400"
-                  />
-                  <LocationIcon className="absolute top-4 right-4 newPrimaryColor" />
-                </div>
-              </div>
-
-              <div className="mt-4">
-                <label className="text-[14px] font-medium newFontColor">
-                  Select Privacy
-                </label>
-
-                <div className="flex flex-col mt-1">
-                  {["Public", "Private"].map((option, idx) => (
-                    <div
-                      key={option}
-                      onClick={() =>
-                        setFormData({ ...formData, privacy: option })
-                      }
-                      className={`relative w-full border newFontColor px-3 bg-white py-2 text-[14px] cursor-pointer transition-all
+                  <div className="flex flex-col mt-1">
+                    {["Public", "Private"].map((option, idx) => (
+                      <div
+                        key={option}
+                        onClick={() =>
+                          setFormData({ ...formData, privacy: option })
+                        }
+                        className={`relative w-full border newFontColor px-3 bg-white py-2 text-[14px] cursor-pointer transition-all
           ${
             formData.privacy === option
               ? "border-blue-500 bg-white"
@@ -467,75 +468,75 @@ const AddFunction = () => {
               ? "rounded-t-lg rounded-b-none"
               : "rounded-t-none rounded-b-lg"
           }`}
-                    >
-                      <span>{option}</span>
-                      {formData.privacy === option && (
-                        <CheckIcon className="absolute top-2 right-2 text-blue-600 text-lg" />
-                      )}
-                    </div>
-                  ))}
+                      >
+                        <span>{option}</span>
+                        {formData.privacy === option && (
+                          <CheckIcon className="absolute top-2 right-2 text-blue-600 text-lg" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Step 2 */}
-          {activeStep === 1 && (
-            <div>
-              <AboutMyFunctionForm
-                formData={formData}
-                setFormData={setFormData}
-              />
-            </div>
-          )}
-
-          {/* Step 3 */}
-          {activeStep === 2 && (
-            <div>
-              <ProblemSolvedForm
-                formData={formData}
-                setFormData={setFormData}
-              />
-            </div>
-          )}
-
-          {/* Step 4 */}
-          {activeStep === 3 && (
-            <div>
-              <AboutFormulaUsage
-                formData={formData}
-                setFormData={setFormData}
-              />
-            </div>
-          )}
-
-          {/* Step 5 */}
-          {activeStep === 4 && (
-            <div>
-              {!showPreview ? (
-                <AboutAbility
-                  handlePreview={handlePreview}
+            {/* Step 2 */}
+            {activeStep === 1 && (
+              <div>
+                <AboutMyFunctionForm
                   formData={formData}
                   setFormData={setFormData}
                 />
-              ) : (
-                <AboutAbilityPreview
-                  onClose={handleCloseAbilityPreview}
-                  users={[
-                    {
-                      mechanicName: "John Thompson",
-                      designation: "Auto Engineer",
-                      function: "Mechanic Function",
-                      image: "/image/UserImage.png",
-                    },
-                  ]}
-                />
-              )}
-            </div>
-          )}
+              </div>
+            )}
 
+            {/* Step 3 */}
+            {activeStep === 2 && (
+              <div>
+                <ProblemSolvedForm
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+              </div>
+            )}
+
+            {/* Step 4 */}
+            {activeStep === 3 && (
+              <div>
+                <AboutFormulaUsage
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+              </div>
+            )}
+
+            {/* Step 5 */}
+            {activeStep === 4 && (
+              <div>
+                {!showPreview ? (
+                  <AboutAbility
+                    handlePreview={handlePreview}
+                    formData={formData}
+                    setFormData={setFormData}
+                  />
+                ) : (
+                  <AboutAbilityPreview
+                    onClose={handleCloseAbilityPreview}
+                    users={[
+                      {
+                        mechanicName: "John Thompson",
+                        designation: "Auto Engineer",
+                        function: "Mechanic Function",
+                        image: "/image/UserImage.png",
+                      },
+                    ]}
+                  />
+                )}
+              </div>
+            )}
+          </div>
           {/* Buttons */}
-          <div className="flex justify-between items-center gap-2 mt-8">
+          <div className="w-full flex justify-between items-center gap-2 p-4  border-t sm:border-none rounded-b-xl bg-[#ffffff] sm:bg-[#F9FAFB] relative z-10  max-w-full sm:max-w-lg md:max-w-none mx-auto">
             <button
               onClick={handlePrev}
               disabled={activeStep === 0}

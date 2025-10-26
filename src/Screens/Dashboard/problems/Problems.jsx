@@ -131,7 +131,7 @@ import {
   businesses,
   formulaUsage,
   locations,
-  operations,  
+  operations,
   sorts,
   types,
 } from "../../../data/data";
@@ -215,11 +215,10 @@ function Problems() {
     setFilteredData(data);
   }, [activeFilters, search, selectedFilter]);
 
-     useEffect(() => {
-      window.scrollTo({ top: 0, behavior: "auto" });
-    }, []);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, []);
 
-    
   return (
     <div className="relative flex w-full">
       {/* Sidebar */}
@@ -265,7 +264,7 @@ function Problems() {
           </div>
         </div>
 
-        <div className="bg-gray-50 relative sm:mt-36 mt-48 pb-10 rounded-lg min-h-[calc(100vh-10rem)]">
+        <div className="bg-gray-50 relative sm:mt-[8rem] mt-[11rem] pb-10 rounded-lg min-h-[calc(100vh-10rem)]">
           <AddButton onClick={handleAdd} label="Add Problem" />
 
           {view === "list" ? (
