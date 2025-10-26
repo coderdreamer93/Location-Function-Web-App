@@ -97,9 +97,9 @@ function ProblemGridView({ data = [], selectedFilter }) {
   const navigate = useNavigate();
 
   const handleCardClick = (id) => {
-    navigate(`/dashboard/problems/${id}`, {
-      state: { business: data.find((d) => d.id === id) },
-    });
+    // navigate(`/dashboard/problems/${id}`, {
+    //   state: { business: data.find((d) => d.id === id) },
+    // });
   };
 
   return (

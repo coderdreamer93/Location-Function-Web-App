@@ -34,9 +34,9 @@ function FunctionListView({ data = [], selectedFilter, currentUser }) {
 
   // ✅ Navigation on card click
   const handleCardClick = (id) => {
-    navigate(`/dashboard/problems/${id}`, {
-      state: { business: data.find((d) => d.id === id) },
-    });
+    // navigate(`/dashboard/problems/${id}`, {
+    //   state: { business: data.find((d) => d.id === id) },
+    // });
   };
 
   // ✅ Image preview modal
@@ -76,7 +76,7 @@ function FunctionListView({ data = [], selectedFilter, currentUser }) {
           filteredData.map((item) => (
             <div
               key={item.id}
-              className="bg-blue-50 rounded-lg shadow-sm overflow-visible border border-gray-200 hover:border-blue-400 transition-all cursor-pointer"
+              className="bg-blue-50 rounded-lg shadow-sm overflow-visible  hover:border-blue-400 transition-all cursor-pointer"
             >
               <div className="flex flex-col justify-start bg-white gap-3 flex-nowrap">
                 <div className="flex flex-col rounded-lg border">
@@ -122,10 +122,10 @@ function FunctionListView({ data = [], selectedFilter, currentUser }) {
                     </div>
 
                     {/* ✅ Show Three-Dot Icon Only in "myFunction" Filter */}
-                    {selectedFilter === "myFunction" ? (
+                    {selectedFilter === "myFunctions" ? (
                       <div className="relative">
                         <ThreeDotIcon
-                           className="w-[24px] h-[24px] cursor-pointer hover:opacity-70"
+                           className="w-[20px] h-[20px] p-1 rounded-full bg-white cursor-pointer hover:opacity-70"
                           onClick={(e) => {
                             e.stopPropagation();
                             setOpenMenuId(
@@ -190,7 +190,7 @@ function FunctionListView({ data = [], selectedFilter, currentUser }) {
                         expanded === item.id
                           ? "flex-col"
                           : "flex-row items-center justify-between"
-                      } gap-2 border-b py-1 px-2`}
+                      } gap-2 border-b py-1 px-2 min-h-[30px] sm:min-h-[36px]`}
                     >
                       <div className="flex gap-1 w-full flex-1">
                         <span className="text-gray-700 text-[14px]">

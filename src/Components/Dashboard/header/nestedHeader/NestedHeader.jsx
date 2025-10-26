@@ -1,45 +1,5 @@
-// import React from "react";
-// import { ReactComponent as GridIcon } from "../../../../Assets/icons/gridGrayView.svg";
-// import { ReactComponent as ListIcon } from "../../../../Assets/icons/listGrayView.svg";
 
-// function NestedHeader({ title, view, setView }) {
-//   return (
-//     <div className="flex justify-between items-center mb-2 z-999">
-//       <p className="text-[24px] font-semibold text-gray-800">{title}</p>
 
-//       <div className="flex items-center border border-gray-200 rounded-md overflow-hidden">
-//         {view && (
-//           <>
-//             <button
-//               type="button"
-//               onClick={() => setView("list")}
-//               className={`flex items-center justify-center w-6 h-8 transition-colors ${
-//                 view === "list"
-//                   ? "bg-blue-100 newPrimaryColor"
-//                   : "text-gray-600 hover:bg-blue-50 hover:newPrimaryColor"
-//               }`}
-//             >
-//               <ListGrayIcon className="w-[40px]" />
-//             </button>
-//             <button
-//               type="button"
-//               onClick={() => setView("grid")}
-//               className={`flex items-center justify-center w-6 h-8 transition-colors ${
-//                 view === "grid"
-//                   ? "bg-blue-100 newPrimaryColor"
-//                   : "text-gray-600 hover:bg-blue-50 hover:newPrimaryColor"
-//               }`}
-//             >
-//               <GridGrayIcon className="w-[40px]"/>
-//             </button>
-//           </>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default NestedHeader;
 import React from "react";
 import { ReactComponent as ListBlueIcon } from "../../../../Assets/icons/listBlueIcon.svg";
 import { ReactComponent as ListGrayIcon } from "../../../../Assets/icons/listGrayIcon.svg";
@@ -93,3 +53,5 @@ function NestedHeader({ title, view, setView }) {
 }
 
 export default NestedHeader;
+
+

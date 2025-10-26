@@ -1,34 +1,55 @@
 // "use client";
-// import { useState } from "react";
+// import { useState, useRef, useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
 // import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 // import { ReactComponent as HomeIcon } from "../../../Assets/icons/logo.svg";
 // import { ReactComponent as LoginIcon } from "../../../Assets/icons/login.svg";
 // import { ReactComponent as BellIcon } from "../../../Assets/icons/bell.svg";
+// import { ReactComponent as MenuBarIcon } from "../../../Assets/icons/menuBar.svg";
 
 // export default function Header() {
 //   const navigate = useNavigate();
-//   const [activeTab, setActiveTab] = useState("Functions");
+//   const [activeTab, setActiveTab] = useState("functions");
 //   const [menuOpen, setMenuOpen] = useState(false);
+//   const [dropdownOpen, setDropdownOpen] = useState(false);
+//   const dropdownRef = useRef(null);
 
 //   const tabs = [
 //     { id: 1, name: "Functions", route: "functions" },
 //     { id: 2, name: "Problems", route: "problems" },
-//     // { id: 3, name: "Businesses", route: "businesses" },
 //   ];
 
 //   const notifications = 2;
 //   const user = {
 //     name: "Abdullah",
 //     avatar: "https://i.pravatar.cc/40",
-//     loggedIn: true, // change to false to test
+//     loggedIn: true,
 //   };
 
-//   // 🔹 Tab click handler
+//   // ✅ Tab click handler
 //   const handleTabClick = (tab) => {
 //     setActiveTab(tab.name);
 //     navigate(tab.route);
-//     setMenuOpen(false); // close mobile menu
+//     setMenuOpen(false);
+//   };
+
+//   // ✅ Handle click outside dropdown
+//   useEffect(() => {
+//     const handleClickOutside = (e) => {
+//       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+//         setDropdownOpen(false);
+//       }
+//     };
+//     document.addEventListener("mousedown", handleClickOutside);
+//     return () => document.removeEventListener("mousedown", handleClickOutside);
+//   }, []);
+
+//   // ✅ Handle Logout
+//   const handleLogout = () => {
+//     setDropdownOpen(false);
+//     console.log("User logged out");
+//     // You can clear auth state here or navigate to login
+//     navigate("/login");
 //   };
 
 //   return (
@@ -43,9 +64,11 @@
 //               onClick={() => setMenuOpen((prev) => !prev)}
 //             >
 //               {menuOpen ? (
-//                 <HiOutlineX size={22} />
+//                 <HiOutlineX className="w-[40px] h-[40px]" />
 //               ) : (
-//                 <HiOutlineMenu size={22} />
+//                 <span>
+//                   <MenuBarIcon className="w-[40px] h-[40px]" />
+//                 </span>
 //               )}
 //             </button>
 
@@ -57,7 +80,7 @@
 //               }}
 //               className="text-gray-700 pr-4 hover:text-black"
 //             >
-//               <HomeIcon className="w-[40px] newPrimaryColor" />
+//               <HomeIcon className="w-[40px] h-[40px] newPrimaryColor" />
 //             </button>
 
 //             {/* Tabs (Desktop Only) */}
@@ -79,7 +102,7 @@
 //           </div>
 
 //           {/* Right Section */}
-//           <div className="flex items-center gap-3">
+//           <div className="flex items-center gap-3 relative" ref={dropdownRef}>
 //             {/* Notification Icon */}
 //             <div className="relative hidden md:block">
 //               <BellIcon className="w-[40px] text-black" />
@@ -97,11 +120,30 @@
 //                 <span className="ml-1 text-black text-[14px]">Log in</span>
 //               </div>
 //             ) : (
-//               <img
-//                 src={user.avatar}
-//                 alt={user.name}
-//                 className="w-8 h-8 rounded-full object-cover border border-gray-300 cursor-pointer"
-//               />
+//               <div className="relative">
+//                 {/* Avatar (click to open dropdown) */}
+//                 <img
+//                   src={user.avatar}
+//                   alt={user.name}
+//                   onClick={() => setDropdownOpen((prev) => !prev)}
+//                   className="w-8 h-8 rounded-full object-cover border border-gray-300 cursor-pointer"
+//                 />
+
+//                 {/* Dropdown Menu */}
+//                 {dropdownOpen && (
+//                   <div className="absolute flex flex-col justify-center items-start right-0 mt-2 w-40 newFontColor bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50 animate-fade-in">
+//                     <span className="px-4 py-1 text-[14px] newFontColor border-b hover:bg-gray-100">
+//                       {user.name}
+//                     </span>
+//                     <button
+//                       onClick={handleLogout}
+//                       className="w-full text-left px-4 py-1 text-[14px] newFontColor hover:bg-gray-100 transition"
+//                     >
+//                       Logout
+//                     </button>
+//                   </div>
+//                 )}
+//               </div>
 //             )}
 //           </div>
 //         </div>
@@ -110,7 +152,9 @@
 //       {/* Mobile Menu (Slide Down) */}
 //       <div
 //         className={`md:hidden absolute top-[72px] left-0 w-full bg-white border-t border-gray-200 shadow-md transition-all duration-300 ease-in-out ${
-//           menuOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+//           menuOpen
+//             ? "max-h-60 opacity-100"
+//             : "max-h-0 opacity-0 overflow-hidden"
 //         }`}
 //       >
 //         <nav className="flex flex-col py-2 space-y-1">
@@ -136,22 +180,25 @@
 
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom"; // 👈 add useLocation
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import { ReactComponent as HomeIcon } from "../../../Assets/icons/logo.svg";
 import { ReactComponent as LoginIcon } from "../../../Assets/icons/login.svg";
 import { ReactComponent as BellIcon } from "../../../Assets/icons/bell.svg";
+import { ReactComponent as MenuBarIcon } from "../../../Assets/icons/menuBar.svg";
 
 export default function Header() {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("Functions");
+  const location = useLocation(); // 👈 track current route
+
+  const [activeTab, setActiveTab] = useState("functions");
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const tabs = [
-    { id: 1, name: "Functions", route: "functions" },
-    { id: 2, name: "Problems", route: "problems" },
+    { id: 1, name: "Functions", route: "/dashboard/functions" },
+    { id: 2, name: "Problems", route: "/dashboard/problems" },
   ];
 
   const notifications = 2;
@@ -160,6 +207,15 @@ export default function Header() {
     avatar: "https://i.pravatar.cc/40",
     loggedIn: true,
   };
+
+  // ✅ Automatically update active tab when route changes
+  useEffect(() => {
+    const currentTab = tabs.find((tab) =>
+      location.pathname.includes(tab.route)
+    );
+    if (currentTab) setActiveTab(currentTab.name);
+    else setActiveTab("");
+  }, [location.pathname]);
 
   // ✅ Tab click handler
   const handleTabClick = (tab) => {
@@ -179,11 +235,9 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // ✅ Handle Logout
   const handleLogout = () => {
     setDropdownOpen(false);
     console.log("User logged out");
-    // You can clear auth state here or navigate to login
     navigate("/login");
   };
 
@@ -198,7 +252,13 @@ export default function Header() {
               className="text-gray-700 pr-2 hover:text-black md:hidden"
               onClick={() => setMenuOpen((prev) => !prev)}
             >
-              {menuOpen ? <HiOutlineX size={22} /> : <HiOutlineMenu size={22} />}
+              {menuOpen ? (
+                <HiOutlineX className="w-[40px] h-[40px]" />
+              ) : (
+                <span>
+                  <MenuBarIcon className="w-[40px] h-[40px]" />
+                </span>
+              )}
             </button>
 
             {/* Home Icon */}
@@ -209,7 +269,7 @@ export default function Header() {
               }}
               className="text-gray-700 pr-4 hover:text-black"
             >
-              <HomeIcon className="w-[40px] newPrimaryColor" />
+              <HomeIcon className="w-[40px] h-[40px] newPrimaryColor" />
             </button>
 
             {/* Tabs (Desktop Only) */}
@@ -250,7 +310,6 @@ export default function Header() {
               </div>
             ) : (
               <div className="relative">
-                {/* Avatar (click to open dropdown) */}
                 <img
                   src={user.avatar}
                   alt={user.name}
@@ -258,7 +317,6 @@ export default function Header() {
                   className="w-8 h-8 rounded-full object-cover border border-gray-300 cursor-pointer"
                 />
 
-                {/* Dropdown Menu */}
                 {dropdownOpen && (
                   <div className="absolute flex flex-col justify-center items-start right-0 mt-2 w-40 newFontColor bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50 animate-fade-in">
                     <span className="px-4 py-1 text-[14px] newFontColor border-b hover:bg-gray-100">
@@ -278,10 +336,12 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu (Slide Down) */}
+      {/* Mobile Menu */}
       <div
         className={`md:hidden absolute top-[72px] left-0 w-full bg-white border-t border-gray-200 shadow-md transition-all duration-300 ease-in-out ${
-          menuOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+          menuOpen
+            ? "max-h-60 opacity-100"
+            : "max-h-0 opacity-0 overflow-hidden"
         }`}
       >
         <nav className="flex flex-col py-2 space-y-1">

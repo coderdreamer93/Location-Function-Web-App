@@ -263,7 +263,6 @@
 
 // export default AddFunction;
 
-
 "use client";
 import React, { useEffect, useState } from "react";
 import AddFunctionSidebar from "../../../Components/Dashboard/sidebarFilter/AddFunctionSidebar";
@@ -276,8 +275,11 @@ import AboutAbility from "./AboutAbility";
 import AboutAbilityPreview from "./AboutAbilityPreview";
 import { ReactComponent as LocationIcon } from "../../../Assets/icons/Pin.svg";
 import { ReactComponent as CheckIcon } from "../../../Assets/icons/check.svg";
+import { useNavigate } from "react-router";
 
 const AddFunction = () => {
+  const navigate = useNavigate();
+
   const [showPreview, setShowPreview] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -301,7 +303,8 @@ const AddFunction = () => {
   // --- Utility function to save current step data ---
   const saveStepData = (stepKey, stepData) => {
     const userId = "currentUser"; // Replace with actual user ID if available
-    const existingData = JSON.parse(localStorage.getItem("addFunctionData")) || {};
+    const existingData =
+      JSON.parse(localStorage.getItem("addFunctionData")) || {};
     const updatedData = {
       ...existingData,
       [userId]: {
@@ -311,7 +314,6 @@ const AddFunction = () => {
     };
     localStorage.setItem("addFunctionData", JSON.stringify(updatedData));
   };
-  
 
   const handleNext = () => {
     // Save current step data to localStorage
@@ -325,9 +327,22 @@ const AddFunction = () => {
     }
   };
 
+  // const handlePrev = () => {
+  //   if (showPreview === false) {
+  //     if (activeStep > 0) setActiveStep(activeStep - 1);
+  //   } else {
+  //     setShowPreview(false);
+  //   }
+  // };
+
   const handlePrev = () => {
     if (showPreview === false) {
-      if (activeStep > 0) setActiveStep(activeStep - 1);
+      if (activeStep > 0) {
+        setActiveStep(activeStep - 1);
+      } else {
+        // 👇 Go back when activeStep is 0
+        navigate("/dashboard/functions");
+      }
     } else {
       setShowPreview(false);
     }
@@ -339,9 +354,9 @@ const AddFunction = () => {
   };
 
   return (
-    <div className="relative flex flex-col w-full">
+    <div className="relative flex flex-col w-full sm:p-4">
       {/* Fixed Header */}
-      <div className="fixed top-14 left-0 right-0 z-20 bg-white p-4 transition-all duration-300 ease-in-out">
+      <div className="fixed top-14 left-0 right-0 z-20 bg-white p-4  transition-all duration-300 ease-in-out">
         <NestedHeaderWhite
           title="Add Function"
           breadcrumbs={[

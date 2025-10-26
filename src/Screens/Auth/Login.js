@@ -64,7 +64,7 @@ const AdminLogin = () => {
 
         document.querySelector('.loaderBox').classList.add("d-none");
         localStorage.setItem('login', '1212213');
-        navigate('/dashboard')
+        navigate('/dashboard/functions')
     };
 
 

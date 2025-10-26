@@ -18,16 +18,16 @@ function FunctionGridView({ data = [], selectedFilter, currentUser }) {
   const portalTarget = usePortal();
 
   const filteredData = useMemo(() => {
-    if (selectedFilter === "myFunction") {
+    if (selectedFilter === "myFunctions") {
       return data.filter((item) => item.mechanicName === currentUser);
     }
     return data;
   }, [selectedFilter, data, currentUser]);
 
   const handleCardClick = (id) => {
-    navigate(`/dashboard/problems/${id}`, {
-      state: { business: data.find((d) => d.id === id) },
-    });
+    // navigate(`/dashboard/problems/${id}`, {
+    //   state: { business: data.find((d) => d.id === id) },
+    // });
   };
 
   const openModal = (src, e) => {
@@ -110,10 +110,10 @@ function FunctionGridView({ data = [], selectedFilter, currentUser }) {
                   </div>
 
                   {/* ✅ Show Menu Only in My Functions */}
-                  {selectedFilter === "myFunction" && (
+                  {selectedFilter === "myFunctions" && (
                     <div className="relative">
                       <ThreeDotIcon
-                        className="w-[24px] h-[24px] cursor-pointer hover:opacity-70"
+                        className="w-[20px] h-[20px] p-1 rounded-full bg-white cursor-pointer hover:opacity-70"
                         onClick={(e) => {
                           e.stopPropagation();
                           setOpenMenuId(
@@ -161,7 +161,7 @@ function FunctionGridView({ data = [], selectedFilter, currentUser }) {
 ].map((row, idx) => (
   <div
     key={idx}
-    className={`flex flex-row items-center justify-between gap-2 border-b py-1 px-2 min-h-[30px] sm:min-h-[52px]`}
+    className={`flex flex-row items-center justify-between gap-2 border-b py-1 px-2 min-h-[30px] sm:min-h-[36px]`}
   >
     {/* ✅ Text area (truncate before image) */}
     <div className="flex gap-1 w-full flex-1 min-w-0">
@@ -178,7 +178,7 @@ function FunctionGridView({ data = [], selectedFilter, currentUser }) {
 
     {/* ✅ Image always visible, square & rounded-md */}
     {row.image && (
-      <div className="flex-shrink-0 w-6 h-6 sm:w-9 sm:h-9">
+      <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7">
         <img
           src={row.image}
           alt={row.label}

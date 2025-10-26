@@ -84,12 +84,7 @@ export default function AdminRouter() {
           path="/dashboard"
           element={<ProtectedRoutes Components={New_Dashboard} />}
         >
-          {/* <Route
-            path="functions"
-            element={<ProtectedRoutes Components={Functions} />}
-          >
-            <Route path="addFunction" element={<AddFunction />} />
-          </Route> */}
+    
 
           <Route
             path="functions"
@@ -100,11 +95,11 @@ export default function AdminRouter() {
             path="functions/addFunction"
             element={<ProtectedRoutes Components={AddFunction} />}
           />
-          <Route
+          {/* <Route
             path="functions/MyFunctionAbout"
             element={<ProtectedRoutes Components={AboutMyFunctionForm} />}
           />
-          
+           */}
           {/* <Route
             path="functions/AboutAbilityPreview"
             element={<ProtectedRoutes Components={AboutAbilityPreview} />}

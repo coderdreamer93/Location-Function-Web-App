@@ -131,8 +131,7 @@ import {
   businesses,
   formulaUsage,
   locations,
-  operations,
-  sort,
+  operations,  
   sorts,
   types,
 } from "../../../data/data";
@@ -141,13 +140,13 @@ function Problems() {
   const [view, setView] = useCardView();
   const [isOpen, setIsOpen] = useFilterView();
   const [search, setSearch] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState("all");
+  const [selectedFilter, setSelectedFilter] = useState("allProblems");
   const [activeFilters, setActiveFilters] = useState({});
   const [filteredData, setFilteredData] = useState(businessData);
   const navigate = useNavigate();
 
   const filterOptions = [
-    { label: "All Problems", value: "all" },
+    { label: "All Problems", value: "allProblems" },
     { label: "My Problems", value: "myProblems" },
     { label: "Shared Problems", value: "sharedProblems" },
     { label: "Assign Problems", value: "assignProblems" },
@@ -232,38 +231,38 @@ function Problems() {
     ${isOpen === "open" ? "translate-x-0" : "-translate-x-full"}`}
       >
         <SidebarFilter
-          sort={sorts}
           locations={locations}
           operations={operations}
           formulaUsage={formulaUsage}
           businesses={businesses}
           alphabet={alphabet}
-          types={types}
           onFilterChange={handleFilterChange}
         />
       </div>
 
-      {/* Main Area */}
+      {/*  ================= Right Side ================== */}
       <div
         className={`flex-1 transition-all duration-300 ease-in-out p-4 ${
           isOpen === "open" ? " md:ml-64" : "ml-0"
         }`}
       >
         <div
-          className={`fixed top-14 left-0 right-0 z-20 bg-gray-50 p-4 transition-all duration-300 ease-in-out ${
+          className={`fixed top-14 left-0 right-0 z-20 bg-gray-50 p-4 flex flex-col gap-2 transition-all duration-300 ease-in-out ${
             isOpen === "open" ? "md:ml-64" : "ml-0"
           }`}
         >
-          <NestedHeader title="Problems" view={view} setView={setView} />
-          <PageFilter
-            search={search}
-            setSearch={setSearch}
-            filterOptions={filterOptions}
-            selectedFilter={selectedFilter}
-            setSelectedFilter={setSelectedFilter}
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-          />
+          <div className="flex flex-col gap-2 py-2">
+            <NestedHeader title="Problems" view={view} setView={setView} />
+            <PageFilter
+              search={search}
+              setSearch={setSearch}
+              filterOptions={filterOptions}
+              selectedFilter={selectedFilter}
+              setSelectedFilter={setSelectedFilter}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+            />
+          </div>
         </div>
 
         <div className="bg-gray-50 relative sm:mt-36 mt-48 pb-10 rounded-lg min-h-[calc(100vh-10rem)]">

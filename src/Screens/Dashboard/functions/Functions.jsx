@@ -27,14 +27,14 @@ function Functions() {
   const [view, setView] = useCardView();
   const [isOpen, setIsOpen] = useFilterView();
   const [search, setSearch] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState("all");
+  const [selectedFilter, setSelectedFilter] = useState("allFunctions");
   const [activeFilters, setActiveFilters] = useState({});
 
   const navigate = useNavigate();
 
   const filterOptions = [
-    { label: "All Functions", value: "all" },
-    { label: "My Functions", value: "myFunction" },
+    { label: "All Functions", value: "allFunctions" },
+    { label: "My Functions", value: "myFunctions" },
   ];
 
   const handleAdd = () => navigate("addFunction");
@@ -114,7 +114,7 @@ function Functions() {
                 selectedFilter={selectedFilter}
                 activeFilters={activeFilters}
                 functionsCategory={functionsCategory}
-                filterOptions="myFunction"
+                filterOptions="myFunctions"
                 currentUser={currentUser}
               />
             ) : (
@@ -123,7 +123,7 @@ function Functions() {
                 selectedFilter={selectedFilter}
                 activeFilters={activeFilters} 
                 functionsCategory={functionsCategory}
-                filterOptions="myFunction"
+                filterOptions="myFunctions"
                 currentUser={currentUser}
               />
             )}
