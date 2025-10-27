@@ -6,12 +6,14 @@ import { ReactComponent as CheckIcon } from "../../../Assets/icons/check.svg";
 import { ReactComponent as CalenderIcon } from "../../../Assets/icons/Calander.svg";
 import NestedHeaderWhite from "../../../Components/Dashboard/header/nestedHeader/NestedHeaderWhite";
 import AddDescriptionModal from "../../../Components/Dashboard/modals/AddDescriptionModal";
+import { useNavigate } from "react-router-dom";
 
 export default function AddProblem() {
   const [fileName, setFileName] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [description, setDescription] = useState("");
   const [filePreview, setFilePreview] = useState(null);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     problemName: "",
@@ -47,34 +49,33 @@ export default function AddProblem() {
     if (fileName) localStorage.setItem("addProblemFileName", fileName);
   }, [fileName]);
 
- const handleFileChange = (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    setFileName(file.name);
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFileName(file.name);
 
-    // ✅ Create image preview
-    if (file.type.startsWith("image/")) {
-      const previewURL = URL.createObjectURL(file);
-      setFilePreview(previewURL);
+      // ✅ Create image preview
+      if (file.type.startsWith("image/")) {
+        const previewURL = URL.createObjectURL(file);
+        setFilePreview(previewURL);
 
-      // 🧠 Store preview (optional, only base64)
-      const reader = new FileReader();
-      reader.onload = () => {
-        localStorage.setItem("addProblemFilePreview", reader.result);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setFilePreview(null);
-      localStorage.removeItem("addProblemFilePreview");
+        // 🧠 Store preview (optional, only base64)
+        const reader = new FileReader();
+        reader.onload = () => {
+          localStorage.setItem("addProblemFilePreview", reader.result);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        setFilePreview(null);
+        localStorage.removeItem("addProblemFilePreview");
+      }
     }
-  }
-};
+  };
 
-
-useEffect(() => {
-  const savedPreview = localStorage.getItem("addProblemFilePreview");
-  if (savedPreview) setFilePreview(savedPreview);
-}, []);
+  useEffect(() => {
+    const savedPreview = localStorage.getItem("addProblemFilePreview");
+    if (savedPreview) setFilePreview(savedPreview);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -85,25 +86,9 @@ useEffect(() => {
     setDescription(content);
   };
 
-  const handleSaveProblem = () => {
-    // 🧠 Create new problem object
-    const newProblem = {
-      ...formData,
-      description,
-      fileName,
-      dateSaved: new Date().toISOString(),
-    };
-
-    // 🗂️ Fetch existing problems from localStorage
-    const existing = JSON.parse(localStorage.getItem("problemsList")) || [];
-
-    // ➕ Add the new one
-    const updated = [...existing, newProblem];
-
-    // 💾 Save updated list
-    localStorage.setItem("problemsList", JSON.stringify(updated));
-
-    // ✅ Reset form fields
+  // 🧩 Handle Cancel
+  const handleCancel = () => {
+    // Reset inputs (but don’t clear localStorage)
     setFormData({
       problemName: "",
       problemDate: "",
@@ -117,8 +102,40 @@ useEffect(() => {
     setFileName("");
     setFilePreview(null);
 
-    // ✅ Optional success alert
+    // Check where it came from
+    const addFrom = localStorage.getItem("addFrom");
+
+    if (addFrom === "function") {
+      localStorage.removeItem("addFrom"); // cleanup
+      navigate("/dashboard/functions/addFunction");
+    } else {
+      navigate("/dashboard/problems"); // ✅ fixed typo here
+    }
+  };
+
+  // 🧩 Handle Save Problem
+  const handleSaveProblem = () => {
+    const newProblem = {
+      ...formData,
+      description,
+      fileName,
+      dateSaved: new Date().toISOString(),
+    };
+
+    const existing = JSON.parse(localStorage.getItem("problemsList")) || [];
+    const updated = [...existing, newProblem];
+    localStorage.setItem("problemsList", JSON.stringify(updated));
+
     alert("✅ Problem saved successfully!");
+
+    // Redirect according to origin
+    const addFrom = localStorage.getItem("addFrom");
+    if (addFrom === "function") {
+      localStorage.removeItem("addFrom");
+      navigate("/dashboard/functions/addFunction");
+    } else {
+      navigate("/dashboard/problems");
+    }
   };
 
   return (
@@ -129,7 +146,7 @@ useEffect(() => {
           <NestedHeaderWhite
             title="Add Problem"
             breadcrumbs={[
-              { label: "Dashboard", path: "/dashboard" },
+              // { label: "Dashboard", path: "/dashboard" },
               { label: "Problems", path: "/dashboard/problems" },
               { label: "Create Problem", path: "" },
             ]}
@@ -329,29 +346,16 @@ useEffect(() => {
 
           {/* Action Buttons */}
           <div className="flex justify-between items-center mt-8">
+            {/* Cancel Button */}
             <button
               type="button"
+              onClick={handleCancel}
               className="w-1/3 md:w-1/6 border-2 border-blue-600 text-blue-600 py-2 px-4 rounded-lg hover:bg-gray-200 transition-all"
-              onClick={() => {
-                localStorage.removeItem("addProblemFormData");
-                localStorage.removeItem("addProblemDescription");
-                localStorage.removeItem("addProblemFileName");
-                setFormData({
-                  problemName: "",
-                  problemDate: "",
-                  problemStatus: "",
-                  problemVisibility: "",
-                  problemLocation: "",
-                  problemVideo: "",
-                  privacy: "",
-                });
-                setDescription("");
-                setFileName("");
-              }}
             >
               Cancel
             </button>
 
+            {/* Save Problem Button */}
             <button
               type="button"
               onClick={handleSaveProblem}

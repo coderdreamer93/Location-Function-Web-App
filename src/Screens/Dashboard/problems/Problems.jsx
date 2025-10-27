@@ -234,7 +234,7 @@ function Problems() {
           operations={operations}
           formulaUsage={formulaUsage}
           businesses={businesses}
-          alphabet={alphabet}
+          // alphabet={alphabet}
           onFilterChange={handleFilterChange}
         />
       </div>

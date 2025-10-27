@@ -232,7 +232,6 @@
 //   );
 // }
 
-
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { ReactComponent as CheckIcon } from "../../../Assets/icons/check.svg";
@@ -281,23 +280,24 @@ export default function ProblemSolvedForm() {
       } else {
         setFilePreview(null); // No preview for non-images
       }
-      setFormData(prev => ({ ...prev, solvedImage: file.name }));
+      setFormData((prev) => ({ ...prev, solvedImage: file.name }));
     }
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSelect = (option) => {
-    setFormData(prev => ({ ...prev, instantBroadcast: option }));
+    setFormData((prev) => ({ ...prev, instantBroadcast: option }));
     setOpen(false);
   };
 
   // Save all data to localStorage whenever formData or description changes
   useEffect(() => {
-    const existingData = JSON.parse(localStorage.getItem("addFunctionData")) || {};
+    const existingData =
+      JSON.parse(localStorage.getItem("addFunctionData")) || {};
     localStorage.setItem(
       "addFunctionData",
       JSON.stringify({ ...existingData, problemSolvedForm: formData })
@@ -340,7 +340,9 @@ export default function ProblemSolvedForm() {
               <CheckIcon className="text-blue-600 w-5 h-5" />
             ) : (
               <svg
-                className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+                className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${
+                  open ? "rotate-180" : ""
+                }`}
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
@@ -357,10 +359,14 @@ export default function ProblemSolvedForm() {
                 <div
                   key={option}
                   onClick={() => handleSelect(option)}
-                  className={`flex items-center justify-between px-3 py-2 text-[14px] cursor-pointer hover:bg-gray-50 ${formData.instantBroadcast === option ? "bg-blue-50" : ""}`}
+                  className={`flex items-center justify-between px-3 py-2 text-[14px] cursor-pointer hover:bg-gray-50 ${
+                    formData.instantBroadcast === option ? "bg-blue-50" : ""
+                  }`}
                 >
                   <span className="text-gray-800">{option}</span>
-                  {formData.instantBroadcast === option && <CheckIcon className="text-blue-600 w-5 h-5" />}
+                  {formData.instantBroadcast === option && (
+                    <CheckIcon className="text-blue-600 w-5 h-5" />
+                  )}
                 </div>
               ))}
             </div>
@@ -393,16 +399,30 @@ export default function ProblemSolvedForm() {
             className="relative flex flex-col items-center justify-center bg-white w-full h-28 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition-all overflow-hidden"
           >
             {fileName && filePreview ? (
-              <img src={filePreview} alt="Uploaded preview" className="absolute inset-0 object-cover w-full h-full rounded-lg" />
+              <img
+                src={filePreview}
+                alt="Uploaded preview"
+                className="absolute inset-0 object-cover w-full h-full rounded-lg"
+              />
             ) : (
               <div className="flex flex-col gap-2 justify-center items-center z-10">
                 <UploadIcon className="sm:text-[18px] text-[12px] newPrimaryColor" />
-                <span className="md:text-[14px] sm:text-[12px] text-[10px] newPrimaryColor">Upload the file here</span>
-                <span className="md:text-[14px] sm:text-[12px] text-[10px] text-gray-500">(Only .jpg, .png, & .pdf files will be accepted)</span>
+                <span className="md:text-[14px] sm:text-[12px] text-[10px] newPrimaryColor">
+                  Upload the file here
+                </span>
+                <span className="md:text-[14px] sm:text-[12px] text-[10px] text-gray-500">
+                  (Only .jpg, .png, & .pdf files will be accepted)
+                </span>
               </div>
             )}
 
-            <input type="file" id="fileUpload" className="hidden" onChange={handleFileChange} accept=".jpg,.jpeg,.png,.pdf" />
+            <input
+              type="file"
+              id="fileUpload"
+              className="hidden"
+              onChange={handleFileChange}
+              accept=".jpg,.jpeg,.png,.pdf"
+            />
           </label>
 
           <p className="text-[14px] text-gray-400 mt-1 p-0 m-0 w-full text-center">
@@ -429,7 +449,10 @@ export default function ProblemSolvedForm() {
         <div className="md:col-span-2 col-span-1 flex flex-col md:flex-row gap-4 mt-4">
           <button
             type="button"
-            onClick={() => navigate("/dashboard/problems/addProblem")}
+            onClick={() => {
+              localStorage.setItem("addFrom", "function"); 
+              navigate("/dashboard/problems/addProblem"); 
+            }}
             className="w-full md:w-1/2 border-2 newPrimaryBorder py-2 rounded-lg newPrimaryColor text-[14px] hover:bg-blue-50 hover:text-white transition-all"
           >
             + Add Problem
@@ -448,7 +471,9 @@ export default function ProblemSolvedForm() {
       {openDesc && (
         <AddDescriptionModal
           onClose={() => setOpenDesc(false)}
-          onSave={(text) => setFormData(prev => ({ ...prev, description: text }))}
+          onSave={(text) =>
+            setFormData((prev) => ({ ...prev, description: text }))
+          }
         />
       )}
     </div>
