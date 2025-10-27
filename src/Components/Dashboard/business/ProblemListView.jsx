@@ -382,7 +382,7 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
                           label: "Function",
                           value: item.function,
                           color: "text-green-600",
-                          image: "/fixIcon.png",
+                          image: "/FixIcon.png",
                         },
                         {
                           label: "Problem Solved",

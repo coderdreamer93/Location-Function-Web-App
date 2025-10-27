@@ -170,7 +170,7 @@ export default function AddDescriptionModal({ onClose, onSave }) {
             onInput={updateActiveButtons}
             suppressContentEditableWarning
             placeholder="Type here..."
-            className="w-full h-28 sm:h-32 p-2 sm:p-3 text-[12px] sm:text-[14px] newFontColor placeholder-gray-400 resize-none focus:outline-none overflow-y-auto"
+            className="w-full h-28 sm:h-32 p-2 sm:p-3 text-[12px] sm:text-[14px] border border-gray-200 newFontColor placeholder-gray-400 resize-none focus:outline-none overflow-y-auto"
           ></div>
         </div>
 

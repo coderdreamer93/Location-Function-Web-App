@@ -495,7 +495,7 @@ function ProblemGridView({ data = [], selectedFilter, currentUser }) {
                           label: "Function",
                           value: "Fix Car",
                           color: "text-green-600",
-                          image: "/fixIcon.png",
+                          image: "/FixIcon.png",
                         },
                         {
                           label: "Problem Solved",
