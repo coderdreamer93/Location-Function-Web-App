@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ReactComponent as UploadIcon } from "../../../Assets/icons/uploadIcon.svg";
 import { ReactComponent as LocationIcon } from "../../../Assets/icons/Pin.svg";
 import { ReactComponent as CheckIcon } from "../../../Assets/icons/check.svg";
@@ -9,6 +9,7 @@ import AddDescriptionModal from "../../../Components/Dashboard/modals/AddDescrip
 import { useNavigate } from "react-router-dom";
 
 export default function AddProblem() {
+  const suppressSaveRef = useRef(false);
   const [fileName, setFileName] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [description, setDescription] = useState("");
@@ -37,17 +38,21 @@ export default function AddProblem() {
   }, []);
 
   // ✅ Save to localStorage whenever formData, description, or file changes
-  useEffect(() => {
-    localStorage.setItem("addProblemFormData", JSON.stringify(formData));
-  }, [formData]);
+useEffect(() => {
+  if (suppressSaveRef.current) return;
+  localStorage.setItem("addProblemFormData", JSON.stringify(formData));
+}, [formData]);
 
-  useEffect(() => {
-    localStorage.setItem("addProblemDescription", description);
-  }, [description]);
+useEffect(() => {
+  if (suppressSaveRef.current) return;
+  localStorage.setItem("addProblemDescription", description);
+}, [description]);
 
-  useEffect(() => {
-    if (fileName) localStorage.setItem("addProblemFileName", fileName);
-  }, [fileName]);
+useEffect(() => {
+  if (suppressSaveRef.current) return;
+  if (fileName) localStorage.setItem("addProblemFileName", fileName);
+}, [fileName]);
+
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -87,31 +92,39 @@ export default function AddProblem() {
   };
 
   // 🧩 Handle Cancel
-  const handleCancel = () => {
-    // Reset inputs (but don’t clear localStorage)
-    setFormData({
-      problemName: "",
-      problemDate: "",
-      problemStatus: "",
-      problemVisibility: "",
-      problemLocation: "",
-      problemVideo: "",
-      privacy: "",
-    });
-    setDescription("");
-    setFileName("");
-    setFilePreview(null);
+const handleCancel = () => {
+  // Prevent saving while we clear UI state
+  suppressSaveRef.current = true;
 
-    // Check where it came from
-    const addFrom = localStorage.getItem("addFrom");
+  // Clear UI input states (so user sees an empty form)
+  setFormData({
+    problemName: "",
+    problemDate: "",
+    problemStatus: "",
+    problemVisibility: "",
+    problemLocation: "",
+    problemVideo: "",
+    privacy: "",
+  });
+  setDescription("");
+  setFileName("");
+  setFilePreview(null);
 
-    if (addFrom === "function") {
-      localStorage.removeItem("addFrom"); // cleanup
-      navigate("/dashboard/functions/addFunction");
-    } else {
-      navigate("/dashboard/problems"); // ✅ fixed typo here
-    }
-  };
+  // small safeguard: re-enable saving on next tick (component may unmount on navigate)
+  setTimeout(() => {
+    suppressSaveRef.current = false;
+  }, 0);
+
+  // Check origin and navigate
+  const addFrom = localStorage.getItem("addFrom");
+  if (addFrom === "function") {
+    localStorage.removeItem("addFrom"); // cleanup
+    navigate("/dashboard/functions/addFunction");
+  } else {
+    navigate("/dashboard/problems");
+  }
+};
+
 
   // 🧩 Handle Save Problem
   const handleSaveProblem = () => {

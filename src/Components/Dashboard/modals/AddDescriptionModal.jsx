@@ -6,7 +6,7 @@ import { ReactComponent as UnderlineIcon } from "../../../Assets/icons/underline
 import { ReactComponent as BulletIcon } from "../../../Assets/icons/bulletIcon.svg";
 import { ReactComponent as ListIcon } from "../../../Assets/icons/listIcon.svg";
 import { ReactComponent as DotIcon } from "../../../Assets/icons/dotIcon.svg";
-import { ReactComponent as DownIcon } from "../../../Assets/icons/downIcon.svg";
+import { ReactComponent as DownIcon } from "../../../Assets/icons/descDownIcon.svg";
 
 export default function AddDescriptionModal({ onClose, onSave }) {
   const [textType, setTextType] = useState("Normal");
@@ -59,7 +59,7 @@ export default function AddDescriptionModal({ onClose, onSave }) {
     <div className="fixed inset-0 bg-transparent bg-opacity-30 flex items-center justify-center z-50">
       <div
         ref={modalRef}
-        className="bg-white rounded-2xl shadow-lg sm:min-w-lg sm:max-w-lg md:w-lg w-[90%] p-4 mx-auto"
+        className="bg-white rounded-2xl shadow-lg sm:min-w-md sm:max-w-md md:w-md w-[90%] p-4 mx-auto"
       >
         {/* Header */}
         <h2 className="sm:text-[18px] text-[16px] font-semibold text-black mb-3">
@@ -121,7 +121,7 @@ export default function AddDescriptionModal({ onClose, onSave }) {
             </div>
 
             {/* Right controls */}
-            <div className="flex items-center gap-1 sm:gap-2">
+            <div className="flex items-center gap-2 border-r">
               {/* Bullet list */}
               <button
                 onClick={() => toggleButton("bullet")}
@@ -147,11 +147,12 @@ export default function AddDescriptionModal({ onClose, onSave }) {
                 <ListIcon className="newFontColor" />
                 <DownIcon className="w-3 h-3 sm:w-4 sm:h-4 newFontColor" />
               </button>
-
+              </div>
+{/* <div className="flex items-center gap-1 sm:gap-2 border-r"> */}
               {/* Dot icon */}
               <button
                 onClick={() => toggleButton("dot")}
-                className={`p-1 sm:p-1.5 rounded transition ${
+                className={`p-1 pl-none sm:p-1.5 rounded transition ${
                   activeButtons.includes("dot")
                     ? "bg-blue-50"
                     : "hover:bg-gray-50"
@@ -159,7 +160,7 @@ export default function AddDescriptionModal({ onClose, onSave }) {
               >
                 <DotIcon className="newFontColor" />
               </button>
-            </div>
+            {/* </div> */}
           </div>
 
           {/* Editable content area */}

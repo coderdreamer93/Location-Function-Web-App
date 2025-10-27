@@ -6,7 +6,7 @@ export default function AboutAbilityPreview({ users = [], onClose, className }) 
   const [selectedUser, setSelectedUser] = useState(null);
 
   return (
-    <div className={`bg-white rounded-2xl shadow-xl w-full max-w-md border border-gray-200 overflow-hidden ${className}`}>
+    <div className={`bg-white rounded-2xl shadow-xl w-full max-w-sm border border-gray-200 overflow-hidden ${className}`}>
       {/* Header */}
       {/* User Section */}
       {users.length > 0 && (
@@ -37,23 +37,23 @@ export default function AboutAbilityPreview({ users = [], onClose, className }) 
 
           {/* Buttons Section */}
           <div className="flex flex-col items-center justify-center gap-2 w-full mt-2">
-            <button className="w-full py-2 text-[15px] font-medium border bg-[#00A3FF] newFontCOlor rounded-lg  transition">
+            <button className="w-full py-2 text-[15px] font-medium border bg-[#00A3FF] newFontCOlor transition">
               Ability
             </button>
 
-            <button className="w-full py-2 text-[15px] font-medium text-gray-700 hover:text-blue-600 transition">
+            <button className="w-full py-2 text-[15px] font-medium text-gray-700  transition">
               Execute
             </button>
 
-            <button className="w-[95%] py-2 text-[15px] rounded-lg text-white newPrimaryBg font-medium transition">
+            <button className="w-[95%] py-2 text-[15px] rounded-xl text-white newPrimaryBg font-medium transition">
               Function
             </button>
 
-            <button className="w-full py-2 text-[15px] font-medium text-gray-700 hover:text-blue-600 transition">
+            <button className="w-full py-2 text-[15px] font-medium text-gray-700 transition">
               Solve
             </button>
 
-            <button className="w-[95%] py-2 text-[15px] rounded-lg text-white bg-[#D70404] font-medium transition hover:bg-red-600">
+            <button className="w-[95%] py-2 text-[15px] rounded-xl text-white bg-[#D70404] font-medium transition hover:bg-red-600">
               Problem
             </button>
           </div>
