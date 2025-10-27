@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ReactComponent as LocationIcon } from "../../../Assets/icons/Pin.svg";
 import { ReactComponent as CheckIcon } from "../../../Assets/icons/check.svg";
+import AddressInput from "./AddressInput";
 
 function AboutMe({}) {
   const [formData, setFormData] = useState({
@@ -54,7 +55,7 @@ function AboutMe({}) {
 
       <div className="mt-4 ">
         <label className="text-[14px] font-medium newFontColor">Location</label>
-        <div className="relative items-center">
+        {/* <div className="relative items-center">
           <input
             type="text"
             name="location"
@@ -64,7 +65,9 @@ function AboutMe({}) {
             className="w-full mt-1 border text-black rounded-lg px-3 py-2 text-[14px] focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-gray-400"
           />
           <LocationIcon className="absolute top-4 right-4 newPrimaryColor" />
-        </div>
+        </div> */}
+        <AddressInput formData={formData} setFormData={setFormData} />
+
       </div>
 
       <div className="mt-4">
