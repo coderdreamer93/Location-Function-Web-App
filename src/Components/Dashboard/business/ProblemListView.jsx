@@ -277,9 +277,9 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
                     className={`flex justify-center items-center w-7 h-7 rounded-full border text-[16px] ${
                       item.isProblem
                         ? selectedFilter === "allProblems"
-                          ? "bg-blue-600 text-white border-blue-600"
+                  ? "newPrimaryBg text-white newPrimaryBorder"
                           : "bg-transparent newFontColor border-gray-400"
-                        : "bg-transparent text-gray-600 border-gray-400"
+                        : "newPrimaryBg text-white newPrimaryBorder"
                     }`}
                   >
                     {selectedFilter === "allProblems" ? (
@@ -312,24 +312,24 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
               <div className="flex flex-col justify-start p-3 bg-white gap-3 flex-nowrap">
                 <div className="w-fit">
                   <div className="flex flex-col gap-1">
-                    <div className="flex gap-1">
-                      <span className="newFontColor text-[14px] font-semibold mr-2">
+                    <div className="flex gap-2">
+                      <span className="newFontColor text-[14px] font-semibold">
                         Date
                       </span>
                       <span className="newFontColor text-[14px] font-bold">
                         {new Date(item.date).toLocaleDateString("en-GB")}
                       </span>
                     </div>
-                    <div className="flex gap-1">
-                      <span className="newFontColor text-[14px] font-semibold mr-2">
+                    <div className="flex gap-2">
+                      <span className="newFontColor text-[14px] font-semibold">
                         Problem
                       </span>
                       <span className="text-red-600 text-[14px] font-bold">
                         {item.problem}
                       </span>
                     </div>
-                    <div className="flex gap-1">
-                      <span className="newFontColor text-[14px] font-semibold mr-2">
+                    <div className="flex gap-2">
+                      <span className="newFontColor text-[14px] font-semibold">
                         Problem Status
                       </span>
                       <span className="text-blue-600 text-[14px] font-bold">
@@ -398,7 +398,7 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
                         },
                         {
                           label: "Formula Usage",
-                          value: item.formulaUsage,
+                          value: "The Given Set",
                           color: "newPrimaryColor",
                           image: null,
                         },
@@ -409,7 +409,7 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
                             "flex flex-row items-center justify-between gap-2 border-b py-1 px-2 min-h-[30px] sm:min-h-[36px]"
                           }
                         >
-                          <div className="flex gap-1 w-full flex-1">
+                          <div className="flex gap-2 w-full flex-1">
                             <span className="text-gray-700 text-[14px]">
                               {row.label}
                             </span>

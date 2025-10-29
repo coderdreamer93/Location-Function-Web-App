@@ -154,7 +154,7 @@ function Problems() {
               selectedFilter={selectedFilter}
             />
           ) : (
-            <ProblemGridView
+            <ProblemListView
               data={businessData}
               selectedFilter={selectedFilter}
             />

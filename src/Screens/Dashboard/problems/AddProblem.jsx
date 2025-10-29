@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ReactComponent as UploadIcon } from "../../../Assets/icons/uploadIcon.svg";
 import { ReactComponent as CheckIcon } from "../../../Assets/icons/check.svg";
+import { ReactComponent as DateGrayIcon } from "../../../Assets/icons/dateGrayIcon.svg";
 import { ReactComponent as CalenderIcon } from "../../../Assets/icons/Calander.svg";
 import NestedHeaderWhite from "../../../Components/Dashboard/header/nestedHeader/NestedHeaderWhite";
 import AddDescriptionModal from "../../../Components/Dashboard/modals/AddDescriptionModal";
@@ -200,11 +201,11 @@ export default function AddProblem() {
         </div>
 
         {/* Form */}
-        <div className="flex flex-col bg-gray-50 max-w-4xl w-full mx-auto mt-32 rounded-lg shadow-inner border border-gray-200">
+        <div className="flex flex-col bg-gray-50 max-w-2xl w-full mx-auto mt-32 rounded-lg shadow-inner border border-gray-200">
           <div className="grid grid-cols-1 gap-4  p-6">
             {/* Problem Name */}
             <div className="flex flex-col">
-              <label className="text-[14px] newFontColor mb-1">
+              <label className="text-[14px] font-semibold newFontColor mb-1">
                 Problem Name
               </label>
               <input
@@ -212,21 +213,21 @@ export default function AddProblem() {
                 name="problemName"
                 value={formData.problemName}
                 onChange={handleChange}
-                placeholder="Enter problem name"
+                placeholder="Enter problem name..."
                 className="border border-gray-300 text-black rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none placeholder-gray-400"
               />
             </div>
 
 
             <div className="">
-              <label className="text-[14px] font-medium newFontColor">
+              <label className="text-[14px] font-semibold newFontColor">
                 Problem Location
               </label>
               <AddressInput formData={formData} setFormData={setFormData} />
             </div>
 
             <div className="flex flex-col relative">
-              <label className="text-[14px] newFontColor mb-1">
+              <label className="text-[14px] font-semibold newFontColor mb-1">
                 Problem Date
               </label>
 
@@ -247,11 +248,11 @@ export default function AddProblem() {
       [&::-webkit-clear-button]:appearance-none"
               />
 
-              <CalenderIcon className="absolute right-3 top-9 w-4 h-4 text-blue-500 pointer-events-none" />
+              <DateGrayIcon className="absolute right-3 top-9 w-4 h-4 text-blue-500 pointer-events-none" />
             </div>
 
             <div className="flex flex-col relative">
-              <label className="text-[14px] newFontColor mb-1">
+              <label className="text-[14px] font-semibold newFontColor mb-1">
                 Problem Status
               </label>
 
@@ -262,7 +263,7 @@ export default function AddProblem() {
                     onClick={() =>
                       setFormData({ ...formData, problemStatus: option })
                     }
-                    className={`relative w-full border newFontColor px-3 bg-white py-2 text-[14px] cursor-pointer transition-all
+                    className={`relative w-full border newFontColor px-3 bg-white py-2 text-[14px] font-semibold cursor-pointer transition-all
                      ${
                        formData.problemStatus === option
                          ? "border-blue-500 bg-white"
@@ -284,7 +285,7 @@ export default function AddProblem() {
             </div>
 
             <div className="flex flex-col relative">
-              <label className="text-[14px] newFontColor mb-1">
+              <label className="text-[14px] font-semibold newFontColor mb-1">
                 Problem Visibility
               </label>
 
@@ -295,7 +296,7 @@ export default function AddProblem() {
                     onClick={() =>
                       setFormData({ ...formData, problemVisibility: option })
                     }
-                    className={`relative w-full border newFontColor px-3 bg-white py-2 text-[14px] cursor-pointer transition-all
+                    className={`relative w-full border newFontColor font-semibold px-3 bg-white py-2 text-[14px] cursor-pointer transition-all
                      ${
                        formData.problemVisibility === option
                          ? "border-blue-500 bg-white"
@@ -317,7 +318,7 @@ export default function AddProblem() {
             </div>
 
             <div className="flex flex-col relative">
-              <label className="text-[14px] newFontColor mb-1">
+              <label className="text-[14px] font-semibold newFontColor mb-1">
                 Upload Problem Image
               </label>
 
@@ -337,7 +338,7 @@ export default function AddProblem() {
                     <span className="text-[14px] newPrimaryColor">
                       Upload the file here
                     </span>
-                    <span className="text-[14px] text-gray-500">
+                    <span className="text-[12px] italic text-gray-400">
                       (Only .jpg, .png, & .pdf files will be accepted)
                     </span>
                   </div>
@@ -352,21 +353,21 @@ export default function AddProblem() {
                 />
               </label>
 
-              <p className="text-[14px] text-gray-400 mt-1 p-0 m-0 w-full text-center">
+              <p className="text-[12px] text-gray-500 mt-1 p-0 m-0 w-full text-center">
                 {fileName ? fileName : "no files uploaded yet"}
               </p>
             </div>
 
             <div className="flex flex-col">
-              <label className="text-[14px] newFontColor mb-1">
-                Video Link
+              <label className="text-[14px] font-semibold newFontColor mb-1">
+                Problem Video
               </label>
               <input
                 type="text"
                 name="problemVideo"
                 value={formData.problemVideo}
                 onChange={handleChange}
-                placeholder="YouTube link"
+                placeholder="Enter YouTube link"
                 className="border border-gray-300 text-black rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none placeholder-gray-400"
               />
             </div>
@@ -376,7 +377,7 @@ export default function AddProblem() {
             <button
               type="button"
               onClick={() => setShowModal(true)}
-              className="flex items-center justify-center gap-2 border-2 newPrimaryBorder newPrimaryColor w-full py-2 rounded-lg bg-blue-50 hover:bg-blue-100 transition-all"
+              className="flex items-center justify-center gap-2 border-2 font-semibold newPrimaryBorder newPrimaryColor w-full py-2 rounded-lg bg-blue-50 hover:bg-blue-100 transition-all"
             >
               <span>
                 {description
