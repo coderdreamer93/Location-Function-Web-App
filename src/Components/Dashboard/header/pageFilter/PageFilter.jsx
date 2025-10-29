@@ -95,7 +95,7 @@ function PageFilter({
         {/* ===== Right Section ===== */}
           <div className="flex flex-row items-center gap-2 sm:w-1/2 w-full">
             <div
-              className={`flex flex-row items-center gap-2 w-10/12 ${
+              className={`flex flex-row items-center gap-2 w-3/4 ${
                 filterOptions.length > 3
                   ? "overflow-x-scroll scrollbar-hidden"
                   : "overflow-hidden scrollbar-hidden"
@@ -114,7 +114,7 @@ function PageFilter({
                 </div>
               )}
             </div>
-            <div className="flex justify-end items-center gap-2 w-2/12">
+            <div className="flex justify-end items-center gap-2 w-1/4">
               {/* Up/Down Arrow */}
               <button className="flex items-center justify-center w-8 h-8 bg-white rounded-full border border-gray-300 hover:bg-gray-100 transition-colors">
                 <SortIcon size={16} className="newPrimaryColor" />
