@@ -312,7 +312,7 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
               <div className="flex flex-col justify-start p-3 bg-white gap-3 flex-nowrap">
                 <div className="w-fit">
                   <div className="flex flex-col gap-1">
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="flex gap-1">
                       <span className="newFontColor text-[14px] font-semibold mr-2">
                         Date
                       </span>
@@ -320,7 +320,7 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
                         {new Date(item.date).toLocaleDateString("en-GB")}
                       </span>
                     </div>
-                    <div className="grid grid-cols-2">
+                    <div className="flex gap-1">
                       <span className="newFontColor text-[14px] font-semibold mr-2">
                         Problem
                       </span>
@@ -328,7 +328,7 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
                         {item.problem}
                       </span>
                     </div>
-                    <div className="grid grid-cols-2">
+                    <div className="flex gap-1">
                       <span className="newFontColor text-[14px] font-semibold mr-2">
                         Problem Status
                       </span>
@@ -337,7 +337,7 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
                       </span>
                     </div>
                     {selectedFilter === "assignProblems" && (
-                      <div className="grid grid-cols-2">
+                      <div className="flex gap-1">
                         <span className="newFontColor text-[14px] font-semibold mr-2">
                           Function
                         </span>
@@ -411,7 +411,7 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
                         >
                           <div className="flex gap-1 w-full flex-1">
                             <span className="text-gray-700 text-[14px]">
-                              {row.label}:
+                              {row.label}
                             </span>
                             <span
                               className={`${row.color} text-[14px] font-bold truncate`}

@@ -44,11 +44,11 @@ export default function AboutAbilityPreview({
               </div>
 
               <div className="flex flex-col items-center justify-center gap-2 w-full mt-2">
-                <button className="w-full py-2 text-[15px] font-medium border bg-[#00A3FF] newFontCOlor transition">
+                <button className="w-full py-2 text-[15px] border bg-[#00A3FF] newFontCOlor transition">
                   Ability
                 </button>
 
-                <button className="w-full py-2 text-[15px] font-medium text-gray-700  transition">
+                <button className="w-full py-2 text-[15px] font-semibold text-gray-700  transition">
                   Execute
                 </button>
 
@@ -56,7 +56,7 @@ export default function AboutAbilityPreview({
                   Function
                 </button>
 
-                <button className="w-full py-2 text-[15px] font-medium text-gray-700 transition">
+                <button className="w-full py-2 text-[15px] font-semibold text-gray-700 transition">
                   Solve
                 </button>
 

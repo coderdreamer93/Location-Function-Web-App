@@ -34,20 +34,20 @@
 // //           {/* Content Section */}
 // //           <div className="p-3 flex flex-col justify-between gap-1">
 // //             <div>
-// //               <span className="text-sm font-semibold text-gray-900 truncate">
+// //               <span className="text-sm font-semibold newFontColor truncate">
 // //                 {item.name}
 // //               </span>
-// //               <p className="text-xs text-gray-600">{item.location}</p>
+// //               <p className="text-[14px] text-gray-600">{item.location}</p>
 // //             </div>
 
-// //             <div className="text-xs grid grid-cols-2 gap-y-1 mt-2">
-// //               <span className="text-gray-700">Date</span>
+// //             <div className="text-[14px] grid grid-cols-2 gap-y-1 mt-2">
+// //               <span className="newFontColor">Date</span>
 // //               <span className="text-green-600 font-bold">{item.date}</span>
 
-// //               <span className="text-gray-700">Problem</span>
+// //               <span className="newFontColor">Problem</span>
 // //               <span className="text-red-600 font-bold">{item.problem}</span>
 
-// //               <span className="text-gray-700">Status</span>
+// //               <span className="newFontColor">Status</span>
 // //               <span
 // //                 className={`font-bold ${
 // //                   item.problemStatus === "Pending"
@@ -88,7 +88,6 @@
 // //   );
 // // }
 
-
 // import React from "react";
 // import { useNavigate } from "react-router-dom";
 // import { FaPhone, FaRegMessage } from "react-icons/fa6";
@@ -127,10 +126,10 @@
 //               </div>
 
 //               <div className="flex flex-col justify-center items-start">
-//                 <span className="text-xs font-bold text-gray-900">
+//                 <span className="text-[14px] font-bold newFontColor">
 //                   {item.name}
 //                 </span>
-//                 <span className="text-xs text-gray-700">{item.location}</span>
+//                 <span className="text-[14px] newFontColor">{item.location}</span>
 //               </div>
 //             </div>
 
@@ -161,20 +160,20 @@
 //             <div className="w-full">
 //               <div className="flex flex-col gap-2">
 //                 <div className="grid grid-cols-2">
-//                   <span className="text-gray-700 text-xs">Date</span>
-//                   <span className="text-green-600 text-xs font-bold">
+//                   <span className="newFontColor text-[14px]">Date</span>
+//                   <span className="text-green-600 text-[14px] font-bold">
 //                     {item.date}
 //                   </span>
 //                 </div>
 //                 <div className="grid grid-cols-2">
-//                   <span className="text-gray-700 text-xs">Problem</span>
-//                   <span className="text-red-600 text-xs font-bold">
+//                   <span className="newFontColor text-[14px]">Problem</span>
+//                   <span className="text-red-600 text-[14px] font-bold">
 //                     {item.problem}
 //                   </span>
 //                 </div>
 //                 <div className="grid grid-cols-2">
-//                   <span className="text-gray-700 text-xs">Problem Status</span>
-//                   <span className="newPrimaryColor text-xs font-bold">
+//                   <span className="newFontColor text-[14px]">Problem Status</span>
+//                   <span className="newPrimaryColor text-[14px] font-bold">
 //                     {item.problemStatus}
 //                   </span>
 //                 </div>
@@ -243,11 +242,11 @@
 //                       style={{ minHeight: "30px" }}
 //                     >
 //                       <div className="w-full grid grid-cols-2">
-//                         <span className="text-gray-700 text-xs">
+//                         <span className="newFontColor text-[14px]">
 //                           {row.label}
 //                         </span>
 //                         <span
-//                           className={`${row.color} text-xs font-bold truncate`}
+//                           className={`${row.color} text-[14px] font-bold truncate`}
 //                         >
 //                           {row.value}
 //                         </span>
@@ -287,7 +286,6 @@
 // }
 
 // export default ProblemGridView;
-
 
 import React, { useMemo, useState } from "react";
 import ReactDOM from "react-dom";
@@ -352,7 +350,7 @@ function ProblemGridView({ data = [], selectedFilter, currentUser }) {
       )}
 
       {/* ✅ Grid Layout (UI same) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
         {filteredData.length > 0 ? (
           filteredData.map((item) => (
             <div
@@ -364,7 +362,7 @@ function ProblemGridView({ data = [], selectedFilter, currentUser }) {
               <div className="flex justify-between items-center p-3 gap-3">
                 <div className="flex items-center gap-3">
                   <div className="relative">
-                    <div className="w-12 h-12 border rounded-full overflow-hidden">
+                    <div className="sm:w-12 sm:h-12 w-10 h-10 border rounded-full overflow-hidden">
                       <img
                         src="/user.png"
                         alt="userImage"
@@ -377,11 +375,13 @@ function ProblemGridView({ data = [], selectedFilter, currentUser }) {
                   </div>
 
                   <div className="flex flex-col justify-center items-start">
-                    <span className="text-xs font-bold text-gray-900">
+                    <span className="sm:text-[14px] text-[12px] font-bold newFontColor">
                       {item.name}
                     </span>
-                    <span className="text-xs text-gray-700">
-                      {item.location}
+                    <span className="sm:text-[14px] text-[12px] newFontColor truncate">
+                      {window.innerWidth < 640 && item.location.length > 20
+                        ? item.location.slice(0, 15) + "..."
+                        : item.location}
                     </span>
                   </div>
                 </div>
@@ -439,23 +439,27 @@ function ProblemGridView({ data = [], selectedFilter, currentUser }) {
               <div className="flex flex-col justify-start p-3 bg-white gap-3 flex-grow">
                 <div className="w-full">
                   <div className="flex flex-col gap-2">
-                    <div className="grid grid-cols-2">
-                      <span className="text-gray-700 text-xs">Date</span>
-                      <span className="text-green-600 text-xs font-bold">
+                    <div className="flex gap-1 flex-nowrap">
+                      <span className="newFontColor text-[14px] text-nowrap truncate">
+                        Date
+                      </span>
+                      <span className="text-green-600 text-[14px] font-bold text-nowrap truncate">
                         {new Date(item.date).toLocaleDateString("en-GB")}
                       </span>
                     </div>
-                    <div className="grid grid-cols-2">
-                      <span className="text-gray-700 text-xs">Problem</span>
-                      <span className="text-red-600 text-xs font-bold">
+                    <div className="flex gap-1 flex-nowrap">
+                      <span className="newFontColor text-[14px] text-nowrap truncate">
+                        Problem
+                      </span>
+                      <span className="text-red-600 text-[14px] font-bold text-nowrap">
                         {item.problem}
                       </span>
                     </div>
-                    <div className="grid grid-cols-2">
-                      <span className="text-gray-700 text-xs">
+                    <div className="flex gap-1 flex-nowrap">
+                      <span className="newFontColor text-[14px] text-nowrap truncate">
                         Problem Status
                       </span>
-                      <span className="newPrimaryColor text-xs font-bold">
+                      <span className="newPrimaryColor text-[14px] font-bold text-nowrap truncate">
                         {item.problemStatus}
                       </span>
                     </div>
@@ -520,12 +524,12 @@ function ProblemGridView({ data = [], selectedFilter, currentUser }) {
                           key={idx}
                           className="flex justify-between items-center gap-2 border-b py-1 px-2"
                         >
-                          <div className="flex gap-1 flex-1">
-                            <span className="text-gray-700 text-[13px]">
-                              {row.label}:
+                          <div className="flex gap-1 flex-1 overflow-hidden scrollbar-hide">
+                            <span className="newFontColor text-[13px]">
+                              {row.label}
                             </span>
                             <span
-                              className={`${row.color} text-[13px] font-bold truncate`}
+                              className={`${row.color} text-[13px] flex-1 font-bold truncate overflow-hidden scrollbar-hide`}
                             >
                               {row.value}
                             </span>
@@ -545,10 +549,10 @@ function ProblemGridView({ data = [], selectedFilter, currentUser }) {
                     {/* Bottom Section */}
                     <div className="mt-4">
                       <div className="flex gap-2 px-2">
-                        <span className="text-black text-sm">
+                        <span className="text-black text-[14px] text-nowrap">
                           Unique Identifier
                         </span>
-                        <span className="text-black text-sm font-semibold truncate">
+                        <span className="text-black text-[14px] font-semibold truncate">
                           12345678-ASDF3ASD213SDF15-ASD3F21ASDF51
                         </span>
                       </div>

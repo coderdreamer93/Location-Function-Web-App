@@ -26,7 +26,6 @@ export default function ProblemSolvedForm({
   const [formData, setFormData] = useState({
     problemSolved: "",
     instantBroadcast: "",
-    businessName: "",
     solvedImage: "",
     solvedVideo: "",
     description: "",
@@ -51,7 +50,6 @@ export default function ProblemSolvedForm({
     return (
       formData.problemSolved.trim() &&
       formData.instantBroadcast.trim() &&
-      formData.businessName.trim() &&
       formData.solvedImage.trim() &&
       formData.solvedVideo.trim() &&
       formData.description.trim()
@@ -174,24 +172,11 @@ export default function ProblemSolvedForm({
           </div>
 
    
-          <div className="md:col-span-2">
-            <label className="block text-[14px] newFontColor mb-1">
-              Business Name
-            </label>
-            <input
-              type="text"
-              name="businessName"
-              value={formData.businessName}
-              onChange={handleChange}
-              placeholder="ex: IBM"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none"
-            />
-          </div>
 
           {/* Solved Image */}
           <div className="md:col-span-2">
             <label className="block text-[14px] newFontColor mb-2">
-              Upload Solved Image
+              Upload Problem Solved Image
             </label>
             <label
               htmlFor="fileUpload"

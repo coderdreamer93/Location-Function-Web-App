@@ -6,10 +6,10 @@ export default function AssignFunctionModal({ onClose, users = [] }) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-[999]">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-xl mx-4 md:mx-4 overflow-hidden">
+      <div className="bg-white rounded-2xl flex flex-col gap-4 shadow-xl w-full max-w-xl mx-4 md:mx-4 overflow-hidden">
         {/* Header */}
         <div className="flex justify-between items-center px-4 md:px-6 pt-3 md:pt-4">
-          <h2 className="text-[14px] md:text-[17px] font-semibold text-gray-900 text-nowrap">
+          <h2 className="text-[14px] md:text-[17px] font-bold text-gray-900 text-nowrap">
             Assign Function to...
           </h2>
           <button
@@ -21,7 +21,7 @@ export default function AssignFunctionModal({ onClose, users = [] }) {
         </div>
 
         {/* User List */}
-        <div className="p-3 md:p-4 flex flex-col gap-2 md:gap-3 max-h-[60vh] overflow-y-auto">
+        <div className="px-3 md:px-4 flex flex-col gap-2 md:gap-3 max-h-[50vh] overflow-y-auto">
           {users.map((user, idx) => (
             <div
               key={idx}
