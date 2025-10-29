@@ -180,7 +180,6 @@ import ProblemPopupMenu from "./ProblemPopupMenu";
 import AssignProblemModal from "../modals/AssignProblemModal";
 import StopProblemModal from "../modals/StopProblemModal";
 
-
 function ProblemListView({ data = [], selectedFilter, currentUser }) {
   const navigate = useNavigate();
   const [modalImage, setModalImage] = useState(null);
@@ -265,7 +264,7 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
                   <span
                     className={`flex justify-center items-center w-7 h-7 rounded-full border ${
                       item.isProblem
-                        ? "bg-transparent text-blue-600 border-blue-600"
+                        ? "bg-transparent newPrimaryColor border-blue-600"
                         : "bg-transparent text-gray-600 border-gray-400"
                     }`}
                   >
@@ -273,19 +272,21 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
                   </span>
 
                   {/* Second Icon — conditional */}
-                  <span
-                    className={`flex justify-center items-center w-7 h-7 rounded-full border text-[16px] ${
-                      item.isProblem
-                        ? selectedFilter === "allProblems"
-                  ? "newPrimaryBg text-white newPrimaryBorder"
-                          : "bg-transparent newFontColor border-gray-400"
-                        : "newPrimaryBg text-white newPrimaryBorder"
-                    }`}
+                  <div
+                    className={
+                      "flex justify-center items-center w-7 h-7 rounded-full border text-[16px]"
+                    }
                   >
                     {selectedFilter === "allProblems" ? (
-                      <PhoneIcon className="w-3.5 h-3.5 text-white fill-current" />
+                      <div
+                        className={
+                          "flex newPrimaryBg justify-center items-center w-7 h-7 rounded-full"
+                        }
+                      >
+                        <PhoneIcon className="w-4 h-4 text-white fill-current" />
+                      </div>
                     ) : (
-                      <div className="relative">
+                      <div className="relative bg-transparent newFontColor">
                         <ThreeDotIcon
                           className="w-[20px] h-[20px] p-1 rounded-full bg-transparent
                          cursor-pointer hover:opacity-70"
@@ -304,7 +305,7 @@ function ProblemListView({ data = [], selectedFilter, currentUser }) {
                         )}
                       </div>
                     )}
-                  </span>
+                  </div>
                 </div>
               </div>
 
