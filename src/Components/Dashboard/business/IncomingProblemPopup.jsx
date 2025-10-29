@@ -8,7 +8,7 @@ const IncomingProblemPopup = ({ name = "Michael David", problem = "Bad Radiator"
       <div className="flex items-start gap-2">
         {/* Avatar */}
         <img
-          src="https://via.placeholder.com/48"
+          src="/mechanic.jpg"
           alt={name}
           className="w-10 h-10 rounded-full object-cover"
         />

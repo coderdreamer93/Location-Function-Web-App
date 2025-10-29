@@ -8,16 +8,11 @@ import ProblemSolvedForm from "./ProblemSolvedForm";
 import AboutFormulaUsage from "./AboutFormulaUsage";
 import AboutAbility from "./AboutAbility";
 import AboutAbilityPreview from "./AboutAbilityPreview";
-import { ReactComponent as LocationIcon } from "../../../Assets/icons/Pin.svg";
-import { ReactComponent as CheckIcon } from "../../../Assets/icons/check.svg";
 import { useNavigate } from "react-router";
 import AboutMe from "./AboutMe";
 
 const AddFunction = () => {
   const navigate = useNavigate();
-
-  const [showPreview, setShowPreview] = useState(false);
-  const [formData, setFormData] = useState({});
 
   const steps = [
     "About Me",
@@ -27,172 +22,182 @@ const AddFunction = () => {
     "About Ability",
   ];
 
-  const handlePreview = () => setShowPreview(true);
-  const handleCloseAbilityPreview = () => setShowPreview(false);
+  const [formData, setFormData] = useState({});
   const [activeStep, setActiveStep] = useState(0);
+  const [showPreview, setShowPreview] = useState(false);
 
-  // --- Utility function to save current step data ---
-  const saveStepData = (stepKey, stepData) => {
-    const userId = "currentUser"; // Replace with actual user ID if available
+  useEffect(() => {
+    if (!formData) return;
+
+    const userId = "currentUser";
     const existingData =
       JSON.parse(localStorage.getItem("addFunctionData")) || {};
+
     const updatedData = {
       ...existingData,
-      [userId]: {
-        ...existingData[userId],
-        [stepKey]: stepData,
-      },
+      [userId]: formData,
     };
+
     localStorage.setItem("addFunctionData", JSON.stringify(updatedData));
-  };
+  }, [formData]);
 
   const handleNext = () => {
-    // Save current step data to localStorage
     const stepKey = steps[activeStep].toLowerCase().replace(/\s/g, "");
-    saveStepData(stepKey, formData);
+    const stepData = formData[stepKey];
+
+    if (!stepData || Object.keys(stepData).length === 0) {
+      alert("Please fill out this step before continuing.");
+      return;
+    }
+
+    localStorage.setItem("addFunctionCurrentStep", activeStep + 1);
 
     if (activeStep < steps.length - 1) {
       setActiveStep(activeStep + 1);
     } else {
-      alert("Form submitted!");
+      const userId = "currentUser";
+      const existingData =
+        JSON.parse(localStorage.getItem("addFunctionSubmitted")) || {};
+      const userForms = Array.isArray(existingData[userId])
+        ? existingData[userId]
+        : [];
+
+      const newFormEntry = {
+        ...formData,
+        submittedAt: new Date().toISOString(),
+      };
+
+      const updatedData = {
+        ...existingData,
+        [userId]: [...userForms, newFormEntry],
+      };
+
+      localStorage.setItem("addFunctionSubmitted", JSON.stringify(updatedData));
+
+      localStorage.removeItem("addFunctionCurrentStep");
+      alert("Form submitted successfully!");
+      setFormData({});
+      setActiveStep(0);
+      navigate("/dashboard/functions");
     }
   };
 
   const handlePrev = () => {
-    if (showPreview === false) {
-      if (activeStep > 0) {
-        setActiveStep(activeStep - 1);
-      } else {
-        // 👇 Go back when activeStep is 0
-        navigate("/dashboard/functions");
-      }
+    if (showPreview) return setShowPreview(false);
+
+    if (activeStep > 0) {
+      setActiveStep(activeStep - 1);
+      localStorage.setItem("addFunctionCurrentStep", activeStep - 1);
     } else {
-      setShowPreview(false);
+      // ✅ Cancel: do not save incomplete data
+      localStorage.removeItem("addFunctionCurrentStep");
+      navigate("/dashboard/functions");
     }
   };
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData((prev) => ({ ...prev, [name]: value }));
-  // };
+  const handlePreview = () => setShowPreview(true);
+  const handleCloseAbilityPreview = () => setShowPreview(false);
+
+  const stepKey = steps[activeStep].toLowerCase().replace(/\s/g, "");
 
   return (
     <div className="relative flex flex-col w-full sm:p-4">
-      {/* Fixed Header */}
       <div className="fixed top-14 left-0 right-0 z-20 bg-white p-4 transition-all duration-300 ease-in-out">
         <NestedHeaderWhite
           title="Add Function"
           breadcrumbs={[
-            // { label: "Dashboard", path: "/dashboard" },
             { label: "Functions", path: "/dashboard/functions" },
             { label: "Create Function", path: "" },
           ]}
         />
       </div>
 
-      {/* Main Layout */}
-      <div className="flex flex-col md:flex-row gap-4 bg-gray-50 mt-24 p-0 sm:p-4">
-        {/* Sidebar (Desktop only) */}
+      <div className="flex h-auto flex-col md:flex-row gap-4 bg-gray-50 mt-24 p-0 sm:p-4">
         <div className="hidden md:block">
           <AddFunctionSidebar steps={steps} activeStep={activeStep} />
         </div>
 
-        <div className="flex flex-col w-full border sm:rounded-xl rounded-none">
-          {/* Main Content */}
-          <div
-            className="w-full md:flex-1 mx-auto md:mx-0 p-6 rounded-t-xl backdrop-blur-sm
-                      max-w-full sm:max-w-lg md:max-w-none"
-          >
-            {/* Mobile Header (Circle Progress) */}
-            <AddFunctionMobileHeader steps={steps} activeStep={activeStep} />
-
-            {/* Step Title */}
-            <p className="text-2xl sm:flex hidden mb-6 newFontColor">
-              {steps[activeStep]}
-            </p>
-
-            {/* Step 1: About Me */}
+        <div className="flex flex-col h-full  w-full border sm:rounded-xl rounded-none">
+          <div className="w-full h-full md:flex-1 mx-auto rounded-t-xl backdrop-blur-sm ">
+            <div className="px-6 pt-6 ">
+              <AddFunctionMobileHeader steps={steps} activeStep={activeStep} />
+              <p className="text-2xl font-bold sm:flex hidden  newFontColor">
+                {steps[activeStep]}
+              </p>
+            </div>
+            {/* Step Components */}
             {activeStep === 0 && (
-              <div>
-                <AboutMe formData={formData} setFormData={setFormData} />
-              </div>
+              <AboutMe
+                data={formData[stepKey] || {}}
+                updateFormData={(data) =>
+                  setFormData((prev) => ({ ...prev, [stepKey]: data }))
+                }
+                activeStep={activeStep}
+                handleNext={handleNext}
+                handlePrev={handlePrev}
+              />
             )}
-
-            {/* Step 2 */}
             {activeStep === 1 && (
-              <div>
-                <AboutMyFunctionForm
-                  formData={formData}
-                  setFormData={setFormData}
-                />
-              </div>
+              <AboutMyFunctionForm
+                data={formData[stepKey] || {}}
+                updateFormData={(data) =>
+                  setFormData((prev) => ({ ...prev, [stepKey]: data }))
+                }
+                activeStep={activeStep}
+                handleNext={handleNext}
+                handlePrev={handlePrev}
+              />
             )}
-
-            {/* Step 3 */}
             {activeStep === 2 && (
-              <div>
-                <ProblemSolvedForm
-                  formData={formData}
-                  setFormData={setFormData}
-                />
-              </div>
+              <ProblemSolvedForm
+                data={formData[stepKey] || {}}
+                updateFormData={(data) =>
+                  setFormData((prev) => ({ ...prev, [stepKey]: data }))
+                }
+                activeStep={activeStep}
+                handleNext={handleNext}
+                handlePrev={handlePrev}
+              />
             )}
-
-            {/* Step 4 */}
             {activeStep === 3 && (
-              <div>
-                <AboutFormulaUsage
-                  formData={formData}
-                  setFormData={setFormData}
+              <AboutFormulaUsage
+                data={formData[stepKey] || {}}
+                updateFormData={(data) =>
+                  setFormData((prev) => ({ ...prev, [stepKey]: data }))
+                }
+                activeStep={activeStep}
+                handleNext={handleNext}
+                handlePrev={handlePrev}
+              />
+            )}
+            {activeStep === 4 &&
+              (!showPreview ? (
+                <AboutAbility
+                  handlePreview={handlePreview}
+                  data={formData[stepKey] || {}}
+                  updateFormData={(data) =>
+                    setFormData((prev) => ({ ...prev, [stepKey]: data }))
+                  }
+                  activeStep={activeStep}
+                  handleNext={handleNext}
+                  handlePrev={handlePrev}
                 />
-              </div>
-            )}
-
-            {/* Step 5 */}
-            {activeStep === 4 && (
-              <div>
-                {!showPreview ? (
-                  <AboutAbility
-                    handlePreview={handlePreview}
-                    formData={formData}
-                    setFormData={setFormData}
-                  />
-                ) : (
-                  <AboutAbilityPreview
-                    onClose={handleCloseAbilityPreview}
-                    users={[
-                      {
-                        mechanicName: "John Thompson",
-                        designation: "Auto Engineer",
-                        function: "Mechanic Function",
-                        image: "/image/UserImage.png",
-                      },
-                    ]}
-                  />
-                )}
-              </div>
-            )}
-          </div>
-          {/* Buttons */}
-          <div className="w-full flex justify-between items-center gap-2 p-4  border-t sm:border-none rounded-b-xl bg-[#ffffff] sm:bg-[#F9FAFB] relative z-10  max-w-full sm:max-w-lg md:max-w-none mx-auto">
-            <button
-              onClick={handlePrev}
-              disabled={activeStep === 0}
-              className={`md:px-5 px-4 py-2.5 rounded-lg text-[14px] font-medium transition-all duration-200 border-2 shadow-sm hover:shadow-md focus:outline-none ${
-                activeStep === 0
-                  ? "border-blue-600 newPrimaryColor cursor-not-allowed bg-white"
-                  : "border-blue-600 newPrimaryColor bg-white hover:bg-blue-100 active:bg-blue-100"
-              }`}
-            >
-              {activeStep === 0 ? "Cancle" : "Previous"}
-            </button>
-
-            <button
-              onClick={handleNext}
-              className="md:px-5 px-4 py-2.5 rounded-lg text-[14px] border-2 newPrimaryBorder  newPrimaryBg text-white shadow-sm hover:shadow-md  transition-all duration-200 focus:outline-none"
-            >
-              {activeStep === steps.length - 1 ? "Finish" : "Next"}
-            </button>
+              ) : (
+                <AboutAbilityPreview
+                  onClose={handleCloseAbilityPreview}
+                  users={[
+                    {
+                      mechanicName: "John Thompson",
+                      designation: "Auto Engineer",
+                      function: "Mechanic Function",
+                      image: "/image/UserImage.png",
+                    },
+                  ]}
+                  activeStep={activeStep}
+                  handleNext={handleNext}
+                  handlePrev={handlePrev}
+                />
+              ))}
           </div>
         </div>
       </div>

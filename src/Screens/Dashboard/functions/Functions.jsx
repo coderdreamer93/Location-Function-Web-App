@@ -4,20 +4,15 @@ import useFilterView from "../../../hook/useFilterView";
 import PageFilter from "../../../Components/Dashboard/header/pageFilter/PageFilter";
 import NestedHeader from "../../../Components/Dashboard/header/nestedHeader/NestedHeader";
 import SidebarFilter from "../../../Components/Dashboard/sidebarFilter/SidebarFilter";
-import ListView from "../../../Components/Dashboard/business/ListView";
-import GridView from "../../../Components/Dashboard/business/GridView";
 import { Outlet, useNavigate } from "react-router";
-import { IoIosAddCircle } from "react-icons/io";
 import AddButton from "../../../Components/Dashboard/common/AddButton";
 import {
-  alphabet,
   businessData,
   businesses,
   formulaUsage,
   functionsCategory,
   locations,
   operations,
-  types,
 } from "../../../data/data";
 import FunctionListView from "../../../Components/Dashboard/business/FunctionListView";
 import FunctionGridView from "../../../Components/Dashboard/business/FunctionGridView";
@@ -39,7 +34,6 @@ function Functions() {
 
   const handleAdd = () => navigate("addFunction");
 
-  // 🔁 Receive filters from SidebarFilter
   const handleFilterChange = useCallback((filters) => {
     setActiveFilters({ ...filters });
   }, []);
@@ -49,17 +43,11 @@ function Functions() {
   }, []);
 
   useEffect(() => {
-    console.log("🧩 Active Filters Updated:", activeFilters);
+    console.log("Active Filters Updated:", activeFilters);
   }, [activeFilters]);
-
-
-
-
-
 
   return (
     <div className="relative flex w-full">
-      {/* Sidebar */}
       <div
         className={`fixed top-18 left-0 z-30 h-[calc(100vh-3.5rem)] 
     w-[85%] sm:w-64 md:w-64 
@@ -102,36 +90,33 @@ function Functions() {
           </div>
         </div>
 
-        {/* Main Content */}
-<div className="bg-gray-50 relative mt-[11rem] sm:mt-[8rem] pb-10 rounded-lg min-h-[calc(100vh-10rem)]">
-            <AddButton onClick={handleAdd} label="Add Function" />
+        <div className="bg-gray-50 relative mt-[11rem] sm:mt-[8rem] pb-10 rounded-lg min-h-[calc(100vh-10rem)]">
+          <AddButton onClick={handleAdd} label="Add Function" />
 
-            {view === "list" ? (
-              <FunctionListView
-                 data={businessData}
-                selectedFilter={selectedFilter}
-                activeFilters={activeFilters}
-                functionsCategory={functionsCategory}
-                filterOptions="myFunctions"
-                currentUser={currentUser}
-              />
-            ) : (
-              <FunctionGridView
-                data={businessData}
-                selectedFilter={selectedFilter}
-                activeFilters={activeFilters} 
-                functionsCategory={functionsCategory}
-                filterOptions="myFunctions"
-                currentUser={currentUser}
-              />
-            )}
+          {view === "list" ? (
+            <FunctionListView
+              data={businessData}
+              selectedFilter={selectedFilter}
+              activeFilters={activeFilters}
+              functionsCategory={functionsCategory}
+              filterOptions="myFunctions"
+              currentUser={currentUser}
+            />
+          ) : (
+            <FunctionGridView
+              data={businessData}
+              selectedFilter={selectedFilter}
+              activeFilters={activeFilters}
+              functionsCategory={functionsCategory}
+              filterOptions="myFunctions"
+              currentUser={currentUser}
+            />
+          )}
 
-            <Outlet />
-          </div>
-
-          {/* <Outlet /> */}
+          <Outlet />
         </div>
       </div>
+    </div>
   );
 }
 

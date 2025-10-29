@@ -1,15 +1,17 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { ReactComponent as UploadIcon } from "../../../Assets/icons/uploadIcon.svg";
-import { ReactComponent as LocationIcon } from "../../../Assets/icons/Pin.svg";
 import { ReactComponent as CheckIcon } from "../../../Assets/icons/check.svg";
 import { ReactComponent as CalenderIcon } from "../../../Assets/icons/Calander.svg";
 import NestedHeaderWhite from "../../../Components/Dashboard/header/nestedHeader/NestedHeaderWhite";
 import AddDescriptionModal from "../../../Components/Dashboard/modals/AddDescriptionModal";
 import { useNavigate } from "react-router-dom";
+import AddressInput from "../functions/AddressInput";
+import FormNavigationButtons from "../../../Components/Dashboard/form/FormNavigationButtons";
 
 export default function AddProblem() {
   const suppressSaveRef = useRef(false);
+  // const [isFocused, setIsFocused] = useState(false);
   const [fileName, setFileName] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [description, setDescription] = useState("");
@@ -38,21 +40,20 @@ export default function AddProblem() {
   }, []);
 
   // ✅ Save to localStorage whenever formData, description, or file changes
-useEffect(() => {
-  if (suppressSaveRef.current) return;
-  localStorage.setItem("addProblemFormData", JSON.stringify(formData));
-}, [formData]);
+  useEffect(() => {
+    if (suppressSaveRef.current) return;
+    localStorage.setItem("addProblemFormData", JSON.stringify(formData));
+  }, [formData]);
 
-useEffect(() => {
-  if (suppressSaveRef.current) return;
-  localStorage.setItem("addProblemDescription", description);
-}, [description]);
+  useEffect(() => {
+    if (suppressSaveRef.current) return;
+    localStorage.setItem("addProblemDescription", description);
+  }, [description]);
 
-useEffect(() => {
-  if (suppressSaveRef.current) return;
-  if (fileName) localStorage.setItem("addProblemFileName", fileName);
-}, [fileName]);
-
+  useEffect(() => {
+    if (suppressSaveRef.current) return;
+    if (fileName) localStorage.setItem("addProblemFileName", fileName);
+  }, [fileName]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -91,65 +92,97 @@ useEffect(() => {
     setDescription(content);
   };
 
-  // 🧩 Handle Cancel
-const handleCancel = () => {
-  // Prevent saving while we clear UI state
-  suppressSaveRef.current = true;
+  const handleCancel = () => {
 
-  // Clear UI input states (so user sees an empty form)
-  setFormData({
-    problemName: "",
-    problemDate: "",
-    problemStatus: "",
-    problemVisibility: "",
-    problemLocation: "",
-    problemVideo: "",
-    privacy: "",
-  });
-  setDescription("");
-  setFileName("");
-  setFilePreview(null);
+    suppressSaveRef.current = true;
 
-  // small safeguard: re-enable saving on next tick (component may unmount on navigate)
-  setTimeout(() => {
-    suppressSaveRef.current = false;
-  }, 0);
+    setFormData({
+      problemName: "",
+      problemDate: "",
+      problemStatus: "",
+      problemVisibility: "",
+      problemLocation: "",
+      problemVideo: "",
+      privacy: "",
+    });
+    setDescription("");
+    setFileName("");
+    setFilePreview(null);
 
-  // Check origin and navigate
-  const addFrom = localStorage.getItem("addFrom");
-  if (addFrom === "function") {
-    localStorage.removeItem("addFrom"); // cleanup
-    navigate("/dashboard/functions/addFunction");
-  } else {
-    navigate("/dashboard/problems");
-  }
-};
+    localStorage.removeItem("addProblemFormData");
+  localStorage.removeItem("addProblemDescription");
+  localStorage.removeItem("addProblemFileName");
+  localStorage.removeItem("addProblemFilePreview");
+
+    setTimeout(() => {
+      suppressSaveRef.current = false;
+    }, 0);
 
 
-  // 🧩 Handle Save Problem
-  const handleSaveProblem = () => {
-    const newProblem = {
-      ...formData,
-      description,
-      fileName,
-      dateSaved: new Date().toISOString(),
-    };
-
-    const existing = JSON.parse(localStorage.getItem("problemsList")) || [];
-    const updated = [...existing, newProblem];
-    localStorage.setItem("problemsList", JSON.stringify(updated));
-
-    alert("✅ Problem saved successfully!");
-
-    // Redirect according to origin
     const addFrom = localStorage.getItem("addFrom");
     if (addFrom === "function") {
-      localStorage.removeItem("addFrom");
+      localStorage.removeItem("addFrom"); 
       navigate("/dashboard/functions/addFunction");
     } else {
       navigate("/dashboard/problems");
     }
   };
+
+
+  const handleSaveProblem = () => {
+  const newProblem = {
+    ...formData,
+    description,
+    fileName,
+    dateSaved: new Date().toISOString(),
+  };
+
+  const addFrom = localStorage.getItem("addFrom");
+
+  if (addFrom === "function") {
+    const existingFunctionData =
+      JSON.parse(localStorage.getItem("addFunctionFormData")) || {};
+
+    const updatedFunctionData = {
+      ...existingFunctionData,
+      linkedProblem: newProblem,
+    };
+
+    localStorage.setItem(
+      "addFunctionFormData",
+      JSON.stringify(updatedFunctionData)
+    );
+
+    localStorage.removeItem("addFrom");
+    //  Clear Add Problem local data after save
+    localStorage.removeItem("addProblemFormData");
+    localStorage.removeItem("addProblemDescription");
+    localStorage.removeItem("addProblemFileName");
+    localStorage.removeItem("addProblemFilePreview");
+
+    navigate("/dashboard/functions/addFunction");
+  } else {
+    const existing = JSON.parse(localStorage.getItem("problemsList")) || [];
+    const updated = [...existing, newProblem];
+    localStorage.setItem("problemsList", JSON.stringify(updated));
+
+    // ✅ Clear Add Problem local data after save
+    localStorage.removeItem("addProblemFormData");
+    localStorage.removeItem("addProblemDescription");
+    localStorage.removeItem("addProblemFileName");
+    localStorage.removeItem("addProblemFilePreview");
+
+    navigate("/dashboard/problems");
+  }
+};
+
+
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("addFunctionFormData"));
+    if (saved?.linkedProblem) {
+      console.log("Linked Problem Data:", saved.linkedProblem);
+    }
+  }, []);
 
   return (
     <div className="relative flex flex-col w-full bg-gray-50">
@@ -167,8 +200,8 @@ const handleCancel = () => {
         </div>
 
         {/* Form */}
-        <div className="flex flex-col bg-gray-50 max-w-4xl w-full mx-auto mt-32 p-6 rounded-lg shadow-inner border border-gray-200">
-          <div className="grid grid-cols-1 gap-4">
+        <div className="flex flex-col bg-gray-50 max-w-4xl w-full mx-auto mt-32 rounded-lg shadow-inner border border-gray-200">
+          <div className="grid grid-cols-1 gap-4  p-6">
             {/* Problem Name */}
             <div className="flex flex-col">
               <label className="text-[14px] newFontColor mb-1">
@@ -179,43 +212,44 @@ const handleCancel = () => {
                 name="problemName"
                 value={formData.problemName}
                 onChange={handleChange}
-                placeholder="e.g., Car engine not starting"
+                placeholder="Enter problem name"
                 className="border border-gray-300 text-black rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none placeholder-gray-400"
               />
             </div>
 
-            {/* Problem Location */}
-            <div className="flex flex-col relative">
-              <label className="text-[14px] newFontColor mb-1">
+
+            <div className="">
+              <label className="text-[14px] font-medium newFontColor">
                 Problem Location
               </label>
-              <input
-                type="text"
-                name="problemLocation"
-                value={formData.problemLocation}
-                onChange={handleChange}
-                placeholder="Select location"
-                className="w-full border border-gray-300 text-black rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none placeholder-gray-400"
-              />
-              <LocationIcon className="absolute right-3 top-9 w-4 h-4 text-blue-500" />
+              <AddressInput formData={formData} setFormData={setFormData} />
             </div>
 
-            {/* Problem Date */}
             <div className="flex flex-col relative">
               <label className="text-[14px] newFontColor mb-1">
                 Problem Date
               </label>
+
               <input
-                type="date"
+                type="text"
                 name="problemDate"
                 value={formData.problemDate}
                 onChange={handleChange}
-                className="w-full border border-gray-300 text-black rounded-lg px-3 py-2 text-[14px] pr-10 focus:ring-1 focus:ring-blue-500 outline-none appearance-none [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-clear-button]:appearance-none"
+                placeholder="Select Date"
+                onFocus={(e) => (e.target.type = "date")}
+                onBlur={(e) => {
+                  if (!e.target.value) e.target.type = "text";
+                }}
+                className="w-full border border-gray-300 text-black rounded-lg px-3 py-2 text-[14px] pr-10
+      focus:ring-1 focus:ring-blue-500 outline-none appearance-none
+      [&::-webkit-calendar-picker-indicator]:opacity-0
+      [&::-webkit-inner-spin-button]:appearance-none
+      [&::-webkit-clear-button]:appearance-none"
               />
+
               <CalenderIcon className="absolute right-3 top-9 w-4 h-4 text-blue-500 pointer-events-none" />
             </div>
 
-            {/* Problem Status */}
             <div className="flex flex-col relative">
               <label className="text-[14px] newFontColor mb-1">
                 Problem Status
@@ -249,7 +283,6 @@ const handleCancel = () => {
               </div>
             </div>
 
-            {/* Problem Visibility */}
             <div className="flex flex-col relative">
               <label className="text-[14px] newFontColor mb-1">
                 Problem Visibility
@@ -283,7 +316,6 @@ const handleCancel = () => {
               </div>
             </div>
 
-            {/* Upload Image */}
             <div className="flex flex-col relative">
               <label className="text-[14px] newFontColor mb-1">
                 Upload Problem Image
@@ -293,7 +325,6 @@ const handleCancel = () => {
                 htmlFor="fileUpload"
                 className="relative flex flex-col items-center justify-center bg-white w-full h-28 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition-all overflow-hidden"
               >
-                {/* Image Preview */}
                 {fileName && filePreview ? (
                   <img
                     src={filePreview}
@@ -326,7 +357,6 @@ const handleCancel = () => {
               </p>
             </div>
 
-            {/* YouTube Link */}
             <div className="flex flex-col">
               <label className="text-[14px] newFontColor mb-1">
                 Video Link
@@ -342,12 +372,11 @@ const handleCancel = () => {
             </div>
           </div>
 
-          {/* Add Description Button */}
-          <div className="w-full flex mt-6">
+          <div className="w-full flex mt-6 px-6">
             <button
               type="button"
               onClick={() => setShowModal(true)}
-              className="flex items-center justify-center gap-2 border-2 border-gray-200 hover:PrimaryBorder text-blue-600 w-full py-2 px-5 rounded-lg hover:bg-blue-50 transition-all"
+              className="flex items-center justify-center gap-2 border-2 newPrimaryBorder newPrimaryColor w-full py-2 rounded-lg bg-blue-50 hover:bg-blue-100 transition-all"
             >
               <span>
                 {description
@@ -356,31 +385,17 @@ const handleCancel = () => {
               </span>
             </button>
           </div>
-
-          {/* Action Buttons */}
-          <div className="flex justify-between items-center mt-8">
-            {/* Cancel Button */}
-            <button
-              type="button"
-              onClick={handleCancel}
-              className="w-1/3 md:w-1/6 border-2 border-blue-600 text-blue-600 py-2 px-4 rounded-lg hover:bg-gray-200 transition-all"
-            >
-              Cancel
-            </button>
-
-            {/* Save Problem Button */}
-            <button
-              type="button"
-              onClick={handleSaveProblem}
-              className="newPrimaryBg text-white text-nowrap text-center py-2 px-4 rounded-lg hover:bg-blue-700 transition-all"
-            >
-              Save Problem
-            </button>
-          </div>
+    <FormNavigationButtons
+        handlePrev={handleCancel}
+        handleNext={handleSaveProblem}
+        // activeStep={activeStep}
+        prevButton="Cancel"
+        rightTitle="Save Problem"
+      />
+         
         </div>
       </div>
 
-      {/* Description Modal */}
       {showModal && (
         <AddDescriptionModal
           onClose={() => setShowModal(false)}

@@ -15,6 +15,25 @@ export const alphabet = Array.from({ length: 26 }, (_, i) =>
   String.fromCharCode(65 + i)
 );
 
+
+export const usaCities = [
+  "Albuquerque, New Mexico", "Arlington, Texas", "Atlanta, Georgia", "Austin, Texas",
+  "Baltimore, Maryland", "Boston, Massachusetts", "Buffalo, New York", "Charlotte, North Carolina",
+  "Chicago, Illinois", "Cincinnati, Ohio", "Cleveland, Ohio", "Colorado Springs, Colorado",
+  "Columbus, Ohio", "Dallas, Texas", "Denver, Colorado", "Detroit, Michigan",
+  "El Paso, Texas", "Fort Worth, Texas", "Fresno, California", "Houston, Texas",
+  "Indianapolis, Indiana", "Jacksonville, Florida", "Kansas City, Missouri", "Las Vegas, Nevada",
+  "Lexington, Kentucky", "Lincoln, Nebraska", "Long Beach, California", "Los Angeles, California",
+  "Louisville, Kentucky", "Memphis, Tennessee", "Mesa, Arizona", "Miami, Florida",
+  "Milwaukee, Wisconsin", "Minneapolis, Minnesota", "Nashville, Tennessee", "New Orleans, Louisiana",
+  "New York City, New York", "Oakland, California", "Oklahoma City, Oklahoma", "Omaha, Nebraska",
+  "Philadelphia, Pennsylvania", "Phoenix, Arizona", "Pittsburgh, Pennsylvania", "Portland, Oregon",
+  "Raleigh, North Carolina", "Sacramento, California", "San Antonio, Texas", "San Diego, California",
+  "San Francisco, California", "San Jose, California", "Seattle, Washington", "St. Louis, Missouri",
+  "Tampa, Florida", "Tucson, Arizona", "Tulsa, Oklahoma", "Virginia Beach, Virginia",
+  "Washington, D.C."
+];
+
 export const businessData = [
   {
     id: 1,

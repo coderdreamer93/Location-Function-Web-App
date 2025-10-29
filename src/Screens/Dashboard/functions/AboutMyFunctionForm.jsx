@@ -30,7 +30,6 @@
 // //   }
 // // };
 
-
 // //   const handleChange = (e) => {
 // //     const { name, value } = e.target;
 // //     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -151,13 +150,10 @@
 // //   );
 // // }
 
-
-
 // "use client";
 // import React, { useState } from "react";
 // import { ReactComponent as LocationIcon } from "../../../Assets/icons/Pin.svg";
 // import { ReactComponent as UploadIcon } from "../../../Assets/icons/uploadIcon.svg";
-
 
 // export default function AboutMyFunctionForm({ onStepDataChange }) {
 //   const [fileName, setFileName] = useState("");
@@ -308,8 +304,18 @@
 import React, { useState, useEffect } from "react";
 import { ReactComponent as LocationIcon } from "../../../Assets/icons/Pin.svg";
 import { ReactComponent as UploadIcon } from "../../../Assets/icons/uploadIcon.svg";
+import AddressInput from "./AddressInput";
+import FormNavigationButtons from "../../../Components/Dashboard/form/FormNavigationButtons";
 
-export default function AboutMyFunctionForm({ onStepDataChange }) {
+export default function AboutMyFunctionForm({
+  data,
+  updateFormData,
+  onStepDataChange,
+  activeStep,
+  steps,
+  handleNext,
+  handlePrev,
+}) {
   const [fileName, setFileName] = useState("");
   const [filePreview, setFilePreview] = useState(null);
 
@@ -319,7 +325,14 @@ export default function AboutMyFunctionForm({ onStepDataChange }) {
     businessName: "",
     functionVideo: "",
     functionImage: "",
+    ...data,
   });
+
+    useEffect(() => {
+      updateFormData(formData);
+    }, [formData]);
+
+    
 
   // Validate if all fields are filled
   const isStepValid = () => {
@@ -332,55 +345,93 @@ export default function AboutMyFunctionForm({ onStepDataChange }) {
     );
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFileName(file.name);
-      if (file.type.startsWith("image/")) {
-        setFilePreview(URL.createObjectURL(file));
-      } else {
-        setFilePreview(null);
-      }
-      const updatedData = { ...formData, functionImage: file.name };
-      setFormData(updatedData);
-      if (onStepDataChange) onStepDataChange(updatedData, isStepValid());
-    }
-  };
+const handleFileChange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const previewUrl = URL.createObjectURL(file);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    const updatedData = { ...formData, [name]: value };
+    setFileName(file.name);
+    setFilePreview(previewUrl);
+
+    const updatedData = {
+      ...formData,
+      functionImage: file.name, // file name
+      functionImagePreview: previewUrl, // 👈 store preview too
+    };
+
     setFormData(updatedData);
     if (onStepDataChange) onStepDataChange(updatedData, isStepValid());
+  }
+};
+
+// useEffect(() => {
+//   const existing = JSON.parse(localStorage.getItem("addFunctionData")) || {};
+//   localStorage.setItem(
+//     "addFunctionData",
+//     JSON.stringify({ ...existing, aboutMyFunctionForm: formData })
+//   );
+// }, [formData]);
+
+useEffect(() => {
+  const saved = JSON.parse(localStorage.getItem("addFunctionData"));
+  if (saved?.aboutMyFunctionForm) {
+    setFormData(saved.aboutMyFunctionForm);
+    if (saved.aboutMyFunctionForm.functionImagePreview) {
+      setFilePreview(saved.aboutMyFunctionForm.functionImagePreview);
+      setFileName(saved.aboutMyFunctionForm.functionImage);
+    }
+  }
+}, []);
+
+  useEffect(() => {
+  // Restore image preview if it exists in saved formData (from localStorage or parent)
+  if (formData.functionImagePreview) {
+    setFilePreview(formData.functionImagePreview);
+    setFileName(formData.functionImage);
+  }
+}, [formData.functionImagePreview]);
+
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   const updatedData = { ...formData, [name]: value };
+  //   setFormData(updatedData);
+  //   if (onStepDataChange) onStepDataChange(updatedData, isStepValid());
+  // };
+
+  // // Report initial validity to parent
+  // useEffect(() => {
+  //   if (onStepDataChange) onStepDataChange(formData, isStepValid());
+  // }, []);
+
+    const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Report initial validity to parent
-  useEffect(() => {
-    if (onStepDataChange) onStepDataChange(formData, isStepValid());
-  }, []);
 
   return (
-    <div className="w-full mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 ">
-        {/* Function Name */}
-        <div className="">
-          <label className="block text-[14px] newFontColor mb-1">
-            Function Name *
-          </label>
-          <input
-            type="text"
-            name="functionName"
-            value={formData.functionName}
-            onChange={handleChange}
-            placeholder="ex: Fix Car"
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none"
-          />
-        </div>
+    <div className="">
+      <div className="p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Function Name */}
+          <div className="">
+            <label className="block text-[14px] newFontColor mb-1">
+              Function Name
+            </label>
+            <input
+              type="text"
+              name="functionName"
+              value={formData.functionName}
+              onChange={handleChange}
+              placeholder="ex: Fix Car"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none"
+            />
+          </div>
 
-        {/* Function Location */}
-        <div>
+          {/* Function Location */}
+          {/* <div>
           <label className="block text-[14px] newFontColor mb-1">
-            Function Location *
+            Function Location
           </label>
           <div className="relative items-center">
             <input
@@ -393,79 +444,114 @@ export default function AboutMyFunctionForm({ onStepDataChange }) {
             />
             <LocationIcon className="absolute top-4 right-4 newPrimaryColor" />
           </div>
-        </div>
+        </div> */}
 
-        {/* Business Name */}
-        <div className="md:col-span-2">
-          <label className="block text-[14px] newFontColor mb-1">
-            Business Name *
-          </label>
-          <input
-            type="text"
-            name="businessName"
-            value={formData.businessName}
-            onChange={handleChange}
-            placeholder="ex: IBM"
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none"
-          />
-        </div>
+          <div className="">
+            <label className="text-[14px] font-medium newFontColor">
+              Location
+            </label>
+            <AddressInput formData={formData} setFormData={setFormData} />
+          </div>
 
-        {/* Upload Function Image */}
-        <div className="md:col-span-2">
-          <label className="block text-[14px] newFontColor mb-2">
-            Upload Function Image *
-          </label>
-          <label
-            htmlFor="fileUpload"
-            className="relative flex flex-col items-center justify-center bg-white w-full h-28 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition-all overflow-hidden"
-          >
-            {fileName && filePreview ? (
-              <img
-                src={filePreview}
-                alt="Uploaded preview"
-                className="absolute inset-0 object-cover w-full h-full rounded-lg"
-              />
-            ) : (
-              <div className="flex flex-col gap-2 justify-center items-center z-10">
-                <UploadIcon className="sm:text-[18px] text-[12px] newPrimaryColor" />
-                <span className="md:text-[14px] sm:text-[12px] text-[10px] newPrimaryColor">
-                  Upload the file here
-                </span>
-                <span className="md:text-[14px] sm:text-[12px] text-[10px] text-gray-500">
-                  (Only .jpg, .png, & .pdf files will be accepted)
-                </span>
-              </div>
-            )}
-
+          {/* Business Name */}
+          <div className="md:col-span-2">
+            <label className="block text-[14px] newFontColor mb-1">
+              Business Name
+            </label>
             <input
-              type="file"
-              id="fileUpload"
-              className="hidden"
-              onChange={handleFileChange}
-              accept=".jpg,.jpeg,.png,.pdf"
+              type="text"
+              name="businessName"
+              value={formData.businessName}
+              onChange={handleChange}
+              placeholder="ex: IBM"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none"
             />
-          </label>
+          </div>
 
-          <p className="text-[14px] text-gray-400 mt-1 p-0 m-0 w-full text-center">
-            {fileName ? fileName : "no files uploaded yet"}
-          </p>
-        </div>
+          {/* Upload Function Image */}
+          <div className="md:col-span-2">
+            <label className="block text-[14px] newFontColor mb-2">
+              Upload Function Image
+            </label>
+            <label
+              htmlFor="fileUpload"
+              className="relative flex flex-col items-center justify-center bg-white w-full h-28 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition-all overflow-hidden"
+            >
+              {fileName && filePreview ? (
+                <img
+                  src={filePreview}
+                  alt="Uploaded preview"
+                  className="absolute inset-0 object-cover w-full h-full rounded-lg"
+                />
+              ) : (
+                <div className="flex flex-col gap-2 justify-center items-center z-10">
+                  <UploadIcon className="sm:text-[18px] text-[12px] newPrimaryColor" />
+                  <span className="md:text-[14px] sm:text-[12px] text-[10px] newPrimaryColor">
+                    Upload the file here
+                  </span>
+                  <span className="md:text-[14px] sm:text-[12px] text-[10px] text-gray-500">
+                    (Only .jpg, .png, & .pdf files will be accepted)
+                  </span>
+                </div>
+              )}
 
-        {/* Function Video */}
-        <div className="md:col-span-2">
-          <label className="block text-[14px] newFontColor mb-1">
-            Function Video *
-          </label>
-          <input
-            type="text"
-            name="functionVideo"
-            value={formData.functionVideo}
-            onChange={handleChange}
-            placeholder="Enter YouTube Link"
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none"
-          />
+              <input
+                type="file"
+                id="fileUpload"
+                className="hidden"
+                onChange={handleFileChange}
+                accept=".jpg,.jpeg,.png,.pdf"
+              />
+            </label>
+
+            <p className="text-[14px] text-gray-400 mt-1 p-0 m-0 w-full text-center">
+              {fileName ? fileName : "no files uploaded yet"}
+            </p>
+          </div>
+
+          {/* Function Video */}
+          <div className="md:col-span-2">
+            <label className="block text-[14px] newFontColor mb-1">
+              Function Video
+            </label>
+            <input
+              type="text"
+              name="functionVideo"
+              value={formData.functionVideo}
+              onChange={handleChange}
+              placeholder="Enter YouTube Link"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none"
+            />
+          </div>
         </div>
       </div>
+      {/* Buttons */}
+      {/* <div className="w-full flex justify-between items-center gap-2 p-6 border-t sm:border-none rounded-b-xl bg-[#ffffff] sm:bg-[#F9FAFB] relative z-10  max-w-full sm:max-w-lg md:max-w-none mx-auto">
+        <button
+          onClick={handlePrev}
+          className={`md:px-5 px-4 py-2.5 rounded-lg text-[14px] font-medium border-2 ${
+            activeStep === 0
+              ? "border-blue-600 newPrimaryColor bg-white"
+              : "border-blue-600 newPrimaryColor bg-white hover:bg-blue-100"
+          }`}
+        >
+          Previous
+        </button>
+
+        <button
+          onClick={handleNext}
+          className="md:px-5 px-4 py-2.5 rounded-lg text-[14px] border-2 newPrimaryBorder newPrimaryBg text-white shadow-sm hover:shadow-md transition-all duration-200"
+        >
+          Next
+        </button>
+      </div> */}
+      <FormNavigationButtons
+        handlePrev={handlePrev}
+        handleNext={handleNext}
+        activeStep={activeStep}
+        prevButton="Previous"
+        rightTitle="Next"
+      />
     </div>
   );
 }

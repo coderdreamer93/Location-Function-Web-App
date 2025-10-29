@@ -75,7 +75,7 @@ const AddFunctionMobileHeader = ({ steps = [], activeStep = 0 }) => {
   const circumference = 2 * Math.PI * radius;
 
   return (
-    <div className="flex items-center space-x-4 mb-6 md:hidden">
+    <div className="flex  items-center space-x-4 md:hidden">
       {/* Circular Progress */}
       <div className="relative w-16 h-16">
         <svg className="w-full h-full transform -rotate-90">
@@ -104,7 +104,7 @@ const AddFunctionMobileHeader = ({ steps = [], activeStep = 0 }) => {
         </svg>
 
         {/* Step Count (now in one line) */}
-        <div className="absolute inset-0 flex items-center justify-center text-xs font-semibold text-gray-800">
+        <div className="absolute inset-0 flex items-center  justify-center text-xs font-semibold text-gray-800">
           <span>
             {activeStep + 1}{" "}
             <span className="text-[14px] newFontColor">of {totalSteps}</span>
@@ -113,8 +113,8 @@ const AddFunctionMobileHeader = ({ steps = [], activeStep = 0 }) => {
       </div>
 
       {/* Step Title */}
-      <div>
-        <h3 className="text-[14px] font-bold newFontColor">
+      <div className="flex flex-col justify-between h-[48px]">
+        <h3 className="text-[14px]  font-bold newFontColor">
           {steps[activeStep]}
         </h3>
         {nextStep && (

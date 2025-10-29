@@ -20,3 +20,31 @@ input[type=number]::-webkit-inner-spin-button {
     height: 50px;
 }
 }
+
+
+
+
+
+
+ol, ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+.editor-content ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  padding-left: 1rem;
+}
+
+.editor-content ol {
+  list-style-type: decimal;
+  margin-left: 1.5rem;
+  padding-left: 1rem;
+}
+
+.editor-content li {
+  margin: 0.25rem 0;
+}
