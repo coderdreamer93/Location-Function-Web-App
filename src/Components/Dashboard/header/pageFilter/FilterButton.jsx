@@ -1,28 +1,3 @@
-// import React from "react";
-
-// function FilterButton({ label, isActive, onClick }) {
-//   return (
-//     <div
-//       className={`flex text-[14px]  text-nowrap rounded-lg  transition-all duration-300 px-3 py-1.5   ${
-//         isActive
-//           ? "border-2 border-blue-600 font-bold newPrimaryColor bg-blue-50"
-//           : "border-2 border-gray-200 font-normal newFontColor hover:newPrimaryBorder hover:newPrimaryColor"
-//       }`}
-//     >
-//       <button
-//         onClick={onClick}
-//         className={`text-[14px] text-nowrap
-
-//             `}
-//       >
-//         {label}
-//       </button>
-//     </div>
-//   );
-// }
-
-// export default FilterButton;
-
 import React from "react";
 
 function FilterButton({ label, isActive, onClick }) {

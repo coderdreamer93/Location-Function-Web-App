@@ -6,7 +6,7 @@ import NestedHeader from "../../../Components/Dashboard/header/nestedHeader/Nest
 import SidebarFilter from "../../../Components/Dashboard/sidebarFilter/SidebarFilter";
 import { Outlet, useNavigate } from "react-router";
 import AddButton from "../../../Components/Dashboard/common/AddButton";
-import ProblemGridView from "../../../Components/Dashboard/business/ProblemGridView";
+// import ProblemGridView from "../../../Components/Dashboard/business/ProblemGridView";
 import ProblemListView from "../../../Components/Dashboard/business/ProblemListView";
 import {
   businessData,
