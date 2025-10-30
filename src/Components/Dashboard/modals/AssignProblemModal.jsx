@@ -14,7 +14,7 @@ export default function AssignProblemModal({ onClose, users = [] }) {
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-lg md:text-xl leading-none"
+            className="text-gray-400 hover:text-gray-600 text-md md:text-lg leading-none"
           >
             <CloseIcon />
           </button>

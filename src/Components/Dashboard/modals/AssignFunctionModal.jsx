@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { ReactComponent as CloseIcon } from "../../../Assets/icons/closeIcon.svg"
 
 export default function AssignFunctionModal({ onClose, users = [] }) {
   const [selectedUser, setSelectedUser] = useState(null);
@@ -14,9 +15,9 @@ export default function AssignFunctionModal({ onClose, users = [] }) {
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-lg md:text-xl leading-none"
+            className="text-gray-400 hover:text-gray-600 text-md md:text-lg leading-none"
           >
-            ×
+            <CloseIcon />
           </button>
         </div>
 

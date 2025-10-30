@@ -133,7 +133,7 @@ export default function Header() {
             ) : (
               <div className="relative">
                 <img
-                  src={user.avatar}
+                  src={"/ProfileImage.png"}
                   alt={user.name}
                   onClick={() => setDropdownOpen((prev) => !prev)}
                   className="w-8 h-8 rounded-full object-cover border border-gray-300 cursor-pointer"

@@ -16,7 +16,7 @@ export default function ShareFunctionModal({ onClose, users = [] }) {
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 text-lg md:text-xl leading-none"
           >
-            <CloseIcon className="w-4 h-4 md:w-5 md:h-5" />
+            <CloseIcon />
           </button>
         </div>
 
