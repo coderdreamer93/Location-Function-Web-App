@@ -129,7 +129,7 @@ useEffect(() => {
             </div>
 
             {/* Right controls */}
-            <div className="flex items-center gap-2 border-r-2 border-gray-200 pr-1">
+            <div className="flex items-center gap-2  pr-1">
               {/* Bullet list */}
               <button
                 onClick={() => toggleButton("bullet")}
@@ -158,7 +158,7 @@ useEffect(() => {
             </div>
             {/* <div className="flex items-center gap-1 sm:gap-2 border-r"> */}
             {/* Dot icon */}
-            <button
+            {/* <button
               onClick={() => toggleButton("dot")}
               className={`p-1 pl-none sm:p-1.5 transition ${
                 activeButtons.includes("dot")
@@ -167,7 +167,7 @@ useEffect(() => {
               }`}
             >
               <DotIcon className="newFontColor" />
-            </button>
+            </button> */}
             {/* </div> */}
           </div>
 

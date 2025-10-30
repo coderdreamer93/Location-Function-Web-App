@@ -6,6 +6,7 @@ import { ReactComponent as UploadIcon } from "../../../Assets/icons/uploadIcon.s
 import AddDescriptionModal from "../../../Components/Dashboard/modals/AddDescriptionModal";
 import { useNavigate } from "react-router-dom";
 import FormNavigationButtons from "../../../Components/Dashboard/form/FormNavigationButtons";
+import AddProblemFromFunction from "./AddProblemFromFunction";
 
 export default function ProblemSolvedForm({
   data,
@@ -17,6 +18,7 @@ export default function ProblemSolvedForm({
 }) {
   const [fileName, setFileName] = useState("");
   const [filePreview, setFilePreview] = useState(null);
+  const [showAddProblem, setShowAddProblem] = useState(false);
   const [open, setOpen] = useState(false);
   const [openDesc, setOpenDesc] = useState(false);
   const dropdownRef = useRef(null);
@@ -231,8 +233,9 @@ export default function ProblemSolvedForm({
             <button
               type="button"
               onClick={() => {
-                localStorage.setItem("addFrom", "function");
-                navigate("/dashboard/problems/addProblem");
+                // localStorage.setItem("addFrom", "function");
+                // navigate("/dashboard/problems/addProblem");
+                setShowAddProblem(true)
               }}
               className="w-full md:w-1/2 border-2 newPrimaryBorder py-2 rounded-lg newPrimaryColor text-[14px] hover:bg-blue-50 transition-all"
             >
@@ -269,6 +272,11 @@ export default function ProblemSolvedForm({
           initialValue={formData.description}
         />
       )}
+
+      {showAddProblem && (
+  <AddProblemFromFunction onClose={() => setShowAddProblem(false)} />
+)}
+
     </div>
   );
 }

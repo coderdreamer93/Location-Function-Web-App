@@ -217,7 +217,7 @@ const FilterSection = ({ title, options, selected, onSelect, multiSelect }) => {
           <li
             key={item}
             onClick={() => handleSelect(item)}
-            className={`flex justify-between newFontColor font-medium text-[14px] items-center py-2 border-b px-2 rounded-md cursor-pointer transition-colors ${
+            className={`flex justify-between newFontColor text-[14px] items-center py-2 border-b px-2 rounded-md cursor-pointer transition-colors ${
               isSelected(item) ? "newFontColor" : "hover:newFontColor"
             }`}
           >
