@@ -213,7 +213,7 @@ export default function AddProblem() {
                 name="problemName"
                 value={formData.problemName}
                 onChange={handleChange}
-                placeholder="Enter problem name..."
+                placeholder="Enter Problem Name..."
                 className="border border-gray-300 text-black rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none placeholder-gray-400"
               />
             </div>

@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import { FiCheck } from "react-icons/fi";
 import { MdOutlineSearch } from "react-icons/md";
 
-const SidebarFilter = ({
+const BusinessSidebarFilter = ({
   locations = [],
   operations = [],
   businesses = [],
@@ -221,10 +221,10 @@ const FilterSection = ({ title, options, selected, onSelect, multiSelect }) => {
           <li
             key={item}
             onClick={() => handleSelect(item)}
-            className={`flex justify-between text-gray-800 text-sm items-center py-2 border-b px-2 rounded-md cursor-pointer transition-colors ${
+            className={`flex justify-between newFontColor text-[14px] items-center py-2 border-b px-2 rounded-md cursor-pointer transition-colors ${
               isSelected(item)
-                ? "newPrimaryColor font-semibold"
-                : "hover:newPrimaryColor"
+                ? "newFontColor"
+                : "hover:newFontColor"
             }`}
           >
             {item}
@@ -238,4 +238,4 @@ const FilterSection = ({ title, options, selected, onSelect, multiSelect }) => {
   );
 };
 
-export default SidebarFilter;
+export default BusinessSidebarFilter;

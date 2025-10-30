@@ -86,7 +86,7 @@ export default function Header() {
             {/* Home Icon */}
             <button
               onClick={() => {
-                navigate("/dashboard");
+                navigate("/dashboard/functions");
                 setMenuOpen(false);
               }}
               className="text-gray-700 pr-4 hover:text-black"

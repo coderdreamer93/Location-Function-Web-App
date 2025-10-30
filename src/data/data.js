@@ -5,10 +5,12 @@ export const locations = [
   "Dallas",
 ];
 export const businesses = ["All (20)", "SLP Garage", "Car Repair Shop"];
+export const problemStatus = ["All (200)", "Solved", "Not Solved"];
 export const functionsCategory = ["All Functions", "My Functions"];
 export const formulaUsage = ["The Given Set"];
 export const operations = ["Exact Phrase", "AND", "OR"];
-export const types = ["Type A", "Type B", "Type C"];
+export const types = [""];
+// export const types = ["Type A", "Type B", "Type C"];
 export const sorts = ["Date", "Alphabetical Order", "Business"];
 
 export const alphabet = Array.from({ length: 26 }, (_, i) =>
@@ -95,7 +97,7 @@ export const businessData = [
     distance: 200,
     isProblem: true,
     date: "2025-10-10",
-    problemStatus: "Pending",
+    problemStatus: "Solved",
     assignProblem: true,
     formulaValue: "The Given Set",
   },
@@ -118,7 +120,7 @@ export const businessData = [
     distance: 150,
     isProblem: false,
     date: "2025-09-28",
-    problemStatus: "Resolved",
+    problemStatus: "Solved",
     assignProblem: false,
     formulaValue: "The Given Set",
   },
@@ -141,7 +143,7 @@ export const businessData = [
     distance: 95,
     isProblem: true,
     date: "2025-10-15",
-    problemStatus: "In Progress",
+    problemStatus: "Solved",
     assignProblem: false,
     formulaValue: "The Given Set",
   },
@@ -164,7 +166,7 @@ export const businessData = [
     distance: 180,
     isProblem: true,
     date: "2025-10-12",
-    problemStatus: "Pending",
+    problemStatus: "Not Solved",
     assignProblem: true,
     formulaValue: "The Given Set",
   },
@@ -187,7 +189,7 @@ export const businessData = [
     distance: 120,
     isProblem: false,
     date: "2025-09-30",
-    problemStatus: "Resolved",
+    problemStatus: "Solved",
     assignProblem: false,
     formulaValue: "The Given Set",
   },
@@ -210,7 +212,7 @@ export const businessData = [
     distance: 80,
     isProblem: true,
     date: "2025-10-20",
-    problemStatus: "In Progress",
+    problemStatus: "Solved",
     assignProblem: true,
     formulaValue: "The Given Set",
   },
@@ -233,7 +235,7 @@ export const businessData = [
     distance: 240,
     isProblem: false,
     date: "2025-09-25",
-    problemStatus: "Resolved",
+    problemStatus: "Not Solved",
     assignProblem: false,
     formulaValue: "The Given Set",
   },
@@ -256,7 +258,7 @@ export const businessData = [
     distance: 60,
     isProblem: true,
     date: "2025-10-18",
-    problemStatus: "Pending",
+    problemStatus: "Not Solved",
     assignProblem: true,
     formulaValue: "The Given Set",
   },
@@ -279,7 +281,7 @@ export const businessData = [
     distance: 90,
     isProblem: false,
     date: "2025-10-05",
-    problemStatus: "Resolved",
+    problemStatus: "Solved",
     assignProblem: false,
     formulaValue: "The Given Set",
   },
@@ -302,7 +304,7 @@ export const businessData = [
     distance: 70,
     isProblem: true,
     date: "2025-10-22",
-    problemStatus: "In Progress",
+    problemStatus: "Solved",
     assignProblem: true,
     formulaValue: "The Given Set",
   },

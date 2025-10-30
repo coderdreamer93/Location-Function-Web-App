@@ -3,7 +3,7 @@ import useCardView from "../../../hook/useCardView";
 import useFilterView from "../../../hook/useFilterView";
 import PageFilter from "../../../Components/Dashboard/header/pageFilter/PageFilter";
 import NestedHeader from "../../../Components/Dashboard/header/nestedHeader/NestedHeader";
-import SidebarFilter from "../../../Components/Dashboard/sidebarFilter/SidebarFilter";
+import FunctionSidebarFilter from "../../../Components/Dashboard/sidebarFilter/FunctionSidebarFilter";
 import { Outlet, useNavigate } from "react-router";
 import AddButton from "../../../Components/Dashboard/common/AddButton";
 import {
@@ -13,6 +13,7 @@ import {
   functionsCategory,
   locations,
   operations,
+  types,
 } from "../../../data/data";
 import FunctionListView from "../../../Components/Dashboard/business/FunctionListView";
 import FunctionGridView from "../../../Components/Dashboard/business/FunctionGridView";
@@ -55,11 +56,12 @@ function Functions() {
     transition-transform duration-300 ease-in-out transform
     ${isOpen === "open" ? "translate-x-0" : "-translate-x-full"}`}
       >
-        <SidebarFilter
+        <FunctionSidebarFilter
           locations={locations}
           operations={operations}
           formulaUsage={formulaUsage}
           businesses={businesses}
+          types={types}
           // alphabet={alphabet}
           onFilterChange={handleFilterChange}
         />

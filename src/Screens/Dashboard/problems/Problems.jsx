@@ -3,18 +3,20 @@ import useCardView from "../../../hook/useCardView";
 import useFilterView from "../../../hook/useFilterView";
 import PageFilter from "../../../Components/Dashboard/header/pageFilter/PageFilter";
 import NestedHeader from "../../../Components/Dashboard/header/nestedHeader/NestedHeader";
-import SidebarFilter from "../../../Components/Dashboard/sidebarFilter/SidebarFilter";
 import { Outlet, useNavigate } from "react-router";
 import AddButton from "../../../Components/Dashboard/common/AddButton";
+import ProblemSidebarFilter from "../../../Components/Dashboard/sidebarFilter/ProblemSidebarFilter";
 // import ProblemGridView from "../../../Components/Dashboard/business/ProblemGridView";
 import ProblemListView from "../../../Components/Dashboard/business/ProblemListView";
 import {
-  businessData,
-  businesses,
-  formulaUsage,
+  sorts,
+  problemStatus,
   locations,
-  operations,
-
+  // businesses,
+  // formulaUsage,
+  // operations,
+  businessData,
+  // operations,
 } from "../../../data/data";
 
 function Problems() {
@@ -110,11 +112,13 @@ function Problems() {
     transition-transform duration-300 ease-in-out transform
     ${isOpen === "open" ? "translate-x-0" : "-translate-x-full"}`}
       >
-        <SidebarFilter
+        <ProblemSidebarFilter
+          sorts={sorts}
+          problemStatus={problemStatus}
           locations={locations}
-          operations={operations}
-          formulaUsage={formulaUsage}
-          businesses={businesses}
+          // operations={operations}
+          // formulaUsage={formulaUsage}
+          // businesses={businesses}
           // alphabet={alphabet}
           onFilterChange={handleFilterChange}
         />

@@ -5,7 +5,7 @@ import useCardView from "../../../hook/useCardView";
 import useFilterView from "../../../hook/useFilterView";
 import PageFilter from "../../../Components/Dashboard/header/pageFilter/PageFilter";
 import NestedHeader from "../../../Components/Dashboard/header/nestedHeader/NestedHeader";
-import SidebarFilter from "../../../Components/Dashboard/sidebarFilter/SidebarFilter";
+import BusinessSidebarFilter from "../../../Components/Dashboard/sidebarFilter/BusinessSidebarFilter";
 import ListView from "../../../Components/Dashboard/business/ListView";
 import GridView from "../../../Components/Dashboard/business/GridView";
 import { Outlet } from "react-router";
@@ -148,7 +148,7 @@ if (activeFilters?.alphabet) {
     transition-transform duration-300 ease-in-out transform
     ${isOpen === "open" ? "translate-x-0" : "-translate-x-full"}`}
       >
-        <SidebarFilter
+        <BusinessSidebarFilter
           locations={locations}
           operations={operations}
           formulaUsage={formulaUsage}

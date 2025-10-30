@@ -1,6 +1,6 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
-import AdminLogin from "../Screens/Auth/Login";
+import AdminLogin from "../Screens/Auth/login";
 import ForgetPassword from "../Screens/Auth/ForgetPassword";
 import ForgetPassword2 from "../Screens/Auth/ForgetPassword2";
 import ForgetPassword3 from "../Screens/Auth/ForgetPassword3";
@@ -63,8 +63,8 @@ import BusinessMapView from "../Screens/Dashboard/businesses/BusinessMapView";
 import AddFunction from "../Screens/Dashboard/functions/AddFunction";
 import BusinessAppointmentView from "../Screens/Dashboard/businesses/BusinessAppointmentView";
 import BusinessAppointmentImageView from "../Screens/Dashboard/businesses/BusinessAppointmentImageView";
-import AboutMyFunctionForm from "../Screens/Dashboard/functions/AboutMyFunctionForm";
-import AboutAbilityPreview from "../Screens/Dashboard/functions/AboutAbilityPreview";
+
+// import Login from "../Screens/Auth/Login";
 
 export default function AdminRouter() {
   return (
@@ -76,6 +76,14 @@ export default function AdminRouter() {
         <Route path="/forget-password2" element={<ForgetPassword2 />} />
         <Route path="/forget-password3" element={<ForgetPassword3 />} />
 
+        {/* <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/verification-code" element={<VerificationCode />} />
+        <Route path="/select-account-type" element={<SelectAccountType />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/reset-verify-code" element={<ResetVerifyCode />} /> */}
+
         {/* =========== Old Component ========== */}
         {/* <Route path="/dashboard" element={<ProtectedRoutes Components={Dashboard} />} /> */}
 
@@ -84,8 +92,6 @@ export default function AdminRouter() {
           path="/dashboard"
           element={<ProtectedRoutes Components={New_Dashboard} />}
         >
-    
-
           <Route
             path="functions"
             element={<ProtectedRoutes Components={Functions} />}
@@ -104,7 +110,6 @@ export default function AdminRouter() {
             path="functions/AboutAbilityPreview"
             element={<ProtectedRoutes Components={AboutAbilityPreview} />}
           /> */}
-
 
           <Route
             path="problems"
