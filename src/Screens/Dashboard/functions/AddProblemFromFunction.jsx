@@ -152,22 +152,7 @@ export default function AddProblemFromFunction({ onClose }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 ">
      <div className="relative bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-lg">
-                {/* Header
-                  <div className="sticky top-0 bg-white p-4 border-b border-gray-200 z-20">
-          <NestedHeaderWhite
-            title="Add Problem"
-            breadcrumbs={[
-              { label: "Functions", path: "/dashboard/functions" },
-              { label: "Add Problem", path: "" },
-            ]}
-          />
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-xl"
-            >
-            ✕
-            </button>
-            </div> */}
+          
 
         {/* Form Content */}
         <div className="flex flex-col bg-gray-50 rounded-b-lg border-gray-200">
