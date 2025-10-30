@@ -233,7 +233,7 @@ const FilterSection = ({ title, options, selected, onSelect, multiSelect }) => {
 
   return (
     <div className="mb-4">
-      <span className="text-xs font-semibold text-gray-400 mb-2 uppercase tracking-wide">
+      <span className="text-[14px]  text-gray-400 mb-2 tracking-wide">
         {title}
       </span>
       <ul className="ml-0 pl-0 space-y-1">
@@ -243,7 +243,7 @@ const FilterSection = ({ title, options, selected, onSelect, multiSelect }) => {
             onClick={() => handleSelect(item)}
             className={`flex justify-between newFontColor text-[14px] items-center py-2 border-b px-2 rounded-md cursor-pointer transition-colors ${
               isSelected(item)
-                ? " text-blue-700 font-medium"
+                ? "newPrimaryColor"
                 : "hover:bg-gray-50"
             }`}
           >
