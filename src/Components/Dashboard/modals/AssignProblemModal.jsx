@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { ReactComponent as CloseIcon } from "../../../Assets/icons/closeIcon.svg"
 
 export default function AssignProblemModal({ onClose, users = [] }) {
   const [selectedUser, setSelectedUser] = useState(null);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-[999]">
-     <div className="bg-white rounded-2xl flex flex-col gap-4 shadow-xl w-full max-w-xl mx-4 md:mx-4 overflow-hidden">
+     <div className="bg-white rounded-t-2xl flex flex-col gap-4 shadow-xl w-full max-w-xl mx-4 md:mx-4 overflow-hidden">
         {/* Header */}
         <div className="flex justify-between items-center px-4 md:px-6 pt-3 md:pt-4">
           <h2 className="text-[14px] md:text-[17px] font-bold text-gray-900 text-nowrap">
@@ -15,7 +16,7 @@ export default function AssignProblemModal({ onClose, users = [] }) {
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 text-lg md:text-xl leading-none"
           >
-            ×
+            <CloseIcon />
           </button>
         </div>
 
@@ -30,7 +31,7 @@ export default function AssignProblemModal({ onClose, users = [] }) {
                 <div className="relative flex-shrink-0">
                   {/* Profile Image */}
                   <img
-                    src={user.image || "/image/UserImage.png"}
+                    src={user.image || "/PImage.png"}
                     alt={user.mechanicName}
                     className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover"
                   />
@@ -38,7 +39,7 @@ export default function AssignProblemModal({ onClose, users = [] }) {
                   {/* ✅ Online/Offline Indicator */}
                   <span
                     className={`absolute bottom-0 right-0 w-2 h-2 md:w-4 md:h-4 rounded-full border-2 border-white ${
-                      user.online ? "bg-green-500" : "bg-gray-400"
+                      user.online ? "bg-green-500" : "bg-green-500"
                     }`}
                   ></span>
                 </div>

@@ -61,7 +61,7 @@ export default function ProblemPopupMenu({ onClose, onAction }) {
             onAction(item.action);
             onClose();
           }}
-          className="flex justify-between items-center px-3 py-2 border-b last:border-none hover:bg-gray-100 cursor-pointer"
+          className="flex justify-between items-center px-3 py-2 border-b last:border-none hover:bg-blue-50 cursor-pointer"
         >
           {/* ✅ Smaller font on mobile, normal on desktop */}
           <span className="text-gray-800 text-[12px] sm:text-[14px]">

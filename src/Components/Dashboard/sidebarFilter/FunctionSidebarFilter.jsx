@@ -91,20 +91,7 @@ const FunctionSidebarFilter = ({
         </button>
       </div>
 
-      {/* Search */}
-      {/* <div className="relative mb-4">
-        <MdOutlineSearch
-          size={20}
-          className="absolute left-3 top-1/2 -translate-y-1/2 newPrimaryColor"
-        />
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full pl-9 pr-3 py-1.5 text-gray-800 text-sm border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-600 focus:outline-none placeholder:text-gray-600"
-        />
-      </div> */}
+ 
 
       <div className="flex w-full">
         <div className="flex flex-col w-full">

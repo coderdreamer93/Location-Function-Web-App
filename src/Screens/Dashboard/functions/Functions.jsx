@@ -62,7 +62,6 @@ function Functions() {
           formulaUsage={formulaUsage}
           businesses={businesses}
           types={types}
-          // alphabet={alphabet}
           onFilterChange={handleFilterChange}
         />
       </div>
