@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
-import { FiCheck } from "react-icons/fi";
-import { MdOutlineSearch } from "react-icons/md";
+// import { FiCheck } from "react-icons/fi";
+import { ReactComponent as RightTick } from "../../../Assets/icons/check.svg";
+// import { MdOutlineSearch } from "react-icons/md";
 
 const ProblemSidebarFilter = ({
   sorts = [],
@@ -177,8 +178,7 @@ const ProblemSidebarFilter = ({
               multiSelect
             />
           )}*/}
-
-        </div> 
+        </div>
 
         {/* Alphabet Filter */}
         {alphabet.length > 0 && (
@@ -242,13 +242,15 @@ const FilterSection = ({ title, options, selected, onSelect, multiSelect }) => {
             key={item}
             onClick={() => handleSelect(item)}
             className={`flex justify-between newFontColor text-[14px] items-center py-2 border-b px-2 rounded-md cursor-pointer transition-colors ${
-              isSelected(item)
-                ? "newPrimaryColor"
-                : "hover:bg-gray-50"
+              isSelected(item) ? "newPrimaryColor" : "hover:bg-gray-50"
             }`}
           >
             {item}
-            {isSelected(item) && <FiCheck size={18} className="newPrimaryColor" />}
+            {isSelected(item) && (
+              <span className="newPrimaryColor text-[14px] absolute right-6">
+                <RightTick />
+              </span>
+            )}
           </li>
         ))}
       </ul>

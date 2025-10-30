@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
-import { FiCheck } from "react-icons/fi";
-import { MdOutlineSearch } from "react-icons/md";
+// import { FiCheck } from "react-icons/fi";
+import { ReactComponent as RightTick } from "../../../Assets/icons/check.svg";
+// import { MdOutlineSearch } from "react-icons/md";
 
 const FunctionSidebarFilter = ({
   locations = [],
@@ -19,7 +20,7 @@ const FunctionSidebarFilter = ({
   const [selectedSort, setSelectedSort] = useState([]);
   const [selectedFormulaUsage, setSelectedFormulaUsage] = useState([]);
   const [activeLetter, setActiveLetter] = useState("");
-  
+
   const [searchTerm, setSearchTerm] = useState("");
 
   // ✅ Apply Filters manually (on button click)
@@ -61,7 +62,15 @@ const FunctionSidebarFilter = ({
       formulaUsage: formulaUsage.filter(match),
       sort: sort.filter(match),
     };
-  }, [searchTerm, locations, operations, businesses, types, formulaUsage, sort]);
+  }, [
+    searchTerm,
+    locations,
+    operations,
+    businesses,
+    types,
+    formulaUsage,
+    sort,
+  ]);
 
   // ✅ handle alphabet select
   const handleAlphabetClick = (letter) => {
@@ -222,14 +231,14 @@ const FilterSection = ({ title, options, selected, onSelect, multiSelect }) => {
             key={item}
             onClick={() => handleSelect(item)}
             className={`flex justify-between newFontColor font-medium text-[14px] items-center py-2 border-b px-2 rounded-md cursor-pointer transition-colors ${
-              isSelected(item)
-                ? "newFontColor"
-                : "hover:newFontColor"
+              isSelected(item) ? "newFontColor" : "hover:newFontColor"
             }`}
           >
             {item}
             {isSelected(item) && (
-              <FiCheck size={18} className="font-bold newPrimaryColor" />
+              <span className="newPrimaryColor text-[14px] absolute right-6">
+                <RightTick />
+              </span>
             )}
           </li>
         ))}
