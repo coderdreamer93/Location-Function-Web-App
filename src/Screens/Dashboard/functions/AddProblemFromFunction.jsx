@@ -151,7 +151,7 @@ export default function AddProblemFromFunction({ onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 ">
-     <div className="relative bg-white w-full max-w-2xl sm:max-h-[80vh] max-h-[100vh]  overflow-y-auto shadow-lg">
+     <div className="relative bg-white w-full max-w-2xl sm:max-h-[80vh] h-screen overflow-y-scroll shadow-lg">
           
 
         {/* Form Content */}

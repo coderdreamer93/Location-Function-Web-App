@@ -1,14 +1,11 @@
-
-
 import React, { useState, useEffect, useCallback } from "react";
 import useCardView from "../../../hook/useCardView";
 import useFilterView from "../../../hook/useFilterView";
 import PageFilter from "../../../Components/Dashboard/header/pageFilter/PageFilter";
 import NestedHeader from "../../../Components/Dashboard/header/nestedHeader/NestedHeader";
 import BusinessSidebarFilter from "../../../Components/Dashboard/sidebarFilter/BusinessSidebarFilter";
-import ListView from "../../../Components/Dashboard/business/ListView";
+import BusinessListView from "../../../Components/Dashboard/business/BusinessListView";
 import GridView from "../../../Components/Dashboard/business/GridView";
-import { Outlet } from "react-router";
 import {
   alphabet,
   businessData,
@@ -42,11 +39,11 @@ function Businesses() {
   useEffect(() => {
     let data = [...businessData];
 
-  // 🔤 Alphabet filter — now filters by location
-if (activeFilters?.alphabet) {
-  const letter = activeFilters.alphabet.toLowerCase();
-  data = data.filter((b) => b.location.toLowerCase().startsWith(letter));
-}
+    // 🔤 Alphabet filter — now filters by location
+    if (activeFilters?.alphabet) {
+      const letter = activeFilters.alphabet.toLowerCase();
+      data = data.filter((b) => b.location.toLowerCase().startsWith(letter));
+    }
 
     // 📍 Location filter — supports multiple selections
     if (
@@ -133,10 +130,9 @@ if (activeFilters?.alphabet) {
     setFilteredData(data);
   }, [activeFilters, search, selectedFilter]);
 
-   useEffect(() => {
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, []);
-
 
   return (
     <div className="relative flex w-full">
@@ -152,42 +148,44 @@ if (activeFilters?.alphabet) {
           locations={locations}
           operations={operations}
           formulaUsage={formulaUsage}
-          businesses={businesses}
+          // businesses={businesses}
           alphabet={alphabet}
           onFilterChange={handleFilterChange}
         />
       </div>
 
       {/* Main Area */}
-      <div
+       <div
         className={`flex-1 transition-all duration-300 ease-in-out p-4 ${
           isOpen === "open" ? " md:ml-64" : "ml-0"
         }`}
       >
-        {/* Header */}
         <div
-          className={`fixed top-14 left-0 right-0 z-20 bg-gray-50 p-4 transition-all duration-300 ease-in-out ${
+          className={`fixed top-14 left-0 right-0 z-20 bg-gray-50 p-4 flex flex-col gap-2 transition-all duration-300 ease-in-out ${
             isOpen === "open" ? "md:ml-64" : "ml-0"
           }`}
         >
-          <NestedHeader title="Businesses" view={view} setView={setView} />
-          <PageFilter
-            search={search}
-            setSearch={setSearch}
-            filterOptions={filterOptions}
-            selectedFilter={selectedFilter}
-            setSelectedFilter={setSelectedFilter}
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-          />
+          <div className="flex flex-col gap-2 py-2">
+            <NestedHeader title="Businesses" view={view} setView={setView} />
+            <PageFilter
+              search={search}
+              setSearch={setSearch}
+              filterOptions={filterOptions}
+              selectedFilter={selectedFilter}
+              setSelectedFilter={setSelectedFilter}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+            />
+          </div>
         </div>
 
         {/* Data */}
         <div className="bg-gray-50 relative sm:mt-36 mt-48 pb-10 rounded-lg min-h-[calc(100vh-8rem)]">
           {view === "list" ? (
-            <ListView data={filteredData} />
+            <BusinessListView data={filteredData} />
           ) : (
-            <GridView data={filteredData} />
+            // <GridView data={filteredData} />
+            <BusinessListView data={filteredData} />
           )}
           {/* <div className="w-full h-full">
 

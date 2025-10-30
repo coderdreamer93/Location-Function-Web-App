@@ -232,7 +232,7 @@ const FilterSection = ({ title, options, selected, onSelect, multiSelect }) => {
     multiSelect ? selected.includes(item) : selected === item;
 
   return (
-    <div className="mb-4">
+    <div className="mb-10">
       <span className="text-[14px]  text-gray-400 mb-2 tracking-wide">
         {title}
       </span>

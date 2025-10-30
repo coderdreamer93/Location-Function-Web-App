@@ -56,6 +56,7 @@ function Functions() {
     transition-transform duration-300 ease-in-out transform
     ${isOpen === "open" ? "translate-x-0" : "-translate-x-full"}`}
       >
+         
         <FunctionSidebarFilter
           locations={locations}
           operations={operations}
@@ -64,10 +65,11 @@ function Functions() {
           types={types}
           onFilterChange={handleFilterChange}
         />
+     
       </div>
 
       {/*  ================= Right Side ================== */}
-      <div
+       <div
         className={`flex-1 transition-all duration-300 ease-in-out p-4 ${
           isOpen === "open" ? " md:ml-64" : "ml-0"
         }`}

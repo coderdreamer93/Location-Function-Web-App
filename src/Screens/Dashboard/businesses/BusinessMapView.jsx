@@ -1,11 +1,15 @@
 import React from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import { PiVideoCameraFill } from "react-icons/pi";
-import { HiMiniArrowLeft } from "react-icons/hi2";
 import { BsCalendarDate } from "react-icons/bs";
-import { PiMapPinAreaThin } from "react-icons/pi";
 import useCardView from "../../../hook/useCardView";
 import NestedHeader from "../../../Components/Dashboard/header/nestedHeader/NestedHeader";
+import { ReactComponent as Oncamera } from "../../../Assets/icons/oncamera.svg";
+import { ReactComponent as LosAnglesMap } from "../../../Assets/icons/losanglesmap.svg";
+import { ReactComponent as Location } from "../../../Assets/icons/Pin.svg";
+import { ReactComponent as MechanicIcon } from "../../../Assets/icons/mechanicIcon.svg";
+import { ReactComponent as UserLocationIcon } from "../../../Assets/icons/userLocation.svg";
+import { ReactComponent as ArrowIcon } from "../../../Assets/icons/arrow.svg";
+import { ReactComponent as DistanceIcon } from "../../../Assets/icons/distance.svg";
 
 export default function BusinessMapView() {
   const [view, setView] = useCardView();
@@ -30,7 +34,7 @@ export default function BusinessMapView() {
   // }
 
   const {
-    name,
+    mechanicName,
     location: place,
     designation,
     phone,
@@ -50,8 +54,35 @@ export default function BusinessMapView() {
       {/* Main Content */}
       <div className="flex flex-col md:flex-row w-full h-full">
         {/* Map Section */}
-        <div className="flex-1 relative bg-gray-50 hidden md:block">
-          {/* Map removed for now, you can enable when needed */}
+        <div className="flex-1 relative w-full h-full hidden md:block">
+          {/* Map Background */}
+          <img
+            src={"/businessMap.png"}
+            alt="BusinessMap"
+            className="w-full h-full object-cover"
+          />
+
+          {/* Mechanic (top-left) */}
+          <div className="absolute z-20 w-[50px] left-[75px] top-[120px]">
+
+            <MechanicIcon />
+          </div>
+
+          {/* Arrow (diagonal, between mechanic & location) */}
+          <div className="absolute z-20 left-[210px] top-[110px] rotate-[45deg]">
+            <ArrowIcon />
+          </div>
+
+          {/* Distance Label */}
+          <div className="absolute z-20 left-[270px] top-[140px] bg-white text-blue-500 text-sm font-semibold px-2 py-1 rounded shadow">
+            <DistanceIcon />
+            <span className="ml-1">200 mile</span>
+          </div>
+
+          {/* User Location Marker (bottom-right) */}
+          <div className="absolute z-20 left-[370px] top-[250px]">
+            <UserLocationIcon />
+          </div>
         </div>
 
         {/* Info Card */}
@@ -65,8 +96,9 @@ export default function BusinessMapView() {
               <div className="flex justify-between items-start gap-3 p-3 w-full">
                 <div className="flex items-center gap-3 ">
                   <div className="relative">
-                    <div className="w-14 h-14 bg-green-700 text-white text-xl font-semibold flex items-center justify-center rounded-full">
-                      {name?.charAt(0)}
+                    <div className="w-14 h-14  flex items-center justify-center rounded-full">
+                      {/* {name?.charAt(0)} */}
+                      <img src="/image/UserImage.png" alt="Mechanic" />
                     </div>
                     {online && (
                       <span className="absolute bottom-0 right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
@@ -74,31 +106,41 @@ export default function BusinessMapView() {
                   </div>
 
                   <div className="flex flex-col">
-                    <span className="text-xs font-bold text-gray-900">
-                      {name}
+                    <span className="text-[12px] font-bold text-gray-900">
+                      {mechanicName}
                     </span>
-                    <span className="text-xs text-gray-600 flex items-center gap-1">
+                    <span className="text-[12px] newFontColor flex items-center gap-1">
                       {designation}
                     </span>
-                    <span className="text-xs text-gray-600 flex items-center gap-1">
+                    {/* <span className="text-[12px] text-nowrap truncate newFontColor flex items-center gap-1">
                       {place}
+                    </span> */}
+                    <span
+                      className="text-[12px] newFontColor flex items-center gap-1"
+                      title={place} // shows full text on hover
+                    >
+                      {place?.length > 15 ? `${place.slice(0, 15)}...` : place}
                     </span>
-                    <span className="text-xs newPrimaryColor mt-1 flex items-center gap-1">
+
+                    <span className="text-[12px] newPrimaryColor mt-1 flex items-center gap-1">
                       {phone}
                     </span>
                   </div>
                 </div>
 
                 <div className="flex flex-col justify-center items-center cursor-pointer gap-1 shrink-0">
-                  <span
-                    className={`flex justify-center items-center w-7 h-7 rounded-full ${
+                  <div
+                    className={`flex justify-center items-center w-7 h-7 rounded-full shrink-0 ${
                       problem
-                        ? "bg-red-500 text-white"
-                        : "bg-gray-200 text-gray-600"
+                        ? "bg-red-600 text-white"
+                        : "bg-gray-200 newFontColor"
                     }`}
                   >
-                    <PiVideoCameraFill size={14} />
-                  </span>
+                    <span className="flex justify-center items-center w-[14px] h-[14px] pl-0.5">
+                      <Oncamera />
+                    </span>
+                  </div>
+
                   <span className="text-[11px] text-black whitespace-nowrap">
                     Show Problem
                   </span>
@@ -123,23 +165,30 @@ export default function BusinessMapView() {
 
             {/* Divider */}
             <div className="border rounded-2xl flex justify-between items-center border-gray-200 my-4">
-              <div className="flex flex-col w-1/2 justify-between items-center p-2">
-                <PiMapPinAreaThin size={48} className="text-gray-400" />
-                <span className="text-xs text-black font-bold">{place}</span>
+              <div className="flex relative flex-col w-1/2 justify-between items-center p-2">
+                <LosAnglesMap size={48} className="newFontColor" />
+                <Location className="absolute top-[28%] left-[37%] w-[8px]" />
+              
+                <span
+                  className="text-[14px] newFontColor flex items-center gap-1 font-bold"
+                  title={place} // shows full text on hover
+                >
+                  {place?.length > 15 ? `${place.slice(0, 15)}...` : place}
+                </span>
                 <span className="text-[8px] newPrimaryColor">
                   Show Formula Flow
                 </span>
               </div>
               <div className="flex flex-col justify-between gap-2 w-1/2">
                 <div className="flex gap-2">
-                  <span className="text-gray-700 text-xs">Function</span>
-                  <span className="text-green-600 text-xs font-bold">
+                  <span className="newFontColor text-[12px]">Function</span>
+                  <span className="text-green-600 text-[12px] font-bold">
                     Fix Car
                   </span>
                 </div>
                 <div className="flex gap-2">
-                  <span className="text-gray-700 text-xs">Problem</span>
-                  <span className="text-red-600 text-xs font-bold">
+                  <span className="newFontColor text-[12px]">Problem</span>
+                  <span className="text-red-600 text-[12px] font-bold">
                     Bed Radiator
                   </span>
                 </div>

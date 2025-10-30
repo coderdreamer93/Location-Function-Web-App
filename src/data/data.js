@@ -103,7 +103,7 @@ export const businessData = [
   },
   {
     id: 2,
-    shopName: "Turbo Motors",
+    shopName: "Michael David",
     mechanicName: "Mike Davis",
     clientName: "Bob Smith",
     location: "Las Vegas, Austin, TX USA",
