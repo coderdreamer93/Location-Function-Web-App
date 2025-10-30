@@ -83,7 +83,7 @@ export const businessData = [
     shopName: "SLP Garage",
     mechanicName: "John Thompson",
     clientName: "Alice Brown",
-    location: "Los Angeles, TX USA",
+    location: "Los Angeles, CA",
     city: "Los Angeles",
     designation: "Mechanic",
     phone: "(323) 555-0199",

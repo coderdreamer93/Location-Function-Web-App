@@ -4,7 +4,7 @@ import { ReactComponent as HomeIcon } from "../../../Assets/icons/homeIcon.svg";
 import { ReactComponent as LosAnglesMap } from "../../../Assets/icons/losanglesmap.svg";
 import { ReactComponent as YellowStar } from "../../../Assets/icons/yellowStar.svg";
 import { ReactComponent as GrayStar } from "../../../Assets/icons/grayStar.svg";
-import { ReactComponent as OffCamera } from "../../../Assets/icons/offCamera.svg";
+// import { ReactComponent as OffCamera } from "../../../Assets/icons/offCamera.svg";
 import { ReactComponent as HoldCamera } from "../../../Assets/icons/holdCamera.svg";
 import { ReactComponent as Oncamera } from "../../../Assets/icons/oncamera.svg";
 import { ReactComponent as Location } from "../../../Assets/icons/Pin.svg";

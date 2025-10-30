@@ -1,5 +1,6 @@
 import React from "react";
-import { useLocation, useParams, useNavigate } from "react-router-dom";
+// import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { useLocation,  useNavigate } from "react-router-dom";
 import { BsCalendarDate } from "react-icons/bs";
 import useCardView from "../../../hook/useCardView";
 import NestedHeader from "../../../Components/Dashboard/header/nestedHeader/NestedHeader";
@@ -13,7 +14,7 @@ import { ReactComponent as DistanceIcon } from "../../../Assets/icons/distance.s
 
 export default function BusinessMapView() {
   const [view, setView] = useCardView();
-  const { id } = useParams();
+  // const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const selectedBusiness = location.state?.business;

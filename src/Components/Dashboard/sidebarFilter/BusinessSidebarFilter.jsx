@@ -243,6 +243,7 @@
 import React, { useState, useMemo } from "react";
 // import { FiCheck } from "react-icons/fi";
 import { ReactComponent as RightTick } from "../../../Assets/icons/check.svg";
+import { ReactComponent as SearchIcon } from "../../../Assets/icons/searchIcon.svg";
 // import { MdOutlineSearch } from "react-icons/md";
 
 const BusinessSidebarFilter = ({
@@ -332,7 +333,20 @@ const BusinessSidebarFilter = ({
           Reset
         </button>
       </div>
-
+       {/* Search */}
+      <div className="relative mb-4">
+        <SearchIcon
+          size={20}
+          className="absolute left-3 top-1/2 -translate-y-1/2 newPrimaryColor"
+        />
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full pl-9 pr-3 py-1.5 text-gray-800 text-sm border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-600 focus:outline-none placeholder:text-gray-600"
+        />
+      </div>
       <div className="flex w-full">
         <div className="flex flex-col w-full">
           {filteredData.locations.length > 0 && (
@@ -401,24 +415,22 @@ const BusinessSidebarFilter = ({
           <div className="flex flex-col min-w-[25px] overflow-hidden">
             <div className="flex flex-col items-center text-[10px] text-gray-400">
               {alphabet.map((letter) => (
-              
-                  <span
-                    key={letter}
-                    onClick={() => handleAlphabetClick(letter)}
-                    className={`flex justify-center items-center w-6 h-6 rounded-md cursor-pointer transition-all duration-150 ${
-                      activeLetter === letter
-                        ? "bg-blue-50 newPrimaryColor border newPrimaryBorder font-semibold"
-                        : "hover:bg-blue-50 hover:newPrimaryColor hover:border hover:newPrimaryBorder"
-                    }`}
-                  >
-                    {letter}
-                  </span>
+                <span
+                  key={letter}
+                  onClick={() => handleAlphabetClick(letter)}
+                  className={`flex justify-center items-center w-6 h-6 rounded-md cursor-pointer transition-all duration-150 ${
+                    activeLetter === letter
+                      ? "bg-blue-50 newPrimaryColor border newPrimaryBorder font-semibold"
+                      : "hover:bg-blue-50 hover:newPrimaryColor hover:border hover:newPrimaryBorder"
+                  }`}
+                >
+                  {letter}
+                </span>
               ))}
             </div>
           </div>
         )}
       </div>
-
       {/* ✅ Apply Button (restored) */}
       <div className="pt-3">
         <button

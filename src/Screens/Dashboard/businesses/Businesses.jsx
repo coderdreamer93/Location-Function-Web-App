@@ -5,15 +5,15 @@ import PageFilter from "../../../Components/Dashboard/header/pageFilter/PageFilt
 import NestedHeader from "../../../Components/Dashboard/header/nestedHeader/NestedHeader";
 import BusinessSidebarFilter from "../../../Components/Dashboard/sidebarFilter/BusinessSidebarFilter";
 import BusinessListView from "../../../Components/Dashboard/business/BusinessListView";
-import GridView from "../../../Components/Dashboard/business/GridView";
+// import GridView from "../../../Components/Dashboard/business/GridView";
 import {
   alphabet,
   businessData,
-  businesses,
+  // businesses,
   formulaUsage,
   locations,
   operations,
-  types,
+  // types,
 } from "../../../data/data";
 
 function Businesses() {
