@@ -1,7 +1,7 @@
 
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom"; // 👈 add useLocation
+import { useNavigate, useLocation } from "react-router-dom"; 
 import { HiOutlineX } from "react-icons/hi";
 import { ReactComponent as HomeIcon } from "../../../Assets/icons/logo.svg";
 import { ReactComponent as LoginIcon } from "../../../Assets/icons/login.svg";
@@ -10,7 +10,7 @@ import { ReactComponent as MenuBarIcon } from "../../../Assets/icons/menuBar.svg
 
 export default function Header() {
   const navigate = useNavigate();
-  const location = useLocation(); // 👈 track current route
+  const location = useLocation(); 
 
   const [activeTab, setActiveTab] = useState("functions");
   const [menuOpen, setMenuOpen] = useState(false);

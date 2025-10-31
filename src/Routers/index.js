@@ -1,3 +1,5 @@
+import "react-date-picker/dist/DatePicker.css";
+import "react-calendar/dist/Calendar.css";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 import AdminLogin from "../Screens/Auth/Login";
@@ -63,6 +65,7 @@ import BusinessMapView from "../Screens/Dashboard/businesses/BusinessMapView";
 import AddFunction from "../Screens/Dashboard/functions/AddFunction";
 import BusinessAppointmentView from "../Screens/Dashboard/businesses/BusinessAppointmentView";
 import BusinessAppointmentImageView from "../Screens/Dashboard/businesses/BusinessAppointmentImageView";
+import AddBusinessDetail from "../Screens/Dashboard/businesses/AddBusinessDetail";
 
 // import Login from "../Screens/Auth/Login";
 
@@ -134,6 +137,14 @@ export default function AdminRouter() {
             path="/dashboard/businesses/appointmentImageView"
             element={<BusinessAppointmentImageView />}
           />
+          <Route
+            path="/dashboard/businesses/addbusinessdetail"
+            element={<AddBusinessDetail />}
+          />
+          {/* <Route
+            path="/dashboard/businesses/employees"
+            element={<Employees />}
+          /> */}
           <Route
             path="stats"
             element={<ProtectedRoutes Components={Stats} />}

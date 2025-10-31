@@ -4,7 +4,7 @@ function FilterButton({ label, isActive, onClick }) {
   return (
     <button
       onClick={onClick}
-      className={`relative flex items-center justify-center text-[14px] text-nowrap rounded-lg transition-all duration-200 px-3 py-1.5 border-2
+      className={`relative flex items-center justify-center sm:text-[14px] text-[12px] text-nowrap rounded-lg transition-all duration-200 px-3 py-1.5 border-2
     ${
       isActive
         ? "newPrimaryBorder newPrimaryColor bg-blue-50 font-bold"

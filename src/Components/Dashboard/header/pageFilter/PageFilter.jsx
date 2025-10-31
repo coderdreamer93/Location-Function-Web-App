@@ -21,7 +21,8 @@ function PageFilter({
           className={`flex flex-row items-center gap-3 sm:w-1/2 w-full ${
             filterOptions.length > 1
               ? "overflow-x-scroll scrollbar-hidden"
-              : "overflow-hidden scrollbar-hidden"
+              : "overflow-x-scroll scrollbar-hidden"
+              // : "overflow-hidden scrollbar-hidden"
           }`}
         >
           {filterOptions.length > 0 && (

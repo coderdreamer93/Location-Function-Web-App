@@ -48,7 +48,8 @@ function Functions() {
   }, [activeFilters]);
 
   return (
-    <div className="relative flex w-full">
+ <div className="relative flex w-full">
+      {/* Sidebar */}
       <div
         className={`fixed top-18 left-0 z-30 h-[calc(100vh-3.5rem)] 
     w-[85%] sm:w-64 md:w-64 
@@ -69,7 +70,7 @@ function Functions() {
       </div>
 
       {/*  ================= Right Side ================== */}
-       <div
+      <div
         className={`flex-1 transition-all duration-300 ease-in-out p-4 ${
           isOpen === "open" ? " md:ml-64" : "ml-0"
         }`}
