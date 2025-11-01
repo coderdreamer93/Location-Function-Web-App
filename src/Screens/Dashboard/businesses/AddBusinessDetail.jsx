@@ -1,11 +1,8 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { ReactComponent as UploadIcon } from "../../../Assets/icons/uploadIcon.svg";
 import { ReactComponent as CheckIcon } from "../../../Assets/icons/check.svg";
-import { ReactComponent as DateGrayIcon } from "../../../Assets/icons/dateGrayIcon.svg";
-import { ReactComponent as CalenderIcon } from "../../../Assets/icons/Calander.svg";
+import { ReactComponent as WhitePencilIcon } from "../../../Assets/icons/whitePencilIcon.svg";
 import NestedHeaderWhite from "../../../Components/Dashboard/header/nestedHeader/NestedHeaderWhite";
-import AddDescriptionModal from "../../../Components/Dashboard/modals/AddDescriptionModal";
 import { useNavigate } from "react-router-dom";
 import AddressInput from "../functions/AddressInput";
 import FormNavigationButtons from "../../../Components/Dashboard/form/FormNavigationButtons";
@@ -14,7 +11,6 @@ export default function AddBusinessDetail() {
   const suppressSaveRef = useRef(false);
   // const [isFocused, setIsFocused] = useState(false);
   const [fileName, setFileName] = useState("");
-  const [showModal, setShowModal] = useState(false);
   const [description, setDescription] = useState("");
   const [filePreview, setFilePreview] = useState(null);
   const navigate = useNavigate();
@@ -56,28 +52,6 @@ export default function AddBusinessDetail() {
     if (fileName) localStorage.setItem("addProblemFileName", fileName);
   }, [fileName]);
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFileName(file.name);
-
-      // ✅ Create image preview
-      if (file.type.startsWith("image/")) {
-        const previewURL = URL.createObjectURL(file);
-        setFilePreview(previewURL);
-
-        // 🧠 Store preview (optional, only base64)
-        const reader = new FileReader();
-        reader.onload = () => {
-          localStorage.setItem("addProblemFilePreview", reader.result);
-        };
-        reader.readAsDataURL(file);
-      } else {
-        setFilePreview(null);
-        localStorage.removeItem("addProblemFilePreview");
-      }
-    }
-  };
 
   useEffect(() => {
     const savedPreview = localStorage.getItem("addProblemFilePreview");
@@ -87,10 +61,6 @@ export default function AddBusinessDetail() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSaveDescription = (content) => {
-    setDescription(content);
   };
 
   const handleCancel = () => {
@@ -128,50 +98,7 @@ export default function AddBusinessDetail() {
   };
 
   const handleSaveProblem = () => {
-    const newProblem = {
-      ...formData,
-      description,
-      fileName,
-      dateSaved: new Date().toISOString(),
-    };
-
-    const addFrom = localStorage.getItem("addFrom");
-
-    if (addFrom === "function") {
-      const existingFunctionData =
-        JSON.parse(localStorage.getItem("addFunctionFormData")) || {};
-
-      const updatedFunctionData = {
-        ...existingFunctionData,
-        linkedProblem: newProblem,
-      };
-
-      localStorage.setItem(
-        "addFunctionFormData",
-        JSON.stringify(updatedFunctionData)
-      );
-
-      localStorage.removeItem("addFrom");
-      //  Clear Add Problem local data after save
-      localStorage.removeItem("addProblemFormData");
-      localStorage.removeItem("addProblemDescription");
-      localStorage.removeItem("addProblemFileName");
-      localStorage.removeItem("addProblemFilePreview");
-
-      navigate("/dashboard/functions/addFunction");
-    } else {
-      const existing = JSON.parse(localStorage.getItem("problemsList")) || [];
-      const updated = [...existing, newProblem];
-      localStorage.setItem("problemsList", JSON.stringify(updated));
-
-      // ✅ Clear Add Problem local data after save
-      localStorage.removeItem("addProblemFormData");
-      localStorage.removeItem("addProblemDescription");
-      localStorage.removeItem("addProblemFileName");
-      localStorage.removeItem("addProblemFilePreview");
-
-      navigate("/dashboard/problems");
-    }
+    ""
   };
 
   useEffect(() => {
@@ -198,8 +125,19 @@ export default function AddBusinessDetail() {
 
         {/* Form */}
         <div className="flex flex-col bg-gray-50 max-w-2xl w-full mx-auto mt-32 rounded-lg shadow-inner border border-gray-200">
-          
-          <img src="/PImage.png" alt="ProfileImage" className="w-[60px] h-[60px] rounded-full mx-auto my-4" />
+          <div className="relative mx-auto flex justify-center items-center p-2 mt-4">
+            <img
+              src="/PImage.png"
+              alt="ProfileImage"
+              className="w-[60px] h-[60px] rounded-full "
+            />
+            <WhitePencilIcon
+              className="absolute right-0 bottom-0"
+              onClick={() => {
+                alert("upload image");
+              }}
+            />
+          </div>
           <div className="grid grid-cols-1 gap-4  p-6">
             {/* Problem Name */}
             <div className="flex flex-col">
