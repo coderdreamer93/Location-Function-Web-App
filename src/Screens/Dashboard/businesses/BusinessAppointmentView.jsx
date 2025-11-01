@@ -44,80 +44,82 @@ export default function BusinessAppintmentView() {
       <div className="flex flex-col md:flex-row w-full h-full relative">
         {/* Map Section */}
         <div
-          className="
-            relative w-full 
-            md:flex-1 
-            h-1/2 md:h-full 
-            bg-gray-100 
-            overflow-hidden
-          "
-        >
-          <img
-            src="/businessMap.png"
-            alt="BusinessMap"
-            className="w-full h-full object-cover"
-          />
-
-          {/* Mechanic Icon - TOP */}
-          <div
-            className="
-              absolute 
-              flex flex-col items-center 
-              left-1/2 -translate-x-1/2
-              top-[15%] md:top-[20%]
-              z-20
-            "
-          >
-            <div className="w-[60px] h-[60px] md:w-[100px] md:h-[100px] flex justify-center items-center">
-              <ProblemMonitorIcon className="w-full h-full" />
-            </div>
-          </div>
-
-          {/* Arrow (center between Mechanic and User) */}
-          <div
-            className="
-              absolute 
-              left-1/2 -translate-x-1/2
-              top-[25%] md:top-[30%]
-              z-10 
-              w-[80px] h-[80px] md:w-[150px] md:h-[150px] 
-              rotate-[15deg] 
-              flex justify-center items-center
-            "
-          >
-            <ArrowIcon className="w-full h-full opacity-90" />
-          </div>
-
-          {/* Distance Label (middle of arrow) */}
-          <div
-            className="
-              absolute 
-              left-1/2 -translate-x-1/2 
-              top-[45%] md:top-[50%] 
-              bg-white text-blue-500 text-xs md:text-sm 
-              font-semibold px-2 py-1 rounded shadow flex items-center
-              z-20
-            "
-          >
-            <DistanceIcon className="w-3 h-3 md:w-4 md:h-4" />
-            <span className="ml-1">{distance || "200"} mile</span>
-          </div>
-
-          {/* User Location - BOTTOM */}
-          <div
-            className="
-              absolute 
-              flex flex-col items-center
-              left-1/2 -translate-x-1/2
-              bottom-[10%] md:bottom-[20%]
-              z-20
-            "
-          >
-            <div className="w-[60px] h-[60px] md:w-[100px] md:h-[100px] flex justify-center items-center">
-              <SolutionMonitorIcon className="w-full h-full" />
-            </div>
-          </div>
-        </div>
+                className="
+                  relative w-full 
+                  md:flex-1 
+                  h-1/2 md:h-full 
+                  bg-gray-100 
+                  overflow-hidden
+                "
+              >
+                <img
+                  src="/businessMap.png"
+                  alt="BusinessMap"
+                  className="w-full h-full object-cover"
+                />
+      
+                {/* Mechanic Icon - TOP */}
+                <div
+                  className="
+                    absolute 
+                    flex flex-col items-center 
+                    left-1/2 
+                    -translate-x-1/2
+                    top-[15%] sm:top-[20%] md:left-[20%] rounded-full
+                    z-20
+                  "
+                >
+                  <div className="relative w-[50px] h-[50px] sm:w-[80px] sm:h-[80px] md:w-[100px] md:h-[100px] flex justify-center items-center">
+                    {/* <MechanicIcon className="w-full h-full" /> */}
+                  <ProblemMonitorIcon />
+                  </div>
+                </div>
+      
+                {/* Arrow (center between Mechanic and User) */}
+                <div
+                  className="
+                    absolute 
+                    left-1/3 -translate-x-2/3
+                    top-[25%] md:top-[40%]
+                    z-10 
+                    w-[80px] h-[80px] md:w-[170px] md:h-[170px] 
+                    rotate-[10deg] 
+                    flex justify-center items-center
+                  "
+                >
+                  <ArrowIcon className="w-full h-full opacity-90" />
+                </div>
+      
+                {/* Distance Label (middle of arrow) */}
+                <div
+                  className="
+                    absolute 
+                    left-1/4 -translate-x-1/3 
+                    top-[45%] md:top-[50%] 
+                    bg-white text-blue-500 text-lg md:text-lg 
+                    font-semibold px-2 py-1 rounded shadow flex items-center
+                    z-20
+                  "
+                >
+                  {/* <DistanceIcon className="w-3 h-3 md:w-4 md:h-4" /> */}
+                  <span className="ml-1">{distance || "200"} mile</span>
+                </div>
+      
+                {/* User Location - BOTTOM */}
+                <div
+                  className="
+          absolute 
+          flex flex-col items-center
+          left-1/3 -translate-x-5/8
+          bottom-[10%] md:bottom-[20%]
+          z-20
+        "
+                >
+                  <div className="relative w-[50px] h-[50px] sm:w-[80px] sm:h-[80px] md:w-[100px] md:h-[100px] flex justify-center items-center">
+                   <SolutionMonitorIcon />
+                  </div>
+                </div>
+              </div>
 
         {/* Info Card */}
         <div
@@ -136,6 +138,7 @@ export default function BusinessAppintmentView() {
         >
           {/* Mechanic Info */}
           <div>
+                          <div className="flex mb-3 justify-center items-center mx-auto"><span className="bg-gray-300 w-8 h-2 rounded-full"></span></div>
             <div className="flex justify-between items-center flex-col border rounded-2xl">
               <div className="flex justify-between items-start gap-3 p-3 w-full">
                 <div className="flex items-center gap-3">
@@ -186,20 +189,20 @@ export default function BusinessAppintmentView() {
                 </div>
               </div>
 
-              <div className="w-full flex justify-center items-center bg-blue-50 rounded-b-2xl">
-                <button
+              <div className="w-full flex justify-center items-center newPrimaryBorder bg-blue-50 rounded-b-2xl">
+                <span
                   onClick={() =>
                     navigate("/dashboard/businesses/appointmentImageView", {
                       state: { business: selectedBusiness },
                     })
                   }
-                  className="w-full flex justify-center items-center gap-2 font-medium py-2 hover:bg-blue-100 transition-all border-b-2 border-blue-600 rounded-b-2xl"
+                  className="w-full flex justify-center items-center gap-2 font-medium py-2 hover:bg-blue-100 transition-all border newPrimaryBorder rounded-b-2xl"
                 >
                   <DateBlueIcon size={14} className="newPrimaryColor" />
-                  <span className="text-black text-[10px]">
+                  <span className="newFontColor text-[10px]">
                     Make Appointment
                   </span>
-                </button>
+                </span>
               </div>
             </div>
 
@@ -241,7 +244,8 @@ export default function BusinessAppintmentView() {
           <div className="mt-6 flex flex-col gap-3">
             <button
               onClick={() => navigate("/dashboard/businesses")}
-              className="text-[10px] newPrimaryColor flex justify-center items-center gap-1"
+              className="text-[12px] newPrimaryColor flex justify-center items-center gap-1 hover:underline"
+
             >
               The Function is located {distance} Miles from me
             </button>

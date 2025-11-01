@@ -37,10 +37,10 @@
 // //         {/* Map Section */}
 // //         <div
 // //           className="
-// //             relative w-full 
-// //             md:flex-1 
-// //             h-1/2 md:h-full 
-// //             bg-gray-100 
+// //             relative w-full
+// //             md:flex-1
+// //             h-1/2 md:h-full
+// //             bg-gray-100
 // //             overflow-hidden
 // //           "
 // //         >
@@ -54,14 +54,14 @@
 // //         {/* Info Card */}
 // //         <div
 // //           className="
-// //             w-full sm:w-[360px] 
+// //             w-full sm:w-[360px]
 // //             md:static
-// //             absolute md:top-auto md:right-auto 
-// //             bottom-0 
-// //             bg-white z-40 
-// //             h-1/2 sm:h-full 
-// //             rounded-t-2xl md:rounded-2xl 
-// //             shadow-xl border-t md:border-l border-gray-200 
+// //             absolute md:top-auto md:right-auto
+// //             bottom-0
+// //             bg-white z-40
+// //             h-1/2 sm:h-full
+// //             rounded-t-2xl md:rounded-2xl
+// //             shadow-xl border-t md:border-l border-gray-200
 // //             p-6 flex flex-col justify-between
 // //             transition-all duration-300
 // //           "
@@ -195,7 +195,6 @@
 // //   );
 // // }
 
-
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ReactComponent as LosAnglesMap } from "../../../Assets/icons/losanglesmap.svg";
@@ -203,7 +202,6 @@ import { ReactComponent as Location } from "../../../Assets/icons/Pin.svg";
 import { ReactComponent as RedRecorderIcon } from "../../../Assets/icons/redRecorderIcon.svg";
 import IOSStyleDatePicker from "./IOSStyleDatePicker";
 import { ReactComponent as DateBlueIcon } from "../../../Assets/icons/dateBlueIcon.svg";
-
 
 export default function BusinessAppointmentImageView() {
   const [openCalender, setOpenCalender] = useState(false);
@@ -244,12 +242,13 @@ export default function BusinessAppointmentImageView() {
             h-1/2 sm:h-full
             bg-white shadow-xl border-t md:border-l border-gray-200
             rounded-t-2xl md:rounded-2xl
-            z-40 flex flex-col justify-between p-6
+            z-10 flex flex-col justify-between p-6
             transition-all duration-300
           "
         >
           {/* Mechanic Info */}
           <div>
+                          <div className="flex mb-3 justify-center items-center mx-auto"><span className="bg-gray-300 w-8 h-2 rounded-full"></span></div>
             <div className="border rounded-2xl overflow-hidden shadow-sm">
               <div className="flex justify-between items-start gap-3 p-3 w-full">
                 <div className="flex items-center gap-3">
@@ -277,9 +276,7 @@ export default function BusinessAppointmentImageView() {
                     >
                       {place}
                     </span>
-                    <span className="text-xs text-blue-600 mt-1">
-                      {phone}
-                    </span>
+                    <span className="text-xs text-blue-600 mt-1">{phone}</span>
                   </div>
                 </div>
 
@@ -295,17 +292,19 @@ export default function BusinessAppointmentImageView() {
                 </div>
               </div>
 
-              <button
+              <span
                 onClick={() =>
-                  navigate("/dashboard/businesses/appointmentImageView", {
+                  navigate("/dashboard/businesses/addbusinessdetail", {
                     state: { business: selectedBusiness },
                   })
                 }
-                className="w-full flex justify-center items-center gap-2 py-2 border-t border-blue-200 bg-blue-50 hover:bg-blue-100 transition text-[11px] text-blue-700 font-semibold"
+                className="w-full flex justify-center items-center gap-2 font-medium py-2 hover:bg-blue-100 transition-all border newPrimaryBorder rounded-b-2xl"
               >
-                <DateBlueIcon size={14} />
-                Make Appointment
-              </button>
+                <DateBlueIcon size={14} className="newPrimaryColor" />
+                <span className="newFontColor text-[10px]">
+                  Make Appointment
+                </span>
+              </span>
             </div>
 
             {/* Divider Section */}
@@ -343,10 +342,10 @@ export default function BusinessAppointmentImageView() {
           </div>
 
           {/* Distance + Calendar */}
-          <div className="mt-6">
+          <div className="mt-6 w-full  flex justify-center">
             <button
               onClick={() => setOpenCalender(true)}
-              className="text-xs text-blue-600 flex justify-center items-center gap-1 hover:underline"
+              className="text-[12px] newPrimaryColor flex justify-center items-center gap-1 hover:underline"
             >
               The Function is located {distance} Miles from me
             </button>
@@ -371,4 +370,3 @@ export default function BusinessAppointmentImageView() {
     </div>
   );
 }
-

@@ -88,7 +88,7 @@
 
 // //         {/* Info Card */}
 // //         <div
-// //           className="w-full sm:w-[360px] absolute md:static top-[90px] right-0 
+// //           className="w-full sm:w-[360px] absolute md:static top-[90px] right-0
 // //           bg-white z-40 h-[calc(100%-10%)] rounded-2xl shadow-xl border-l border-gray-200 p-6 flex flex-col justify-between"
 // //         >
 // //           {/* Header */}
@@ -169,7 +169,7 @@
 // //               <div className="flex relative flex-col w-1/2 justify-between items-center p-2">
 // //                 <LosAnglesMap size={48} className="newFontColor" />
 // //                 <Location className="absolute top-[28%] left-[37%] w-[8px]" />
-              
+
 // //                 <span
 // //                   className="text-[14px] newFontColor flex items-center gap-1 font-bold"
 // //                   title={place} // shows full text on hover
@@ -212,8 +212,6 @@
 // //     </div>
 // //   );
 // // }
-
-
 
 // import React from "react";
 // import { useLocation, useNavigate } from "react-router-dom";
@@ -259,10 +257,10 @@
 //         {/* Map Section */}
 //         <div
 //           className="
-//             relative w-full 
-//             md:flex-1 
-//             h-1/2 md:h-full 
-//             bg-gray-100 
+//             relative w-full
+//             md:flex-1
+//             h-1/2 md:h-full
+//             bg-gray-100
 //             overflow-hidden
 //           "
 //         >
@@ -300,14 +298,14 @@
 //         {/* Info Card */}
 //         <div
 //           className="
-//             w-full sm:w-[360px] 
-//             md:static md:h-full 
-//             absolute md:top-auto md:right-auto 
-//             bottom-0 
-//             bg-white z-40 
-//             h-1/2 md:h-[calc(100%-10%)] 
-//             rounded-t-2xl md:rounded-2xl 
-//             shadow-xl border-t md:border-l border-gray-200 
+//             w-full sm:w-[360px]
+//             md:static md:h-full
+//             absolute md:top-auto md:right-auto
+//             bottom-0
+//             bg-white z-40
+//             h-1/2 md:h-[calc(100%-10%)]
+//             rounded-t-2xl md:rounded-2xl
+//             shadow-xl border-t md:border-l border-gray-200
 //             p-6 flex flex-col justify-between
 //             transition-all duration-300
 //           "
@@ -430,9 +428,6 @@
 //   );
 // }
 
-
-
-
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useCardView from "../../../hook/useCardView";
@@ -440,11 +435,10 @@ import NestedHeader from "../../../Components/Dashboard/header/nestedHeader/Nest
 import { ReactComponent as Oncamera } from "../../../Assets/icons/oncamera.svg";
 import { ReactComponent as LosAnglesMap } from "../../../Assets/icons/losanglesmap.svg";
 import { ReactComponent as Location } from "../../../Assets/icons/Pin.svg";
-import { ReactComponent as MechanicIcon } from "../../../Assets/icons/mechanicIcon.svg";
-import { ReactComponent as UserLocationIcon } from "../../../Assets/icons/userLocation.svg";
 import { ReactComponent as ArrowIcon } from "../../../Assets/icons/arrow.svg";
-import { ReactComponent as DistanceIcon } from "../../../Assets/icons/distance.svg";
 import { ReactComponent as DateBlueIcon } from "../../../Assets/icons/dateBlueIcon.svg";
+import { ReactComponent as CircleIcon } from "../../../Assets/icons/circle.svg";
+import { ReactComponent as BlueCircle } from "../../../Assets/icons/blueCircle.svg";
 
 export default function BusinessMapView() {
   const [view, setView] = useCardView();
@@ -495,13 +489,20 @@ export default function BusinessMapView() {
             className="
               absolute 
               flex flex-col items-center 
-              left-1/2 -translate-x-1/2
-              top-[15%] md:top-[20%]
+              left-[20%] 
+              top-[20%] 
+              -translate-x-1/2
+               sm:top-[20%] sm:left-[20%] rounded-full
               z-20
             "
           >
-            <div className="w-[40px] h-[40px] md:w-[60px] md:h-[60px] flex justify-center items-center">
-              <MechanicIcon className="w-full h-full" />
+            <div className="w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] md:w-[80px] md:h-[80px] rounded-full flex justify-center items-center">
+              {/* <MechanicIcon className="w-full h-full" /> */}
+              <img
+                src={"/circleMechanic.png"}
+                alt={"/circleMechanic.png"}
+                className=""
+              />
             </div>
           </div>
 
@@ -509,11 +510,11 @@ export default function BusinessMapView() {
           <div
             className="
               absolute 
-              left-1/2 -translate-x-1/2
-              top-[25%] md:top-[30%]
+              left-[30%] -translate-x-2/3
+              top-[40%] sm:top-[40%]
               z-10 
-              w-[80px] h-[80px] md:w-[150px] md:h-[150px] 
-              rotate-[15deg] 
+              w-[80px] h-[80px] sm:w-[170px] sm:h-[170px] 
+              rotate-[6deg] sm:rotate-[10deg] 
               flex justify-center items-center
             "
           >
@@ -524,29 +525,34 @@ export default function BusinessMapView() {
           <div
             className="
               absolute 
-              left-1/2 -translate-x-1/2 
+              left-1/4 -translate-x-1/3 
               top-[45%] md:top-[50%] 
-              bg-white text-blue-500 text-xs md:text-sm 
+              bg-white text-blue-500 text-[14px] sm:text-lg 
               font-semibold px-2 py-1 rounded shadow flex items-center
               z-20
             "
           >
-            <DistanceIcon className="w-3 h-3 md:w-4 md:h-4" />
+            {/* <DistanceIcon className="w-3 h-3 md:w-4 md:h-4" /> */}
             <span className="ml-1">{distance || "200"} mile</span>
           </div>
 
           {/* User Location - BOTTOM */}
           <div
             className="
-              absolute 
-              flex flex-col items-center
-              left-1/2 -translate-x-1/2
-              bottom-[10%] md:bottom-[20%]
-              z-20
-            "
+    absolute 
+    flex flex-col items-center
+    left-1/3 -translate-x-5/8
+    bottom-[10%] md:bottom-[10%]
+    z-20
+  "
           >
-            <div className="w-[30px] h-[30px] md:w-[50px] md:h-[50px] flex justify-center items-center">
-              <UserLocationIcon className="w-full h-full" />
+            <div className="relative w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] md:w-[80px] md:h-[80px] flex justify-center items-center">
+              {/* Blue Circle (background layer) */}
+              <BlueCircle className="w-full h-full" />
+
+              {/* CircleIcon (smaller & centered on top) */}
+              <CircleIcon className="absolute w-[98%] h-[98%] top-[2px]" />
+              <span className="bg-white rounded-full absolute  w-[20%] h-[20%]" />
             </div>
           </div>
         </div>
@@ -568,6 +574,7 @@ export default function BusinessMapView() {
         >
           {/* Mechanic Info */}
           <div>
+              <div className="flex mb-3 justify-center items-center mx-auto"><span className="bg-gray-300 w-8 h-2 rounded-full"></span></div>
             <div className="flex justify-between items-center flex-col border rounded-2xl">
               <div className="flex justify-between items-start gap-3 p-3 w-full">
                 <div className="flex items-center gap-3">
@@ -618,20 +625,20 @@ export default function BusinessMapView() {
                 </div>
               </div>
 
-              <div className="w-full flex justify-center items-center bg-blue-50 rounded-b-2xl">
-                <button
+              <div className="w-full flex justify-center items-center newPrimaryBorder bg-blue-50 rounded-b-2xl">
+                <span
                   onClick={() =>
                     navigate("/dashboard/businesses/appointment", {
                       state: { business: selectedBusiness },
                     })
                   }
-                  className="w-full flex justify-center items-center gap-2 font-medium py-2 hover:bg-blue-100 transition-all border-b-2 border-blue-600 rounded-b-2xl"
+                  className="w-full flex justify-center items-center gap-2 font-medium py-2 hover:bg-blue-100 transition-all border newPrimaryBorder rounded-b-2xl"
                 >
                   <DateBlueIcon size={14} className="newPrimaryColor" />
-                  <span className="text-black text-[10px]">
+                  <span className="newFontColor text-[10px]">
                     Make Appointment
+                </span>
                   </span>
-                </button>
               </div>
             </div>
 
@@ -673,7 +680,8 @@ export default function BusinessMapView() {
           <div className="mt-6 flex flex-col gap-3">
             <button
               onClick={() => navigate("/dashboard/businesses")}
-              className="text-[10px] newPrimaryColor flex justify-center items-center gap-1"
+              className="text-[12px] newPrimaryColor flex justify-center items-center gap-1 hover:underline"
+
             >
               The Function is located {distance} Miles from me
             </button>

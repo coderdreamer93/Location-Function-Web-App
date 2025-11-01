@@ -4,8 +4,8 @@ import { ReactComponent as CheckIcon } from "../../../Assets/icons/check.svg";
 import { ReactComponent as WhitePencilIcon } from "../../../Assets/icons/whitePencilIcon.svg";
 import NestedHeaderWhite from "../../../Components/Dashboard/header/nestedHeader/NestedHeaderWhite";
 import { useNavigate } from "react-router-dom";
-import AddressInput from "../functions/AddressInput";
 import FormNavigationButtons from "../../../Components/Dashboard/form/FormNavigationButtons";
+import BusinessAddressInput from "./BusinessAddressInput";
 
 export default function AddBusinessDetail() {
   const suppressSaveRef = useRef(false);
@@ -158,7 +158,8 @@ export default function AddBusinessDetail() {
               <label className="text-[14px] font-semibold newFontColor">
                 Address
               </label>
-              <AddressInput formData={formData} setFormData={setFormData} />
+              
+              <BusinessAddressInput formData={formData} setFormData={setFormData} />
             </div>
 
             <div className="flex flex-col">
