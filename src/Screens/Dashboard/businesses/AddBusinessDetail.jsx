@@ -12,7 +12,7 @@ export default function AddBusinessDetail() {
   // const [isFocused, setIsFocused] = useState(false);
   const [fileName, setFileName] = useState("");
   const [description, setDescription] = useState("");
-  const [filePreview, setFilePreview] = useState(null);
+
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -53,10 +53,6 @@ export default function AddBusinessDetail() {
   }, [fileName]);
 
 
-  useEffect(() => {
-    const savedPreview = localStorage.getItem("addProblemFilePreview");
-    if (savedPreview) setFilePreview(savedPreview);
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,41 +60,12 @@ export default function AddBusinessDetail() {
   };
 
   const handleCancel = () => {
-    suppressSaveRef.current = true;
-
-    setFormData({
-      problemName: "",
-      problemDate: "",
-      problemStatus: "",
-      problemVisibility: "",
-      problemLocation: "",
-      problemVideo: "",
-      privacy: "",
-    });
-    setDescription("");
-    setFileName("");
-    setFilePreview(null);
-
-    localStorage.removeItem("addProblemFormData");
-    localStorage.removeItem("addProblemDescription");
-    localStorage.removeItem("addProblemFileName");
-    localStorage.removeItem("addProblemFilePreview");
-
-    setTimeout(() => {
-      suppressSaveRef.current = false;
-    }, 0);
-
-    const addFrom = localStorage.getItem("addFrom");
-    if (addFrom === "function") {
-      localStorage.removeItem("addFrom");
-      navigate("/dashboard/functions/addFunction");
-    } else {
-      navigate("/dashboard/problems");
-    }
-  };
+    
+      navigate("../businesses");
+      };
 
   const handleSaveProblem = () => {
-    ""
+    navigate("../businesses/businessemployees");
   };
 
   useEffect(() => {
@@ -132,7 +99,7 @@ export default function AddBusinessDetail() {
               className="w-[60px] h-[60px] rounded-full "
             />
             <WhitePencilIcon
-              className="absolute right-0 bottom-0"
+              className="absolute right-0 bottom-0 cursor-pointer"
               onClick={() => {
                 alert("upload image");
               }}
@@ -158,8 +125,11 @@ export default function AddBusinessDetail() {
               <label className="text-[14px] font-semibold newFontColor">
                 Address
               </label>
-              
-              <BusinessAddressInput formData={formData} setFormData={setFormData} />
+
+              <BusinessAddressInput
+                formData={formData}
+                setFormData={setFormData}
+              />
             </div>
 
             <div className="flex flex-col">
@@ -188,31 +158,6 @@ export default function AddBusinessDetail() {
                 className="border border-gray-300 text-black rounded-lg px-3 py-2 text-[14px] focus:ring-1 focus:ring-blue-500 outline-none placeholder-gray-400"
               />
             </div>
-
-            {/* <div className="flex flex-col relative">
-              <label className="text-[14px] font-semibold newFontColor mb-1">
-                Contact Person Title
-              </label>
-
-              <input
-                type="text"
-                name="problemDate"
-                value={formData.problemDate}
-                onChange={handleChange}
-                placeholder="Select Date"
-                onFocus={(e) => (e.target.type = "date")}
-                onBlur={(e) => {
-                  if (!e.target.value) e.target.type = "text";
-                }}
-                className="w-full border border-gray-300 text-black rounded-lg px-3 py-2 text-[14px] pr-10
-      focus:ring-1 focus:ring-blue-500 outline-none appearance-none
-      [&::-webkit-calendar-picker-indicator]:opacity-0
-      [&::-webkit-inner-spin-button]:appearance-none
-      [&::-webkit-clear-button]:appearance-none"
-              />
-
-              <DateGrayIcon className="absolute right-3 top-9 w-4 h-4 text-blue-500 pointer-events-none" />
-            </div> */}
 
             <div className="flex flex-col relative">
               <label className="text-[14px] font-semibold newFontColor mb-1">

@@ -248,7 +248,9 @@ export default function BusinessAppointmentImageView() {
         >
           {/* Mechanic Info */}
           <div>
-                          <div className="flex mb-3 justify-center items-center mx-auto"><span className="bg-gray-300 w-8 h-2 rounded-full"></span></div>
+            <div className="flex mb-3 justify-center items-center mx-auto">
+              <span className="bg-gray-300 w-8 h-2 rounded-full"></span>
+            </div>
             <div className="border rounded-2xl overflow-hidden shadow-sm">
               <div className="flex justify-between items-start gap-3 p-3 w-full">
                 <div className="flex items-center gap-3">
@@ -291,54 +293,55 @@ export default function BusinessAppointmentImageView() {
                   </span>
                 </div>
               </div>
-
-              <span
-                onClick={() =>
-                  navigate("/dashboard/businesses/addbusinessdetail", {
-                    state: { business: selectedBusiness },
-                  })
-                }
-                className="w-full flex justify-center items-center gap-2 font-medium py-2 hover:bg-blue-100 transition-all border newPrimaryBorder rounded-b-2xl"
-              >
-                <DateBlueIcon size={14} className="newPrimaryColor" />
-                <span className="newFontColor text-[10px]">
-                  Make Appointment
+              <div className="w-full flex justify-center items-center newPrimaryBorder bg-blue-50 rounded-b-2xl">
+                <span
+                  onClick={() =>
+                    navigate("/dashboard/businesses/addbusinessdetail", {
+                      state: { business: selectedBusiness },
+                    })
+                  }
+                  className="w-full flex justify-center items-center gap-2 font-medium py-2 hover:bg-blue-100 transition-all border newPrimaryBorder rounded-b-2xl"
+                >
+                  <DateBlueIcon size={14} className="newPrimaryColor" />
+                  <span className="newFontColor text-[10px]">
+                    Make Appointment
+                  </span>
                 </span>
-              </span>
+              </div>
             </div>
 
             {/* Divider Section */}
-            <div className="border rounded-2xl border-gray-200 flex justify-between items-center my-4 p-3">
-              <div className="flex relative flex-col w-1/2 justify-center items-center">
-                <LosAnglesMap className="w-12 h-12 text-gray-400" />
-                <Location className="absolute top-[35%] left-[45%] w-[8px]" />
-
-                <span
-                  className="text-sm text-gray-700 font-semibold truncate max-w-[120px]"
-                  title={place}
-                >
-                  {place}
-                </span>
-                <span className="text-[10px] text-blue-600 mt-1">
-                  Show Formula Flow
-                </span>
-              </div>
-
-              <div className="flex flex-col gap-2 w-1/2 text-[12px]">
-                <div className="flex gap-2">
-                  <span className="text-gray-600">Function:</span>
-                  <span className="font-semibold text-green-600">
-                    {businessFunction || "Fix Car"}
-                  </span>
-                </div>
-                <div className="flex gap-2">
-                  <span className="text-gray-600">Problem:</span>
-                  <span className="font-semibold text-red-600">
-                    Bad Radiator
-                  </span>
-                </div>
-              </div>
-            </div>
+          <div className="border rounded-2xl flex justify-between items-center border-gray-200 my-4">
+                      <div className="flex relative flex-col w-1/2 justify-between items-center p-2">
+                        <LosAnglesMap size={48} className="newFontColor" />
+                        <Location className="absolute top-[28%] left-[37%] w-[8px]" />
+        
+                        <span
+                          className="text-[14px] newFontColor flex items-center gap-1 font-bold"
+                          title={place}
+                        >
+                          {place?.length > 15 ? `${place.slice(0, 15)}...` : place}
+                        </span>
+                        <span className="text-[8px] newPrimaryColor">
+                          Show Formula Flow
+                        </span>
+                      </div>
+        
+                      <div className="flex flex-col justify-between gap-2 w-1/2">
+                        <div className="flex gap-2">
+                          <span className="newFontColor text-[12px]">Function</span>
+                          <span className="text-green-600 text-[12px] font-bold">
+                            {businessFunction || "Fix Car"}
+                          </span>
+                        </div>
+                        <div className="flex gap-2">
+                          <span className="newFontColor text-[12px]">Problem</span>
+                          <span className="text-red-600 text-[12px] font-bold">
+                           Bad Radiator
+                          </span>
+                        </div>
+                      </div>
+                    </div>
           </div>
 
           {/* Distance + Calendar */}

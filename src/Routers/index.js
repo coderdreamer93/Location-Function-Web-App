@@ -66,6 +66,7 @@ import AddFunction from "../Screens/Dashboard/functions/AddFunction";
 import BusinessAppointmentView from "../Screens/Dashboard/businesses/BusinessAppointmentView";
 import BusinessAppointmentImageView from "../Screens/Dashboard/businesses/BusinessAppointmentImageView";
 import AddBusinessDetail from "../Screens/Dashboard/businesses/AddBusinessDetail";
+import BusinessEmployees from "../Screens/Dashboard/businesses/BusinessEmployees";
 
 // import Login from "../Screens/Auth/Login";
 
@@ -141,10 +142,10 @@ export default function AdminRouter() {
             path="/dashboard/businesses/addbusinessdetail"
             element={<AddBusinessDetail />}
           />
-          {/* <Route
-            path="/dashboard/businesses/employees"
-            element={<Employees />}
-          /> */}
+          <Route
+            path="/dashboard/businesses/businessemployees"
+            element={<BusinessEmployees />}
+          />
           <Route
             path="stats"
             element={<ProtectedRoutes Components={Stats} />}

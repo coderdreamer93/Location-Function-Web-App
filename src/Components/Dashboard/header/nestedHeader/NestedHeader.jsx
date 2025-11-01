@@ -8,7 +8,7 @@ import { ReactComponent as GridGrayIcon } from "../../../../Assets/icons/gridGra
 
 function NestedHeader({ title, view, setView }) {
   return (
-    <div className="flex justify-between items-center mb-2 z-50">
+    <div className="flex justify-between h-full items-center mb-2 z-50">
       <h1 className="text-[24px] font-bold text-black">{title}</h1>
 
       <div className="flex items-center border border-gray-200 rounded-md overflow-hidden bg-white">

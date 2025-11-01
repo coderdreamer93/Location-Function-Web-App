@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function NestedHeaderWhite({
   title,
   breadcrumbs = [
-    { label: "Dashboard", path: "/dashboard" },
+    // { label: "Dashboard", path: "/dashboard" },
     { label: "Functions", path: "/dashboard/functions" },
     { label: "Create Function", path: "" }, // current page (no path)
   ],
@@ -16,7 +16,7 @@ function NestedHeaderWhite({
   return (
     <div className="flex flex-col gap-2 h-16">
       {/* Breadcrumbs */}
-      <div className="flex items-center text-sm text-gray-500">
+      <div className="flex items-center text-[14px] text-gray-500">
         {breadcrumbs.map((crumb, index) => (
           <div key={index} className="flex items-center">
             <span
